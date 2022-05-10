@@ -23,9 +23,7 @@ class ProductFactory extends Factory {
 			'description' => $this->faker->realText( 320 ),
 			'price'       => $this->faker->numberBetween( 1000, 10000 ),
 			'available'   => $this->faker->numberBetween( 5, 80 ),
-			//these columns are specific to events
-			'date'        => $this->faker->dateTimeBetween( '+0 days', '+1 years' ),
-			'location'    => $this->faker->address,
+
 		];
 	}
 }
