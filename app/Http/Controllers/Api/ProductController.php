@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Inertia\Inertia;
 
+// Controller used for frontend
+
 class ProductController extends Controller {
 
 	//=== API ROUTES FOR VUEX STORE ===//
