@@ -1,4 +1,5 @@
 <template>
+    <GuestLayout>
     <div class="w-full">
         <div class="lg:w-2/3 w-full mx-auto mt-8 overflow-auto">
             <h2
@@ -44,41 +45,47 @@
         </div>
     </div>
 </template>
+</GuestLayout>
 <script>
-export default {
-    methods: {
-        cartLineTotal(item) {
-            let amount = item.price * item.pivot.quantity;
-            amount = amount / 100;
+    import GuestLayout from "@/Layouts/Guest";
 
-            return amount.toLocaleString("en-US", {
-                style: "currency",
-                currency: "USD",
-            });
+    export default {
+        components: {
+            GuestLayout
         },
-    },
-    computed: {
-        order() {
-            return this.$store.state.order;
-        },
-        orderQuantity() {
-            return this.$store.state.order.products.reduce(
-                (acc, item) => acc + item.pivot.quantity,
-                0
-            );
-        },
-        orderTotal() {
-            let amount = this.$store.state.order.products.reduce(
-                (acc, item) => acc + item.price * item.pivot.quantity,
-                0
-            );
-            amount = amount / 100;
+        methods: {
+            cartLineTotal(item) {
+                let amount = item.price * item.pivot.quantity;
+                amount = amount / 100;
 
-            return amount.toLocaleString("en-US", {
-                style: "currency",
-                currency: "USD",
-            });
+                return amount.toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                });
+            },
         },
-    },
-};
+        computed: {
+            order() {
+                return this.$store.state.order;
+            },
+            orderQuantity() {
+                return this.$store.state.order.products.reduce(
+                    (acc, item) => acc + item.pivot.quantity,
+                    0
+                );
+            },
+            orderTotal() {
+                let amount = this.$store.state.order.products.reduce(
+                    (acc, item) => acc + item.price * item.pivot.quantity,
+                    0
+                );
+                amount = amount / 100;
+
+                return amount.toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                });
+            },
+        },
+    };
 </script>
