@@ -16,6 +16,7 @@ class CreateOrdersTable extends Migration {
 			$table->integer( 'customer_id' );
 			$table->string( 'transaction_id' );
 			$table->integer( 'total' )->default( 0 );
+			$table->boolean( 'sent' )->default( false );
 			$table->timestamps();
 		} );
 	}
