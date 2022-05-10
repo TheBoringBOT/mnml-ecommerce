@@ -2,23 +2,26 @@
     <GuestLayout>
         <section class="text-gray-700 body-font">
             <div class="container px-5 py-24 mx-auto">
-                <div class="flex flex-wrap -m-4" v-if="!products.length">
-                    <div class="lg:w-1/4 md:w-1/2 p-4 w-full mb-4">
+                <div
+                    class="grid gap-5 grid-cols-1 md:grid-cols-3 xl:grid-cols-4"
+                    v-if="!products.length"
+                >
+                    <div class="w-full p-4">
                         <a class="block relative h-48 rounded overflow-hidden">
                             <img
-                                    alt="ecommerce"
-                                    class="object-cover object-center w-full h-full block"
-                                    src="https://dummyimage.com/420x260"
+                                alt="ecommerce"
+                                class="object-cover object-center w-full h-full block"
+                                src="https://dummyimage.com/420x260"
                             />
                         </a>
                         <div class="mt-4">
                             <h3
-                                    class="text-gray-500 text-xs tracking-widest title-font mb-1 uppercase inline-block mr-2"
+                                class="text-gray-500 text-xs tracking-widest title-font mb-1 uppercase inline-block mr-2"
                             >
                                 N/A
                             </h3>
                             <h2
-                                    class="text-gray-900 title-font text-lg font-medium"
+                                class="text-gray-900 title-font text-lg font-medium"
                             >
                                 Loading
                             </h2>
@@ -28,39 +31,39 @@
                 </div>
                 <div class="flex flex-wrap -m-4" v-else>
                     <div
-                            class="lg:w-1/4 md:w-1/2 p-4 w-full mb-4"
-                            v-for="product in products"
-                            :key="product.id"
+                        class="lg:w-1/4 md:w-1/2 p-4 w-full mb-4"
+                        v-for="product in products"
+                        :key="product.id"
                     >
                         <Link
-                                class="block relative h-48 rounded overflow-hidden"
-                                :href="/product/ + product.slug"
+                            class="block relative h-48 rounded overflow-hidden"
+                            :href="/product/ + product.slug"
                         >
                             <img
-                                    alt="ecommerce"
-                                    class="object-cover object-center w-full h-full block"
-                                    src="https://dummyimage.com/420x260"
+                                alt="ecommerce"
+                                class="object-cover object-center w-full h-full block"
+                                src="https://dummyimage.com/420x260"
                             />
                         </Link>
                         <div class="mt-4">
                             <h3
-                                    class="text-gray-500 text-xs tracking-widest title-font mb-1 uppercase inline-block mr-2"
-                                    v-for="category in product.categories"
-                                    v-text="category.name"
+                                class="text-gray-500 text-xs tracking-widest title-font mb-1 uppercase inline-block mr-2"
+                                v-for="category in product.categories"
+                                v-text="category.name"
                             ></h3>
                             <h2
-                                    class="text-gray-900 title-font text-lg font-medium"
-                                    v-text="product.name"
+                                class="text-gray-900 title-font text-lg font-medium"
+                                v-text="product.name"
                             ></h2>
                             <p
-                                    class="mt-1"
-                                    v-text="formatCurrency(product.price)"
+                                class="mt-1"
+                                v-text="formatCurrency(product.price)"
                             ></p>
                             <!--<p v-text="product.location"></p>-->
                             <span
-                                    v-if="product.available <= 0"
-                                    class="text-red-600"
-                            >Sold Out</span
+                                v-if="product.available <= 0"
+                                class="text-red-600"
+                                >Sold Out</span
                             >
                             <span v-else v-text="product.available"></span>
                         </div>
@@ -72,11 +75,11 @@
 </template>
 <script>
 import GuestLayout from "@/Layouts/Guest";
-import {Head, Link} from "@inertiajs/inertia-vue3";
-import {useStore} from "vuex";
+import { Head, Link } from "@inertiajs/inertia-vue3";
+import { useStore } from "vuex";
 
 export default {
-    components: {Head, Link, GuestLayout},
+    components: { Head, Link, GuestLayout },
     // props: ["products"],
     methods: {
         formatCurrency(amount) {
