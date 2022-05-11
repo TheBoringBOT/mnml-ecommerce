@@ -1,7 +1,8 @@
 <template>
     <BreezeAuthenticatedLayout>
         <section class="text-gray-700 body-font">
-            <div class="container px-5 py-24 mx-auto">
+            <div class="container px-5 mx-auto">
+                <CategoriesList :categories="categories" />
                 <div class="flex flex-wrap -m-4" v-if="!products.length">
                     <div class="lg:w-1/4 md:w-1/2 p-4 w-full mb-4">
                         <a class="block relative h-48 rounded overflow-hidden">
@@ -77,11 +78,14 @@
                                 </div>
                             </div>
                             <div class="flex flex-col py-5">
-                                <button
+                                <Link
+                                    :href="
+                                        `/dashboard/product/edit/` + product.id
+                                    "
                                     class="bg-black text-white rounded block w-full p-2"
                                 >
                                     Edit
-                                </button>
+                                </Link>
                                 <button
                                     class="bg-transparent text-slate-500 pt-5 block w-full"
                                 >
@@ -99,10 +103,11 @@
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
 import { useStore } from "vuex";
+import CategoriesList from "../Components/CategoriesList";
 
 export default {
-    components: { Head, Link, BreezeAuthenticatedLayout },
-    // props: ["products"],
+    components: { Head, Link, BreezeAuthenticatedLayout, CategoriesList },
+    props: ["products", "categories"],
     methods: {
         formatCurrency(amount) {
             amount = amount / 100;
@@ -113,10 +118,10 @@ export default {
         },
     },
     computed: {
-        products() {
-            console.log(useStore().state);
-            return useStore().state.products;
-        },
+        // products() {
+        //     console.log(useStore().state);
+        //     return useStore().state.products;
+        // },
     },
 };
 </script>
