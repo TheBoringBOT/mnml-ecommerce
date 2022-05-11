@@ -19,6 +19,7 @@ class ProductFactory extends Factory {
 
 		return [
 			'name'        => $name,
+			'brand'       => $this->faker->name,
 			'slug'        => Str::slug( $name ),
 			'description' => $this->faker->realText( 320 ),
 			'price'       => $this->faker->numberBetween( 1000, 10000 ),
