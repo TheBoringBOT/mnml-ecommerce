@@ -22,6 +22,10 @@
                             class="leading-relaxed"
                             v-text="product.description"
                         ></p>
+                        <span
+                            class="my-5 leading-relaxed"
+                            v-text="`SKU: ` + product.sku"
+                        ></span>
                         <div class="flex mt-6 pt-4 border-t-2 border-gray-200">
                             <span
                                 v-if="product.available === 0"
