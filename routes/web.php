@@ -42,9 +42,10 @@ Route::inertia( '/summary', 'Frontend/Order/Summary' )->name( 'order.summary' );
 //=== Backend ===
 
 // dashboard
-Route::get( '/dashboard', function () {
-	return Inertia::render( 'Backend/Dashboard' );
-} )->middleware( [ 'auth', 'verified' ] )->name( 'dashboard' );
+Route::get( '/dashboard', [ \App\Http\Controllers\DashboardController::class, 'index' ] )->middleware( [
+	'auth',
+	'verified'
+] )->name( 'dashboard' );
 
 // all products
 Route::get( '/dashboard/products', [ \App\Http\Controllers\ProductController::class, 'index' ] )->middleware( [
