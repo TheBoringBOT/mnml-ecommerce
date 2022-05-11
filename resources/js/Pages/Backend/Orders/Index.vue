@@ -1,9 +1,11 @@
 <template>
-    {{ orders }}
+    {{ ordersNotSent }}
+
+    {{ ordersSent }}
 </template>
 
 <script>
 export default {
-    props: ["orders"],
+    props: ["ordersNotSent", "ordersSent"],
 };
 </script>
