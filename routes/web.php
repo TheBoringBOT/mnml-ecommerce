@@ -40,8 +40,32 @@ Route::inertia( '/summary', 'Frontend/Order/Summary' )->name( 'order.summary' );
 
 
 //=== Backend ===
+
+// dashboard
 Route::get( '/dashboard', function () {
 	return Inertia::render( 'Backend/Dashboard' );
 } )->middleware( [ 'auth', 'verified' ] )->name( 'dashboard' );
 
+// all products
+Route::get( '/dashboard/products', [ \App\Http\Controllers\ProductController::class, 'index' ] )->middleware( [
+	'auth',
+	'verified'
+] )->name( 'dashboard.products' );
+
+// create product
+Route::get( '/dashboard/product/create', function () {
+	return Inertia::render( 'Backend/Product/CreateProduct' );
+} )->middleware( [ 'auth', 'verified' ] )->name( 'dashboard.products.create' );
+//edit product
+Route::get( '/dashboard/product/edit/{slug}', [
+	\App\Http\Controllers\ProductController::class,
+	'edit'
+] )->middleware( [ 'auth', 'verified' ] )->name( 'dashboard.products.edit' );
+
+// orders
+
+Route::get( '/dashboard/orders', [
+	\App\Http\Controllers\OrderController::class,
+	'index'
+] )->middleware( [ 'auth', 'verified' ] )->name( 'dashboard.orders' );
 require __DIR__ . '/auth.php';
