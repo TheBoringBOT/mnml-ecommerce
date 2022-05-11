@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Order;
+use Inertia\Inertia;
 use Illuminate\Http\Request;
 
 //controller  used for backend only  -  controllers under Controllers/API for frontend
@@ -13,7 +15,15 @@ class CustomerController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		//
+
+		$customers = Customer::all();
+
+		return Inertia::render( 'Backend/Customers/Index', [
+
+			'customers' => $customers,
+
+
+		] );
 	}
 
 	/**
@@ -36,15 +46,33 @@ class CustomerController extends Controller {
 		//
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int $id
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
+
 	public function show( $id ) {
-		//
+		// get the customer
+		$customer = Customer::findOrFail( $id );
+
+		// get all customer orders and the products
+		$orders = Order::with( 'products' )->where( 'customer_id', $customer->id )->get();
+
+		// Partition the orders if order is sent or not
+		list( $ordersNotSent, $ordersSent ) = $orders->partition( function ( $i ) {
+			return $i['sent'] === 0;
+		} );
+
+		// orders not sent
+		$ordersNotSent->all();
+		// orders sent
+		$ordersSent->all();
+
+
+		return Inertia::render( 'Backend/Customers/Show', [
+
+			'customer'      => $customer,
+			'ordersNotSent' => $ordersNotSent,
+			'ordersSent'    => $ordersSent,
+
+
+		] );
 	}
 
 	/**
@@ -78,6 +106,6 @@ class CustomerController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy( $id ) {
-		//
+
 	}
 }
