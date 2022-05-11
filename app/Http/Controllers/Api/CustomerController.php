@@ -85,8 +85,6 @@ class CustomerController extends Controller {
 
 	// after successful purchase redirect customer to order summary page
 	public function orderSummary( $order ) {
-
-
 		return inertia( 'Frontend/Order/Summary', [ 'order' => $order ] );
 	}
 
