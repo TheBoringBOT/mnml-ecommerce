@@ -14,7 +14,7 @@ class OrderController extends Controller {
 	/**
 	 * Display a listing of the resource.
 	 *
-	 * @return \Illuminate\Http\Response
+	 *
 	 */
 	public function index() {
 		// get each order with the product
@@ -22,76 +22,70 @@ class OrderController extends Controller {
 
 		// map through orders and attach customer details
 		$orders->map( function ( $i ) {
-
 			// Add customer details to each order
 			$i['customer'] = Customer::findorFail( $i->customer_id );
 		} );
 
+		// Partition the orders if order is sent or not
+		list( $ordersNotSent, $ordersSent ) = $orders->partition( function ( $i ) {
+			return $i['sent'] === 0;
+		} );
+
+		// orders not sent
+		$ordersNotSent->all();
+		// orders sent
+		$ordersSent->all();
+
+
+
 
 		return Inertia::render( 'Backend/Orders/Index', [
 
-			'orders' => $orders,
+			'ordersNotSent' => $ordersNotSent,
+			'ordersSent'    => $ordersSent,
+
+		] );
+	}
+
+	// ? Order is created wiithin /Http/Controllers/Api/CustomerController.php
+
+
+	public function show( $id ) {
+		// get order
+		$order = Order::findOrFail( $id );
+		// get order product details
+		$product = $order->products()->get();
+		// add product details to order collection
+		$order['product'] = $product;
+		//add full customer details to order collection
+		$order['customer'] = Customer::findorFail( $order->customer_id );
+
+
+		return Inertia::render( 'Backend/Orders/Show', [
+
+			'order' => $order,
+
 
 		] );
 	}
 
 	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function create() {
-		//
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request $request
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function store( Request $request ) {
-		//
-	}
-
-	/**
-	 * Display the specified resource.
+	 * change the order status of the specified resource -
+	 * it will change to opposite of whatever is the current .
 	 *
 	 * @param  int $id
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show( $id ) {
-		//
-	}
+	public function updateOrderStatus( $id ) {
 
-	/**
-	 * change the order status of the specified resource to sent .
-	 *
-	 * @param  int $id
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function updateOrderSent( $id ) {
-		$order = Order::findOrFail( $id )->get();
-		$order->update( 'sent', 1 );
+		// find order
+		$order = Order::findOrFail( $id );
+		// update order status  opposite to current status
+		$response = $order->update( [ 'sent' => ! $order->sent ] );
 
-
-	}
-
-	/**
-	 * change the order status of the specified resource to processing (not sent) .
-	 *
-	 * @param  int $id
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function updateOrderProcessing( $id ) {
-		$order = Order::findOrFail( $id )->get();
-		$order->update( 'sent', 0 );
-
-
+		// return success if updates
+		return response()->json( [ 'success' => $response ] );
 	}
 
 
