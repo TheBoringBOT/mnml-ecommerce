@@ -11,45 +11,52 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Inertia\Inertia;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
-class RegisteredUserController extends Controller
-{
-    /**
-     * Display the registration view.
-     *
-     * @return \Inertia\Response
-     */
-    public function create()
-    {
-        return Inertia::render('Auth/Register');
-    }
+class RegisteredUserController extends Controller {
+	/**
+	 * Display the registration view.
+	 *
+	 * @return \Inertia\Response
+	 */
+	public function create() {
+		return Inertia::render( 'Auth/Register' );
+	}
 
-    /**
-     * Handle an incoming registration request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+	/**
+	 * Handle an incoming registration request.
+	 *
+	 * @param  \Illuminate\Http\Request $request
+	 *
+	 * @return \Illuminate\Http\RedirectResponse
+	 *
+	 * @throws \Illuminate\Validation\ValidationException
+	 */
+	public function store( Request $request ) {
+		$request->validate( [
+			'name'     => 'required|string|max:255',
+			'email'    => 'required|string|email|max:255|unique:users',
+			'password' => [ 'required', 'confirmed', Rules\Password::defaults() ],
+		] );
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+		$user = User::create( [
+			'name'     => $request->name,
+			'email'    => $request->email,
+			'password' => Hash::make( $request->password ),
+		] );
 
-        event(new Registered($user));
 
-        Auth::login($user);
+		//This is a temp fix for demo to give role to admin on signup
+		// TODO remove these roles/permission and create/modify in              //dashboard   only
+		$role       = Role::create( [ 'name' => 'admin' ] );
+		$permission = Permission::create( [ 'name' => 'admin' ] );
+		$user->assignRole( 'admin' );
 
-        return redirect(RouteServiceProvider::HOME);
-    }
+		event( new Registered( $user ) );
+
+		Auth::login( $user );
+
+		return redirect( RouteServiceProvider::HOME );
+	}
 }
