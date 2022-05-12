@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration {
 			$table->text( 'description' );
 			$table->integer( 'available' )->default( 0 );
 			$table->integer( 'price' )->default( 0 );
-			$table->string( 'image_url' );
+			$table->string( 'image_url' )->nullable();
 			$table->timestamps();
 		} );
 	}
