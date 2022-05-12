@@ -22,9 +22,7 @@ class EventServiceProvider extends ServiceProvider {
 			SendEmailVerificationNotification::class,
 
 		],
-		NewOrder::class   => [
-			sendNewOrderNotification::class,
-		],
+
 	];
 
 	/**
