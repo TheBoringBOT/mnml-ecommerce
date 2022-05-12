@@ -23,6 +23,7 @@ class ProductFactory extends Factory {
 			'slug'        => Str::slug( $name ),
 			'description' => $this->faker->realText( 320 ),
 			'price'       => $this->faker->numberBetween( 1000, 10000 ),
+			'image_url'   => 'https://i.pravatar.cc/1000',
 			'available'   => $this->faker->numberBetween( 5, 80 ),
 
 		];
