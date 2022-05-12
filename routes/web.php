@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+
 //=== Frontend ===
 
 // home
@@ -16,8 +17,6 @@ Route::get( '/', function () {
 	] );
 } );
 
-// these routes just render the componets
-// the actual functions to get the products data is found in api.php
 
 // get all products
 Route::get( '/products', [
