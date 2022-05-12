@@ -8,16 +8,12 @@ use App\Models\Customer;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Models\Product;
-//use App\Mail\OrderNotification;
-use Illuminate\Support\Facades\Mail;
-
 use App\Notifications\OrderNotification;
-use App\Models\User;
 use Notification;
 use Illuminate\Notifications\Notifiable;
 
 
-class CustomerController extends Controller {
+class OrderController extends Controller {
 	use Notifiable;
 
 
@@ -63,7 +59,8 @@ class CustomerController extends Controller {
 
 			$order = $customer->orders()->create( [
 				'transaction_id' => $payment->charges->data[0]->id,
-				'total'          => $payment->charges->data[0]->amount
+
+				'total' => $payment->charges->data[0]->amount
 			] );
 
 

@@ -3,14 +3,14 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ProductController;
-use App\Http\Controllers\Api\CustomerController;
+use App\Http\Controllers\Api\OrderController;
 
 // get all products
 Route::get( '/products', [ ProductController::class, 'apiAllProducts' ] );
 // get single product
 Route::get( '/products/{slug}', [ ProductController::class, 'apiSingleProducts' ] );
 // post purchase
-Route::post( '/purchase', [ CustomerController::class, 'purchase' ] );
+Route::post( '/purchase', [ OrderController::class, 'purchase' ] );
 
 
 // user auth (used only for admin)
