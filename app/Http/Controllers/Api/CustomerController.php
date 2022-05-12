@@ -8,10 +8,18 @@ use App\Models\Customer;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Models\Product;
-use App\Mail\OrderNotification;
+//use App\Mail\OrderNotification;
 use Illuminate\Support\Facades\Mail;
 
+use App\Notifications\OrderNotification;
+use App\Models\User;
+use Notification;
+use Illuminate\Notifications\Notifiable;
+
+
 class CustomerController extends Controller {
+	use Notifiable;
+
 
 	//TODO setup validation of inputs on client side + server side
 
@@ -65,13 +73,11 @@ class CustomerController extends Controller {
 				Product::where( 'id', $item['id'] )->decrement( 'available', $item['quantity'] );
 			}
 
-			//Send email to customer
-			Mail::to( $request->input( 'email' ) )->send( new OrderNotification() );
-			//Todo add data to the email - Name, total, product, event date etc.
-			//TODO add ticket or something within the email
 
 			$order->load( 'products' );
 
+
+			$this->sendOrderNotification( $customer, $order );
 
 			return $order;
 
@@ -86,6 +92,15 @@ class CustomerController extends Controller {
 	// after successful purchase redirect customer to order summary page
 	public function orderSummary( $order ) {
 		return inertia( 'Frontend/Order/Summary', [ 'order' => $order ] );
+	}
+
+
+	//send notification to customer via email
+	// send notification also to admin via database notifications
+	public function sendOrderNotification( $customer, $order ) {
+		Notification::send( $customer, new OrderNotification( $customer, $order ) );
+
+
 	}
 
 }
