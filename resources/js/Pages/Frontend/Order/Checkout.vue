@@ -273,7 +273,7 @@
     </GuestLayout>
 </template>
 <script>
-import GuestLayout from "@/Layouts/Guest";
+import GuestLayout from "@/Layouts/Customer";
 import {loadStripe} from "@stripe/stripe-js";
 import {Field, Form, ErrorMessage} from "vee-validate";
 import * as yup from "yup";

@@ -2,24 +2,24 @@
     <BreezeAuthenticatedLayout>
         <section class="text-gray-700 body-font">
             <div class="container px-5 mx-auto">
-                <CategoriesList :categories="categories" />
+                <CategoriesList :categories="categories"/>
                 <div class="flex flex-wrap -m-4" v-if="!products.length">
                     <div class="lg:w-1/4 md:w-1/2 p-4 w-full mb-4">
                         <a class="block relative h-48 rounded overflow-hidden">
                             <img
-                                alt="ecommerce"
-                                class="object-cover object-center w-full h-full block"
-                                src="https://dummyimage.com/420x260"
+                                    alt="ecommerce"
+                                    class="object-cover object-center w-full h-full block"
+                                    src="https://dummyimage.com/420x260"
                             />
                         </a>
                         <div class="mt-4">
                             <h3
-                                class="text-gray-500 text-xs tracking-widest title-font mb-1 uppercase inline-block mr-2"
+                                    class="text-gray-500 text-xs tracking-widest title-font mb-1 uppercase inline-block mr-2"
                             >
                                 N/A
                             </h3>
                             <h2
-                                class="text-gray-900 title-font text-lg font-medium"
+                                    class="text-gray-900 title-font text-lg font-medium"
                             >
                                 Loading
                             </h2>
@@ -28,47 +28,47 @@
                     </div>
                 </div>
                 <div
-                    class="grid gap-5 grid-cols-1 md:grid-cols-3 xl:grid-cols-4"
-                    v-else
+                        class="grid gap-5 grid-cols-1 md:grid-cols-3 xl:grid-cols-4"
+                        v-else
                 >
                     <div
-                        class="w-full p-4 bg-white p-2 rounded"
-                        v-for="product in products"
-                        :key="product.id"
+                            class="w-full p-4 bg-white p-2 rounded"
+                            v-for="product in products"
+                            :key="product.id"
                     >
                         <Link
-                            class="block relative h-48 rounded overflow-hidden"
-                            :href="/product/ + product.slug"
+                                class="block relative h-48 rounded overflow-hidden"
+                                :href="/product/ + product.slug"
                         >
                             <img
-                                alt="ecommerce"
-                                class="object-cover object-center w-full h-full block"
-                                src="https://dummyimage.com/420x260"
+                                    alt="ecommerce"
+                                    class="object-cover object-center w-full h-full block"
+                                    src="https://dummyimage.com/420x260"
                             />
                         </Link>
                         <div class="mt-4">
                             <h3
-                                class="text-gray-500 text-xs tracking-widest title-font mb-1 uppercase inline-block mr-2"
-                                v-for="category in product.categories"
-                                v-text="category.name"
+                                    class="text-gray-500 text-xs tracking-widest title-font mb-1 uppercase inline-block mr-2"
+                                    v-for="category in product.categories"
+                                    v-text="category.name"
                             ></h3>
                             <h2
-                                class="text-gray-900 title-font text-lg font-medium text-ellipsis whitespace-nowrap overflow-hidden"
-                                v-text="product.name"
+                                    class="text-gray-900 title-font text-lg font-medium text-ellipsis whitespace-nowrap overflow-hidden"
+                                    v-text="product.name"
                             ></h2>
 
                             <div class="flex flex-col space-y-5">
                                 <div class="flex space-x-5 items-center">
                                     <span
-                                        class="mt-1 text-lg"
-                                        v-text="formatCurrency(product.price)"
+                                            class="mt-1 text-lg"
+                                            v-text="formatCurrency(product.price)"
                                     ></span>
                                 </div>
                                 <div class="flex space-x-5 items-center">
                                     <span
-                                        v-if="product.available <= 0"
-                                        class="text-red-600"
-                                        >Sold Out</span
+                                            v-if="product.available <= 0"
+                                            class="text-red-600"
+                                    >Sold Out</span
                                     >
                                     <div v-else class="text-sm">
                                         <span>Available:</span>
@@ -79,15 +79,15 @@
                             </div>
                             <div class="flex flex-col py-5">
                                 <Link
-                                    :href="
+                                        :href="
                                         `/dashboard/product/edit/` + product.id
                                     "
-                                    class="bg-black text-white rounded block w-full p-2"
+                                        class="bg-black text-white rounded block w-full p-2"
                                 >
                                     Edit
                                 </Link>
                                 <button
-                                    class="bg-transparent text-slate-500 pt-5 block w-full"
+                                        class="bg-transparent text-slate-500 pt-5 block w-full"
                                 >
                                     Remove Product
                                 </button>
@@ -101,12 +101,12 @@
 </template>
 <script>
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
-import { Head, Link } from "@inertiajs/inertia-vue3";
-import { useStore } from "vuex";
-import CategoriesList from "../Components/CategoriesList";
+import {Head, Link} from "@inertiajs/inertia-vue3";
+import {useStore} from "vuex";
+import CategoriesList from "@/components/Backend/CategoriesList";
 
 export default {
-    components: { Head, Link, BreezeAuthenticatedLayout, CategoriesList },
+    components: {Head, Link, BreezeAuthenticatedLayout, CategoriesList},
     props: ["products", "categories"],
     methods: {
         formatCurrency(amount) {

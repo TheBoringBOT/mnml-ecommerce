@@ -74,7 +74,7 @@
     </GuestLayout>
 </template>
 <script>
-import GuestLayout from "@/Layouts/Guest";
+import GuestLayout from "@/Layouts/Customer";
 import { Head, Link } from "@inertiajs/inertia-vue3";
 import { useStore } from "vuex";
 
