@@ -58,10 +58,22 @@ Route::get( '/dashboard/product/create', [
 	'create'
 ] )->middleware( [ 'auth', 'verified' ] )->name( 'dashboard.products.create' );
 
+// save product
+Route::post( '/dashboard/product/create', [
+	\App\Http\Controllers\ProductController::class,
+	'store'
+] )->middleware( [ 'auth', 'verified' ] )->name( 'dashboard.products.create' );
+
 //edit product
-Route::get( '/dashboard/product/edit/{slug}', [
+Route::get( '/dashboard/product/edit/{id}', [
 	\App\Http\Controllers\ProductController::class,
 	'edit'
+] )->middleware( [ 'auth', 'verified' ] )->name( 'dashboard.products.edit' );
+
+//update  product
+Route::post( '/dashboard/product/edit/{id}', [
+	\App\Http\Controllers\ProductController::class,
+	'update'
 ] )->middleware( [ 'auth', 'verified' ] )->name( 'dashboard.products.edit' );
 
 //delete product
