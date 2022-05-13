@@ -58,12 +58,15 @@ class ProductController extends Controller {
 
 		$request->validate( [
 			'name'        => 'required | string|min:1|max:100',
-			'brand'       => 'required | string|min:1|max:100',
-			'description' => 'required | string|min:1|max:200',
-			'available'   => 'required|digits_between:0,5',
 			'price'       => 'required|digits_between:0,5',
-			'image'       => 'mimes:jpeg,bmp,png,jpg|dimensions:width=960,height=1422',
+			'available'   => 'required|digits_between:0,5',
+			'care'        => 'required | string|min:1|max:100',
+			'materials'   => 'required | string|min:1|max:100',
 			'categories'  => 'required',
+			'description' => 'required | string|min:1|max:200',
+			'story'       => 'required | string|min:1|max:200',
+			'image'       => 'mimes:jpeg,bmp,png,jpg',
+
 
 		] );
 
@@ -109,12 +112,15 @@ class ProductController extends Controller {
 		// Create Product in DB
 		$product = Product::create( [
 
+
 			'name'        => $request->get( 'name' ),
-			'brand'       => $request->get( 'brand' ),
-			'slug'        => $slug,
-			'description' => $request->get( 'description' ),
-			'available'   => $request->get( 'available' ),
 			'price'       => $request->get( 'price' ),
+			'available'   => $request->get( 'available' ),
+			'care'        => $request->get( 'brand' ),
+			'materials'   => $request->get( 'materials' ),
+			'description' => $request->get( 'description' ),
+			'story'       => $request->get( 'story' ),
+			'slug'        => $slug,
 			'image'       => $image_path,
 
 		] );
@@ -177,13 +183,14 @@ class ProductController extends Controller {
 
 		$request->validate( [
 			'name'        => 'required | string|min:1|max:100',
-			'brand'       => 'required | string|min:1|max:100',
-			'description' => 'required | string|min:1|max:200',
-			'available'   => 'required|digits_between:0,5',
 			'price'       => 'required|digits_between:0,5',
-			'image'       => 'mimes:jpeg,bmp,png,jpg|dimensions:width=1000,height=1000',
+			'available'   => 'required|digits_between:0,5',
+			'care'        => 'required | string|min:1|max:100',
+			'materials'   => 'required | string|min:1|max:100',
 			'categories'  => 'required',
-
+			'description' => 'required | string|min:1|max:200',
+			'story'       => 'required | string|min:1|max:200',
+			'image'       => 'mimes:jpeg,bmp,png,jpg',
 		] );
 
 
@@ -231,15 +238,15 @@ class ProductController extends Controller {
 		//TODO update needs to fixed using better query, research then add later
 		// Create Product in DB
 		$product = Product::update( [
-
 			'name'        => $request->get( 'name' ),
-			'brand'       => $request->get( 'brand' ),
-			'slug'        => $slug,
-			'description' => $request->get( 'description' ),
-			'available'   => $request->get( 'available' ),
 			'price'       => $request->get( 'price' ),
-
-			'image' => $updateImage && $image_path,  // if Updateimage is true then add new image path
+			'available'   => $request->get( 'available' ),
+			'care'        => $request->get( 'brand' ),
+			'materials'   => $request->get( 'materials' ),
+			'description' => $request->get( 'description' ),
+			'story'       => $request->get( 'story' ),
+			'slug'        => $slug,
+			'image'       => $image_path,
 
 		] );
 		// combine the category with the product in pivot table  category_product
