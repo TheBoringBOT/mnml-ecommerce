@@ -1,162 +1,294 @@
 <template>
     <BreezeAuthenticatedLayout>
-        <template #header>
-            <h2 class="font-semibold text-xl leading-tight">Create Product</h2>
-        </template>
-        <template #content>
-            <div class="text-white bg-primary-bg font-semibold">
-                <div class="md:grid md:grid-cols-3 md:gap-6">
-                    <div class="md:col-span-1 md:border-r pr-2 border-[#222]">
-                        <div class="sm:px-0">
-                            <p class="pt-5 text-lg text-primary-clr">
-                                Upload your sound with the required data and the
-                                rest will be taken from the audio Metadata.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="mt-5 md:mt-0 md:col-span-2">
-                        <form
-                                @submit.prevent="submit"
-                                method="POST"
-                                enctype="multipart/form-data"
+        <div class="text-white bg-primary-bg font-semibold">
+            <div class="md:grid md:grid-cols-6 md:gap-6">
+                <div class="mt-5 md:mt-0 md:col-span-6 text-black">
+                    <form
+                        @submit.prevent="submit"
+                        method="POST"
+                        enctype="multipart/form-data"
+                    >
+                        <div
+                            class="bg-white p-5 p-10 sm:rounded-md sm:overflow-hidden"
                         >
-                            <div
-                                    class="shadow sm:rounded-md sm:overflow-hidden"
-                            >
-                                <div class="py-5 space-y-6">
+                            <div class="space-y-6">
+                                <div
+                                    class="flex flex-col md:flex-row items-center space-y-5 md:space-y-0 md:space-x-5"
+                                >
                                     <!--Name -->
-                                    <div>
-                                        <div>
-                                            <label
-                                                    for="name"
-                                                    class="block text-primary-clr"
+
+                                    <div class="w-full md:w-1/2">
+                                        <label for="name" class="block">
+                                            Name
+                                        </label>
+                                        <div
+                                            class="mt-1 flex flex-col rounded-md shadow-sm"
+                                        >
+                                            <input
+                                                v-model="form.name"
+                                                type="text"
+                                                id="name"
+                                                name="name"
+                                                autocomplete="off"
+                                                class="rounded focus:ring-black font-semibold focus:border-black flex-1 block w-full border-secondary-bg bg-secondary-bg"
+                                            />
+                                            <div
+                                                class="py-5 text-red-500"
+                                                v-if="errors.name"
                                             >
-                                                Name
+                                                {{ errors.name }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--Price -->
+
+                                    <div class="w-full md:w-1/2">
+                                        <label for="price" class="block">
+                                            Price
+                                        </label>
+                                        <div
+                                            class="mt-1 flex flex-col rounded-md shadow-sm"
+                                        >
+                                            <input
+                                                v-model="form.price"
+                                                type="text"
+                                                id="price"
+                                                name="price"
+                                                autocomplete="off"
+                                                class="rounded focus:ring-black font-semibold focus:border-black flex-1 block w-full border-secondary-bg bg-secondary-bg"
+                                            />
+                                            <div
+                                                class="py-5 text-red-500"
+                                                v-if="errors.price"
+                                            >
+                                                {{ errors.price }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="space-y-6">
+                                    <div
+                                        class="flex flex-col md:flex-row items-center space-y-5 md:space-y-0 md:space-x-5"
+                                    >
+                                        <!-- available -->
+                                        <div class="w-full md:w-1/3">
+                                            <label
+                                                for="available"
+                                                class="block"
+                                            >
+                                                Available
                                             </label>
                                             <div
-                                                    class="mt-1 flex flex-col rounded-md shadow-sm"
+                                                class="mt-1 flex flex-col rounded-md shadow-sm"
                                             >
                                                 <input
-                                                        v-model="form.name"
-                                                        type="text"
-                                                        id="name"
-                                                        name="name"
-                                                        autocomplete="off"
-                                                        class="rounded focus:ring-brand-clr font-semibold focus:border-brand-clr flex-1 block w-full border-secondary-bg bg-secondary-bg"
+                                                    v-model="form.available"
+                                                    type="number"
+                                                    id="available"
+                                                    name="available"
+                                                    autocomplete="off"
+                                                    class="rounded focus:ring-black font-semibold focus:border-black flex-1 block w-full border-secondary-bg bg-secondary-bg"
                                                 />
                                                 <div
-                                                        class="py-5 text-red-500"
-                                                        v-if="errors.name"
+                                                    class="py-5 text-red-500"
+                                                    v-if="errors.available"
                                                 >
-                                                    {{ errors.name }}
+                                                    {{ errors.available }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- care -->
+
+                                        <div class="w-full md:w-1/3">
+                                            <label for="care" class="block">
+                                                Care
+                                            </label>
+                                            <div
+                                                class="mt-1 flex flex-col rounded-md shadow-sm"
+                                            >
+                                                <input
+                                                    v-model="form.care"
+                                                    type="text"
+                                                    id="care"
+                                                    name="care"
+                                                    autocomplete="off"
+                                                    class="rounded focus:ring-black font-semibold focus:border-black flex-1 block w-full border-secondary-bg bg-secondary-bg"
+                                                />
+                                                <div
+                                                    class="py-5 text-red-500"
+                                                    v-if="errors.care"
+                                                >
+                                                    {{ errors.care }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--materials -->
+
+                                        <div class="w-full md:w-1/3">
+                                            <label
+                                                for="materials"
+                                                class="block"
+                                            >
+                                                materials
+                                            </label>
+                                            <div
+                                                class="mt-1 flex flex-col rounded-md shadow-sm"
+                                            >
+                                                <input
+                                                    v-model="form.materials"
+                                                    type="text"
+                                                    id="materials"
+                                                    name="materials"
+                                                    autocomplete="off"
+                                                    class="rounded focus:ring-black font-semibold focus:border-black flex-1 block w-full border-secondary-bg bg-secondary-bg"
+                                                />
+                                                <div
+                                                    class="py-5 text-red-500"
+                                                    v-if="errors.materials"
+                                                >
+                                                    {{ errors.materials }}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
+                                    <!-- categories -->
+
+                                    <div>
+                                        <label
+                                            for="multiselect"
+                                            class="mb-1 block"
+                                        >
+                                            Categories
+                                        </label>
+                                        <!--v-model="tagsSelector.value"-->
+                                        <Multiselect
+                                            id="multiselect"
+                                            class="multiselect-style"
+                                            placeholder="Choose product category"
+                                            v-model="form.categories"
+                                            v-bind="categoriesSelector"
+                                        ></Multiselect>
+                                    </div>
+
+                                    <!-- description -->
                                     <div>
                                         <div>
                                             <label
-                                                    for="description"
-                                                    class="block text-primary-clr"
+                                                for="description"
+                                                class="block"
                                             >
                                                 Description
                                             </label>
                                             <div
-                                                    class="mt-1 flex flex-col rounded-md shadow-sm"
+                                                class="mt-1 flex flex-col rounded-md shadow-sm"
                                             >
                                                 <textarea
-                                                        id="description"
-                                                        v-model="form.description"
-                                                        name="description"
-                                                        rows="4"
-                                                        maxlength="200"
-                                                        class="resize-none shadow-sm focus:ring-brand-clr focus:border-brand-clr text-xl mt-1 block w-full border border-gray-300 rounded-md border-secondary-bg bg-secondary-bg"
+                                                    id="description"
+                                                    v-model="form.description"
+                                                    name="description"
+                                                    rows="4"
+                                                    maxlength="200"
+                                                    class="resize-none shadow-sm focus:ring-black focus:border-black text-xl mt-1 block w-full border border-gray-300 rounded-md border-secondary-bg bg-secondary-bg"
                                                 />
 
                                                 <div
-                                                        class="py-5 text-red-500"
-                                                        v-if="errors.description"
+                                                    class="py-5 text-red-500"
+                                                    v-if="errors.description"
                                                 >
                                                     {{ errors.description }}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
+                                    <!-- story -->
                                     <div>
-                                        <label
-                                                for="multiselect"
-                                                class="mb-1 block text-primary-clr"
-                                        >
-                                            Tags
-                                        </label>
-                                        <!--v-model="tagsSelector.value"-->
-                                        <Multiselect
-                                                id="multiselect"
-                                                class="multiselect-style"
-                                                placeholder="Choose or create tag"
-                                                v-model="form.tags"
-                                                v-bind="tagsSelector"
-                                        ></Multiselect>
+                                        <div>
+                                            <label
+                                                for="description"
+                                                class="block"
+                                            >
+                                                Product Story
+                                            </label>
+                                            <div
+                                                class="mt-1 flex flex-col rounded-md shadow-sm"
+                                            >
+                                                <textarea
+                                                    id="story"
+                                                    v-model="form.story"
+                                                    name="story"
+                                                    rows="4"
+                                                    maxlength="200"
+                                                    class="resize-none shadow-sm focus:ring-black focus:border-black text-xl mt-1 block w-full border border-gray-300 rounded-md border-secondary-bg bg-secondary-bg"
+                                                />
+
+                                                <div
+                                                    class="py-5 text-red-500"
+                                                    v-if="errors.story"
+                                                >
+                                                    {{ errors.story }}
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div>
                                         <label
-                                                class="block text-lg font-medium text-primary-clr"
+                                            class="block text-lg font-medium"
                                         >
-                                            Add Wav or MP3 file
+                                            Add product images
                                         </label>
                                         <div
-                                                class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-secondary-bg border-dashed rounded-md"
+                                            class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-secondary-bg border-dashed rounded-md"
                                         >
                                             <div class="space-y-1 text-center">
                                                 <div
-                                                        class="flex flex-col text-sm text-secondary-clr"
+                                                    class="flex flex-col text-sm"
                                                 >
                                                     <label
-                                                            for="file-upload"
-                                                            class="text-2xl relative cursor-pointer bg-secondary-bg text-primary rounded-md font-semibold text-primary-clr hover:text-secondary-clr focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 p-2 focus-within:ring-secondary-clr"
+                                                        for="file-upload"
+                                                        class="text-2xl relative cursor-pointer bg-secondary-bg text-primary rounded-md font-semibold hover: focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 p-2 focus-within:ring-secondary-clr"
                                                     >
                                                         <span
-                                                                v-if="
-                                                                !form.sound_file
+                                                            v-if="
+                                                                !form.image_file
                                                             "
-                                                        >Upload a Wav
-                                                            file</span
+                                                            >Your Product
+                                                            Image</span
                                                         >
                                                         <span
-                                                                v-if="
-                                                                form.sound_file
+                                                            v-if="
+                                                                form.image_file
                                                             "
-                                                        >{{
-                                                                form.sound_file
+                                                            >{{
+                                                                form.image_file
                                                                     .name
                                                             }}</span
                                                         >
                                                         <input
-                                                                @input="
-                                                                form.sound_file =
-                                                                    $event.target.files[0]
+                                                            @input="
+                                                                form.image_file =
+                                                                    $event.target.files
                                                             "
-                                                                id="file-upload"
-                                                                name="file-upload"
-                                                                type="file"
-                                                                class="sr-only"
+                                                            id="file-upload"
+                                                            name="file-upload"
+                                                            type="file"
+                                                            class="sr-only"
+                                                            multiple
                                                         />
                                                     </label>
                                                     <div
-                                                            class="py-5 text-red-500"
-                                                            v-if="errors.sound_file"
+                                                        class="py-5 text-red-500"
+                                                        v-if="errors.image_file"
                                                     >
-                                                        {{ errors.sound_file }}
+                                                        {{ errors.image_file }}
                                                     </div>
 
                                                     <p class="pl-1"></p>
                                                 </div>
-                                                <p
-                                                        class="text-xs text-secondary-clr"
-                                                >
-                                                    Wav up to 10MB
+                                                <p class="text-xs">
+                                                    PNG & JPG accepted
                                                 </p>
                                             </div>
                                         </div>
@@ -164,70 +296,77 @@
                                 </div>
                                 <div class="py-3 text-right">
                                     <button
-                                            type="submit"
-                                            class="inline-flex w-full justify-center py-5 px-4 border border-transparent shadow-sm text-xl font-bold rounded-md text-primary-bg bg-brand-clr hover:bg-brand-clr-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-clr"
+                                        type="submit"
+                                        class="inline-flex w-full justify-center py-5 px-4 border border-transparent shadow-sm text-xl font-bold rounded-md text-white bg-black hover:bg-black-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
                                     >
-                                        Upload
+                                        Submit
                                     </button>
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-
-            <div class="hidden sm:block" aria-hidden="true">
-                <div class="py-5">
-                    <div class="border-t border-[#222]"/>
-                </div>
-            </div>
-        </template>
+        </div>
     </BreezeAuthenticatedLayout>
 </template>
 
 <script>
-import {useForm, Head} from "@inertiajs/inertia-vue3";
+import { useForm, Head } from "@inertiajs/inertia-vue3";
 import Multiselect from "@vueform/multiselect";
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
-import {useToast} from "vue-toastification";
+import { useToast } from "vue-toastification";
 
 export default {
     components: {
         BreezeAuthenticatedLayout,
-
         Head,
         Multiselect,
     },
-    //props: ["errors", "allTags"],
+    props: ["errors", "product", "categories"],
 
     data(props) {
         return {
-            tagsSelector: {
+            categoriesSelector: {
                 mode: "tags",
                 value: [""],
                 closeOnSelect: false,
-                options: props.allTags ? props.allTags : null,
+                options: props.categories ? props.categories : null,
                 searchable: true,
                 createOption: true,
             },
         };
     },
+    methods: {
+        formatCurrency(amount) {
+            amount = amount / 100;
+            return amount.toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+            });
+        },
+    },
 
-    setup() {
+    setup(props) {
         // create toast notifications function
         const toast = useToast();
 
         const form = useForm({
             name: null,
+            price: null,
+            materials: null,
+            care: null,
+            categories: [],
             description: null,
-            sound_file: null,
-            tags: [],
+            story: null,
+            available: null,
+            image_file: [],
         });
 
         function submit() {
             console.table(form);
 
-            form.post("/dashboard/upload", {
+            form.post("/dashboard/product/create", {
                 preserveScroll: true,
                 onSuccess: () => (
                     form.reset(), this.toast.info("Upload was successful")
@@ -235,23 +374,24 @@ export default {
             });
         }
 
-        return {form, submit, toast};
+        return { form, submit, toast };
     },
 };
 </script>
 
 <!--Styles for multiselect -->
+
 <style src="@vueform/multiselect/themes/default.css"></style>
 
 <!-- Using the `scoped` attribute -->
 <style scoped>
 .multiselect-style {
     --ms-tag-bg: dodgerblue;
-    --ms-bg: rgba(255, 255, 255, 0.05);
-    --ms-dropdown-bg: rgb(30, 30, 34);
+    --ms-bg: #fff;
+    --ms-dropdown-bg: #fff;
     --ms-border-color: rgba(255, 255, 255, 0.05);
     --ms-tag-color: #fff;
-    --ms-group-label-bg: #e5e7eb;
+    --ms-group-label-bg: #fff;
     --ms-tag-radius: 9999px;
     --ms-tag-font-weight: 400;
     --ms-search-wrapper-bg: #222;
