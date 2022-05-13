@@ -1,0 +1,47 @@
+<template>
+    <div class="tabs w-full bg-gray-50 mx-auto">
+        <div class="bg-white w-full py-5">
+            <ContentWrapper>
+                <ul class="flex space-x-5 items-center max-w-7xl">
+                    <li
+                        :class="
+                            currentTitle === title
+                                ? 'bg-brand text-white hover:bg-brand-hover'
+                                : 'text-black bg-gray-100'
+                        "
+                        class="cursor-pointer px-10 py-2"
+                        v-for="title in tabTitles"
+                        :key="title"
+                        @click="currentTitle = title"
+                    >
+                        {{ title }}
+                    </li>
+                </ul>
+            </ContentWrapper>
+        </div>
+
+        <ContentWrapper>
+            <slot />
+        </ContentWrapper>
+    </div>
+</template>
+
+<script>
+import { ref, provide } from "vue";
+import ContentWrapper from "@/Layouts/ContentWrapper";
+
+export default {
+    components: {
+        ContentWrapper,
+    },
+    setup(props, { slots }) {
+        const tabTitles = ref(slots.default().map((tab) => tab.props.title));
+        const currentTitle = ref(tabTitles.value[0]);
+        provide("currentTitle", currentTitle);
+        return {
+            tabTitles,
+            currentTitle,
+        };
+    },
+};
+</script>
