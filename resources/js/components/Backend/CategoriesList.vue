@@ -1,4 +1,4 @@
-<template>
+2<template>
     <div class="flex items-center flex-wrap w-full space-x-5">
         <Link
             class="rounded bg-black text-white px-2"
