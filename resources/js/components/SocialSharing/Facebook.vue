@@ -1,5 +1,6 @@
 <template>
     <ShareNetwork
+            class="hover:text-brand transition-all duration-300"
             network="facebook"
             :url="shareInfo.url"
             :title="shareInfo.title"
