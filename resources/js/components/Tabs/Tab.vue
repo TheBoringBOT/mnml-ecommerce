@@ -5,7 +5,9 @@
                 :class="currentTitle !== title && 'hidden'"
                 v-show="title === currentTitle"
         >
-            <h3 class="text-black font-semibold text-2xl mb-5">{{ title }}</h3>
+            <h3 class="text-black font-semibold text-2xl mb-5 uppercase">
+                {{ title }}
+            </h3>
             <p class="text-grey">
                 <slot/>
             </p>

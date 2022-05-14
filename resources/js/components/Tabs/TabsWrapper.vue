@@ -9,7 +9,7 @@
                                 ? 'bg-brand text-white hover:bg-brand-hover'
                                 : 'text-black bg-gray-100 hover:bg-gray-50'
                         "
-                            class="transition-all duration-300 cursor-pointer whitespace-nowrap px-10 py-2"
+                            class="transition-all duration-300 cursor-pointer whitespace-nowrap px-10 py-2 uppercase"
                             v-for="title in tabTitles"
                             :key="title"
                             @click="currentTitle = title"
