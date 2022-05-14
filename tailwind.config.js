@@ -10,8 +10,12 @@ module.exports = {
 
     theme: {
         extend: {
-            fontFamily: {
-                sans: ["Nunito", ...defaultTheme.fontFamily.sans],
+            colors: {
+                brand: "#0000f9",
+                "brand-hover": "#2e2eff",
+                black: "#1a202c",
+                "black-2": "#282828",
+                grey: "#7b7b7b",
             },
         },
     },
