@@ -15,6 +15,7 @@ export default {
             state.products = products;
         },
         addToCart(state, product) {
+            console.table(product);
             // get current id of item in cart
             const productAvailability = product.available;
 
@@ -37,8 +38,11 @@ export default {
             }
 
             product.quantity = 1;
-
-            state.cart.push(product);
+            try {
+                state.cart.push(product);
+            } catch (err) {
+                console.log(err);
+            }
         },
 
         increaseQuantity(state, product) {
@@ -64,16 +68,30 @@ export default {
         },
     },
     actions: {
-        getProducts({ commit }) {
-            //fetch the product from the api api/products
-            //TODO: update catch error with something better for customer
-            axios
+        initialiseStore({ commit }) {
+            // check if any store data is stored in local storage
+            if (localStorage.getItem("store")) {
+                // Update cart if local storage has any cart data
+                commit("updateCart", JSON.parse(localStorage.getItem("store")));
+            }
+            // get the products
+            return axios
                 .get("/api/products")
                 .then((response) => {
                     commit("updateProducts", response.data);
                 })
                 .catch((error) => console.log(error));
         },
+        // getProducts({commit}) {
+        //     //fetch the product from the api api/products
+        //     //TODO: update catch error with something better for customer
+        //     axios
+        //         .get("/api/products")
+        //         .then((response) => {
+        //             commit("updateProducts", response.data);
+        //         })
+        //         .catch((error) => console.log(error));
+        // },
         // clear/empty out the cart
         clearCart({ commit }) {
             commit("updateCart", []);

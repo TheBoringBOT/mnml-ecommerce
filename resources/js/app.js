@@ -11,6 +11,15 @@ import VueSocialSharing from "vue-social-sharing";
 
 const store = new createStore(storeData);
 
+// function to check when store state changes
+// then store in local storage
+// currently only storing cart in localstorage
+// Perhaps store filter order etc
+store.subscribe((mutation, state) => {
+    // Store the state object as a JSON string
+    localStorage.setItem("store", JSON.stringify(state.cart));
+});
+
 // Options for Toast Notifications
 const toastOptions = {
     transition: "Vue-Toastification__fade",
@@ -41,11 +50,12 @@ createInertiaApp({
             .use(plugin)
             .use(
                 store
-                    .dispatch("getProducts")
+                    .dispatch("initialiseStore")
                     .then((_) => {
                     })
                     .catch((error) => console.error(error))
             )
+
             .use(store)
             .use(VueSocialSharing)
             .use(Toast, toastOptions)
