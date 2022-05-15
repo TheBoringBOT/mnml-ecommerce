@@ -1,6 +1,6 @@
 <template>
-    <div class="flex items-center space-x-5 mt-3">
-        <span class="font-semibold text-black">Share:</span>
+    <div class="flex items-center space-x-5 mt-3 text-sm">
+        <span class="text-black">Share:</span>
         <div class="flex items-center justify-start space-x-5">
             <Facebook :shareInfo="shareInfo"/>
             <Twitter :shareInfo="shareInfo"/>
