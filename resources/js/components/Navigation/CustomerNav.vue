@@ -64,13 +64,14 @@
                     </BreezeNavLink>
                     <BreezeNavLink
                             class="relative fill-black-2 hover:fill-black transition-all"
-                            :href="route('register')"
-                            :active="route().current('register')"
+                            :href="route('order.checkout')"
+                            :active="route().current('order.checkout')"
                     >
                         <span
+                                v-if="this.$store.state.cart.length !== 0"
                                 class="absolute -right-[5px] top-0 bg-brand text-white rounded-full h-[17px] w-[17px] font-bold text-monospace flex items-center justify-center text-[11px]"
-                        >3</span
-                        >
+                                v-text="this.$store.state.cart.length"
+                        ></span>
                         <figure>
                             <svg width="18" height="20" viewBox="0 0 35 48.03">
                                 <path
@@ -161,7 +162,7 @@
                     Cart
                 </BreezeResponsiveNavLink>
             </div>
-
+            <CartNotification/>
             <div class="pt-2 pb-3 space-y-1">
                 <BreezeResponsiveNavLink
                         :href="route('order.checkout')"
