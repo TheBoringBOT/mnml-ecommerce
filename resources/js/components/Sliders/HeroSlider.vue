@@ -1,39 +1,39 @@
 <template>
     <swiper
-        :direction="'vertical'"
-        :effect="'fade'"
-        :autoplay="{
+            :direction="'vertical'"
+            :effect="'fade'"
+            :autoplay="{
             delay: 2500,
             disableOnInteraction: false,
         }"
-        :pagination="{
+            :pagination="{
             clickable: true,
         }"
-        :modules="modules"
-        class="mySwiper"
+            :modules="modules"
+            class="mySwiper"
     >
         <swiper-slide v-for="slider in sliders">
             <div class="relative w-full h-full">
                 <!-- overlay-->
                 <div
-                    class="bg-black/30 w-full h-full absolute left-0 top-0 z-10"
+                        class="bg-black/10 w-full h-full absolute left-0 top-0 z-10"
                 ></div>
                 <!--img-->
-                <img :src="slider.img" alt="" class="absolute left-0 top-0" />
+                <img :src="slider.img" alt="" class="absolute left-0 top-0"/>
                 <!-- text content -->
                 <div
-                    class="relative flex flex-col items-center text-center md:text-left md:items-start space-y-10 z-20 w-full lg:w-2/3 h-full justify-center text-white p-10"
+                        class="relative flex flex-col items-center text-center md:text-left md:items-start space-y-10 z-20 w-full lg:w-2/3 h-full justify-center text-white p-10"
                 >
                     <h1
-                        class="text-5xl lg:text-7xl font-bold"
-                        v-text="slider.title"
+                            class="text-5xl lg:text-7xl font-bold"
+                            v-text="slider.title"
                     ></h1>
                     <!--<p v-text="slider.subtitle"></p>-->
                     <Link
-                        :href="slider.url"
-                        class="bg-brand text-white px-8 py-2 text-lg"
-                        >View Now</Link
-                    >
+                            :href="slider.url"
+                            class="bg-brand text-white px-8 py-2 text-lg"
+                    >View Now</Link
+                        >
                 </div>
             </div>
         </swiper-slide>
@@ -42,7 +42,7 @@
 
 <script>
 // Import Swiper Vue.js components
-import { Swiper, SwiperSlide } from "swiper/vue";
+import {Swiper, SwiperSlide} from "swiper/vue";
 
 // Import Swiper styles
 import "swiper/css";
@@ -51,8 +51,8 @@ import "swiper/css/effect-fade";
 import "swiper/css/pagination";
 
 // import required modules
-import { EffectFade, Pagination, Autoplay } from "swiper";
-import { Link } from "@inertiajs/inertia-vue3";
+import {EffectFade, Pagination, Autoplay} from "swiper";
+import {Link} from "@inertiajs/inertia-vue3";
 
 export default {
     components: {
