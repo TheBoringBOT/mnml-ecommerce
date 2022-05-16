@@ -89,11 +89,5 @@
 </template>
 
 <script>
-import ApplicationLogo from "@/components/ApplicationLogo";
-
-export default {
-    components: {
-        ApplicationLogo,
-    },
-};
+export default {};
 </script>
