@@ -1,6 +1,6 @@
 <template>
     <nav
-            class="fixed top-0 left-0 right-0 w-full z-10 bg-white text-primary-clr border-b border-gray-100"
+            class="fixed top-0 left-0 right-0 w-full z-[100] bg-white text-primary-clr border-b border-gray-100"
     >
         <!-- Primary Navigation Menu -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -162,7 +162,7 @@
                     Cart
                 </BreezeResponsiveNavLink>
             </div>
-            <CartNotification/>
+
             <div class="pt-2 pb-3 space-y-1">
                 <BreezeResponsiveNavLink
                         :href="route('order.checkout')"
