@@ -13,12 +13,18 @@ const store = new createStore(storeData);
 
 // function to check when store state changes
 // then store in local storage
-// currently only storing cart in localstorage
-// Perhaps store filter order etc
 store.subscribe((mutation, state) => {
     // Store the state object as a JSON string
-    localStorage.setItem("store", JSON.stringify(state.cart));
+    localStorage.setItem("inCart", JSON.stringify(state.cart));
+    localStorage.setItem("sortProducts", JSON.stringify(state.sort));
 });
+
+// fix to remove the large data-page attribute interiajs adds
+const cleanApp = () => {
+    document.getElementById("app").removeAttribute("data-page");
+};
+
+document.addEventListener("inertia:finish", cleanApp);
 
 // Options for Toast Notifications
 const toastOptions = {
@@ -62,6 +68,6 @@ createInertiaApp({
             .mixin({methods: {route}})
             .mount(el);
     },
-});
+}).then(cleanApp);
 
 InertiaProgress.init({color: "#4B5563"});
