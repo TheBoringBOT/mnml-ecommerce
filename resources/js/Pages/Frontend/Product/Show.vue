@@ -1,17 +1,17 @@
 <template>
     <GuestLayout>
-        <ContentSpacerTop/>
+        <ContentSpacerTop />
         <ContentWrapper>
             <!-- product -->
             <div
-                    class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-10 tracking-wide"
-                    v-if="product"
+                class="grid grid-cols-1 lg:grid-cols-2 grid-rows-1 gap-10 tracking-wide"
+                v-if="product"
             >
                 <!-- product image -->
                 <div class="flex items-center justify-center">
                     <!-- add carousel here -->
                     <img
-                            src="https://indigo.qodeinteractive.com/wp-content/uploads/2017/01/home-4-shop-img-10.jpg"
+                        src="https://indigo.qodeinteractive.com/wp-content/uploads/2017/01/home-4-shop-img-10.jpg"
                     />
                 </div>
                 <!-- product summary -->
@@ -20,13 +20,13 @@
                         <div class="flex flex-col">
                             <!-- name -->
                             <h1
-                                    class="text-3xl font-bold tracking-wide leading-tight uppercase"
-                                    v-text="product.name"
+                                class="text-3xl font-bold tracking-wide leading-tight uppercase"
+                                v-text="product.name"
                             ></h1>
                             <!-- price -->
                             <span
-                                    class="text-brand font-bold text-2xl"
-                                    v-text="formatCurrency(product.price)"
+                                class="text-brand font-bold text-2xl"
+                                v-text="formatCurrency(product.price)"
                             ></span>
                         </div>
                         <div class="flex flex-col mt-10">
@@ -34,31 +34,31 @@
 
                             <!-- description -->
                             <p
-                                    class="text-grey text-base tracking-wide"
-                                    v-text="product.description"
+                                class="text-grey text-base tracking-wide"
+                                v-text="product.description"
                             ></p>
                             <!-- buy / choose quantity -->
                             <div class="flex items-center text-lg mt-10">
                                 <!-- quantity -->
                                 <div
-                                        class="inline-block border border-black px-5 h-14 text-center"
+                                    class="inline-block border border-black px-5 h-14 text-center"
                                 >
                                     <div
-                                            class="flex items-center h-14 justify-around"
+                                        class="flex items-center h-14 justify-around"
                                     >
                                         <span>Quantity</span>
 
                                         <div
-                                                class="ml-5 flex items-center px-2"
+                                            class="ml-5 flex items-center px-2"
                                         >
                                             <span>-</span>
                                             <input
-                                                    class="border-0 w-10 text-center appearance-none text-sm"
-                                                    value="1"
-                                                    min="1"
-                                                    maxlength="2"
-                                                    inputmode="numeric"
-                                                    type="string"
+                                                class="border-0 w-10 text-center appearance-none text-sm"
+                                                value="1"
+                                                min="1"
+                                                maxlength="2"
+                                                inputmode="numeric"
+                                                type="string"
                                             />
                                             <span>+</span>
                                         </div>
@@ -66,9 +66,9 @@
                                 </div>
                                 <!-- add to bag -->
                                 <button
-                                        @click="$store.commit('addToCart', product)"
-                                        type="button"
-                                        class="uppercase tracking-wider font-normal h-14 inline-block items-center px-10 lg:px-12 border border-brand hover:bg-brand-hover transition-all duration-300 bg-brand text-white text-center text-sm lg:text-base whitespace-nowrap"
+                                    @click="$store.commit('addToCart', product)"
+                                    type="button"
+                                    class="uppercase tracking-wider font-normal h-14 inline-block items-center px-10 lg:px-12 border border-brand hover:bg-brand-hover transition-all duration-300 bg-brand text-white text-center text-sm lg:text-base whitespace-nowrap"
                                 >
                                     Add to bag
                                 </button>
@@ -85,11 +85,11 @@
                                 <div class="flex items-center space-x-2">
                                     <span class="font-medium">Category:</span>
                                     <Link
-                                            :href="/products/ + category.name"
-                                            class="text-grey hover:text-brand transition-all"
-                                            v-for="(category,
+                                        :href="/products/ + category.name"
+                                        class="text-grey hover:text-brand transition-all"
+                                        v-for="(category,
                                         index) in product.categories"
-                                            v-text="
+                                        v-text="
                                             category.name +
                                             (index !==
                                                 product.categories.length - 1 &&
@@ -102,7 +102,7 @@
                             <!-- share product -->
                             <!-- TOD fix the url for share -->
                             <ShareGroup
-                                    :shareInfo="{
+                                :shareInfo="{
                                     url: '',
                                     title: product.name,
                                     description: product.description,
@@ -137,9 +137,9 @@
         <ContentWrapper>
             <!-- related products -->
             <ProductGrid
-                    :products="products"
-                    gridSize="grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-                    title="YOU MAY ALSO LIKE"
+                :products="products"
+                gridSize="grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+                title="YOU MAY ALSO LIKE"
             />
         </ContentWrapper>
     </GuestLayout>
@@ -147,7 +147,7 @@
 <script>
 import GuestLayout from "@/Layouts/GuestLayout";
 import ContentWrapper from "@/Layouts/ContentWrapper";
-import {Head, Link} from "@inertiajs/inertia-vue3";
+import { Head, Link } from "@inertiajs/inertia-vue3";
 import TabsWrapper from "@/components/Tabs/TabsWrapper";
 import Tab from "@/components/Tabs/Tab";
 import ShareGroup from "@/components/SocialSharing/ShareGroup";
@@ -185,8 +185,8 @@ export default {
             );
             // shuffles array to always show different products
             const shuffledProducts = _.shuffle(productsRemoveCurrent);
-            // return only the first 3 products
-            return shuffledProducts.slice(0, 3);
+            // return only the first (0, {number}) products
+            return shuffledProducts.slice(0, 4);
         },
 
         product(props) {
