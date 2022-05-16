@@ -6,9 +6,9 @@ use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\OrderController;
 
 // get all products
-Route::get( '/products', [ ProductController::class, 'apiAllProducts' ] );
+Route::get( '/products', [ ProductController::class, 'apiAllProducts' ] )->name( 'products' );
 // get single product
-Route::get( '/products/{slug}', [ ProductController::class, 'apiSingleProducts' ] );
+Route::get( '/products/{slug}', [ ProductController::class, 'apiSingleProducts' ] )->name( 'product' );
 // post purchase
 Route::post( '/purchase', [ OrderController::class, 'purchase' ] );
 
