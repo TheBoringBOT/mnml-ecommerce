@@ -12,8 +12,8 @@
             </div>
             <div>
                 <span
-                        class="inline-block bg-black text-white block leading-6 border border-black/50 py-2 px-3 rounded-full"
-                >Use code: <strong> #giveMe25</strong></span
+                        class="font-mono inline-block bg-black text-white block leading-6 border border-black/50 py-2 px-3 rounded-full"
+                >Use code: <strong> #GoBig25</strong></span
                 >
             </div>
         </div>
