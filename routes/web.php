@@ -9,13 +9,22 @@ use Inertia\Inertia;
 
 // home
 Route::get( '/', function () {
-	return Inertia::render( 'Welcome', [
-		'canLogin'       => Route::has( 'login' ),
-		'canRegister'    => Route::has( 'register' ),
-		'laravelVersion' => Application::VERSION,
-		'phpVersion'     => PHP_VERSION,
-	] );
-} );
+	return Inertia::render( 'Home' );
+} )->name( 'home' );
+
+//placeholders
+// about page
+Route::get( '/about', function () {
+	return Inertia::render( 'Home' );
+} )->name( 'about' );
+// contact page
+Route::get( '/contact', function () {
+	return Inertia::render( 'home' );
+} )->name( 'contact' );
+// search page
+Route::get( '/search', function () {
+	return Inertia::render( 'home' );
+} )->name( 'search' );
 
 
 // get all products
