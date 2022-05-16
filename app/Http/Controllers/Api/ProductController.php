@@ -5,17 +5,22 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 use Inertia\Inertia;
 
 // Controller used for frontend
 
 class ProductController extends Controller {
 
+
 	//=== API ROUTES FOR VUEX STORE ===//
 	// get all products
 	public function apiAllProducts() {
+		$products   = Product::with( 'categories:id,name' )->get();
+		$categories = Category::all();
 
-		return Product::with( 'categories:id,name' )->get();
+
+		return array( [ 'products' => $products, 'categories' => $categories ] );
 	}
 
 	// get single product
@@ -29,9 +34,10 @@ class ProductController extends Controller {
 	// all products page
 	public function index() {
 
+		$categories = Category::all();
 
 		return Inertia::render( 'Frontend/Product/Index', [
-
+			'categories' => $categories
 
 		] );
 	}
