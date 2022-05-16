@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import GuestLayout from "@/Layouts/Customer";
+import GuestLayout from "@/Layouts/GuestLayout";
 
 export default {
     components: {

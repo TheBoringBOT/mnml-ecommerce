@@ -1,28 +1,28 @@
 <template>
     <GuestLayout>
         <!--if statement checking if cart is empty-->
-        <div v-if="cart.length !== 0" class="w-full">
+        <div v-if="cart.length" class="w-full">
             <div class="lg:w-2/3 w-full mx-auto mt-8 overflow-auto">
                 <table class="table-auto w-full text-left whitespace-no-wrap">
                     <thead>
                         <tr>
                             <th
-                                    class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200 rounded-tl rounded-bl"
+                                class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200 rounded-tl rounded-bl"
                             >
                                 Item
                             </th>
                             <th
-                                    class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200"
+                                class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200"
                             >
                                 Quantity
                             </th>
                             <th
-                                    class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200"
+                                class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200"
                             >
                                 Price
                             </th>
                             <th
-                                    class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200"
+                                class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200"
                             >
                                 Actions
                             </th>
@@ -33,10 +33,10 @@
                             <td class="p-4" v-text="item.name"></td>
                             <td class="p-4">
                                 <div
-                                        class="flex justify-center w-1/5 space-x-4"
+                                    class="flex justify-center w-1/5 space-x-4"
                                 >
                                     <button
-                                            @click="
+                                        @click="
                                             $store.commit(
                                                 'decreaseQuantity',
                                                 index
@@ -44,22 +44,22 @@
                                         "
                                     >
                                         <svg
-                                                class="fill-current text-gray-600 w-3"
-                                                viewBox="0 0 448 512"
+                                            class="fill-current text-gray-600 w-3"
+                                            viewBox="0 0 448 512"
                                         >
                                             <path
-                                                    d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+                                                d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
                                             />
                                         </svg>
                                     </button>
 
                                     <span v-text="item.quantity"></span>
                                     <button
-                                            :class="[
+                                        :class="[
                                             item.available === item.quantity &&
                                                 'pointer-events-none opacity-50',
                                         ]"
-                                            @click="
+                                        @click="
                                             $store.commit(
                                                 'increaseQuantity',
                                                 index,
@@ -68,11 +68,11 @@
                                         "
                                     >
                                         <svg
-                                                class="fill-current text-gray-600 w-3"
-                                                viewBox="0 0 448 512"
+                                            class="fill-current text-gray-600 w-3"
+                                            viewBox="0 0 448 512"
                                         >
                                             <path
-                                                    d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+                                                d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
                                             />
                                         </svg>
                                     </button>
@@ -81,8 +81,8 @@
                             <td class="p-4" v-text="cartLineTotal(item)"></td>
                             <td class="w-10 text-right">
                                 <button
-                                        class="flex ml-auto text-sm text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
-                                        @click="
+                                    class="flex ml-auto text-sm text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
+                                    @click="
                                         $store.commit('removeFromCart', index)
                                     "
                                 >
@@ -93,8 +93,8 @@
                         <tr>
                             <td class="p-4 font-bold">Total Amount</td>
                             <td
-                                    class="p-4 font-bold"
-                                    v-text="cartQuantity"
+                                class="p-4 font-bold"
+                                v-text="cartQuantity"
                             ></td>
                             <td class="p-4 font-bold" v-text="cartTotal"></td>
                             <td class="w-10 text-right"></td>
@@ -103,66 +103,66 @@
                 </table>
             </div>
             <form
-                    @submit.prevent="processPayment"
-                    :validation-schema="validationSchema"
+                @submit.prevent="processPayment"
+                :validation-schema="validationSchema"
             >
                 <div class="lg:w-2/3 w-full mx-auto mt-8">
                     <div class="flex flex-wrap -mx-2 mt-8">
                         <div class="p-2 w-1/3">
                             <div class="relative">
                                 <label
-                                        for="first_name"
-                                        class="leading-7 text-sm text-gray-600"
-                                >First Name</label
+                                    for="first_name"
+                                    class="leading-7 text-sm text-gray-600"
+                                    >First Name</label
                                 >
                                 <Field
-                                        type="text"
-                                        id="first_name"
-                                        name="first_name"
-                                        required
-                                        class="w-full bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                                        v-model="customer.first_name"
-                                        :disabled="paymentProcessing"
+                                    type="text"
+                                    id="first_name"
+                                    name="first_name"
+                                    required
+                                    class="w-full bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                    v-model="customer.first_name"
+                                    :disabled="paymentProcessing"
                                 />
-                                <ErrorMessage name="first_name"/>
+                                <ErrorMessage name="first_name" />
                             </div>
                         </div>
                         <div class="p-2 w-1/3">
                             <div class="relative">
                                 <label
-                                        for="last_name"
-                                        class="leading-7 text-sm text-gray-600"
-                                >Last Name</label
+                                    for="last_name"
+                                    class="leading-7 text-sm text-gray-600"
+                                    >Last Name</label
                                 >
                                 <Field
-                                        required
-                                        type="text"
-                                        id="last_name"
-                                        name="last_name"
-                                        class="w-full bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                                        v-model="customer.last_name"
-                                        :disabled="paymentProcessing"
+                                    required
+                                    type="text"
+                                    id="last_name"
+                                    name="last_name"
+                                    class="w-full bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                    v-model="customer.last_name"
+                                    :disabled="paymentProcessing"
                                 />
-                                <ErrorMessage name="last_name"/>
+                                <ErrorMessage name="last_name" />
                             </div>
                         </div>
                         <div class="p-2 w-1/3">
                             <div class="relative">
                                 <label
-                                        for="email"
-                                        class="leading-7 text-sm text-gray-600"
-                                >Email Address</label
+                                    for="email"
+                                    class="leading-7 text-sm text-gray-600"
+                                    >Email Address</label
                                 >
                                 <Field
-                                        required
-                                        type="email"
-                                        id="email"
-                                        name="email"
-                                        class="w-full bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                                        v-model="customer.email"
-                                        :disabled="paymentProcessing"
+                                    required
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    class="w-full bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                    v-model="customer.email"
+                                    :disabled="paymentProcessing"
                                 />
-                                <ErrorMessage name="email"/>
+                                <ErrorMessage name="email" />
                             </div>
                         </div>
                     </div>
@@ -170,77 +170,77 @@
                         <div class="p-2 w-1/3">
                             <div class="relative">
                                 <label
-                                        for="address"
-                                        class="leading-7 text-sm text-gray-600"
-                                >Street Address</label
+                                    for="address"
+                                    class="leading-7 text-sm text-gray-600"
+                                    >Street Address</label
                                 >
                                 <Field
-                                        required
-                                        type="text"
-                                        id="address"
-                                        name="address"
-                                        class="w-full bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                                        v-model="customer.address"
-                                        :disabled="paymentProcessing"
+                                    required
+                                    type="text"
+                                    id="address"
+                                    name="address"
+                                    class="w-full bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                    v-model="customer.address"
+                                    :disabled="paymentProcessing"
                                 />
-                                <ErrorMessage name="address"/>
+                                <ErrorMessage name="address" />
                             </div>
                         </div>
                         <div class="p-2 w-1/3">
                             <div class="relative">
                                 <label
-                                        for="city"
-                                        class="leading-7 text-sm text-gray-600"
-                                >City</label
+                                    for="city"
+                                    class="leading-7 text-sm text-gray-600"
+                                    >City</label
                                 >
                                 <Field
-                                        required
-                                        type="text"
-                                        id="city"
-                                        name="city"
-                                        class="w-full bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                                        v-model="customer.city"
-                                        :disabled="paymentProcessing"
+                                    required
+                                    type="text"
+                                    id="city"
+                                    name="city"
+                                    class="w-full bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                    v-model="customer.city"
+                                    :disabled="paymentProcessing"
                                 />
-                                <ErrorMessage name="city"/>
+                                <ErrorMessage name="city" />
                             </div>
                         </div>
                         <div class="p-2 w-1/6">
                             <div class="relative">
                                 <label
-                                        for="state"
-                                        class="leading-7 text-sm text-gray-600"
-                                >State</label
+                                    for="state"
+                                    class="leading-7 text-sm text-gray-600"
+                                    >State</label
                                 >
                                 <Field
-                                        required
-                                        type="text"
-                                        id="state"
-                                        name="state"
-                                        class="w-full bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                                        v-model="customer.state"
-                                        :disabled="paymentProcessing"
+                                    required
+                                    type="text"
+                                    id="state"
+                                    name="state"
+                                    class="w-full bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                    v-model="customer.state"
+                                    :disabled="paymentProcessing"
                                 />
-                                <ErrorMessage name="state"/>
+                                <ErrorMessage name="state" />
                             </div>
                         </div>
                         <div class="p-2 w-1/6">
                             <div class="relative">
                                 <label
-                                        for="zip_code"
-                                        class="leading-7 text-sm text-gray-600"
-                                >Zip Code</label
+                                    for="zip_code"
+                                    class="leading-7 text-sm text-gray-600"
+                                    >Zip Code</label
                                 >
                                 <Field
-                                        required
-                                        type="text"
-                                        id="zip_code"
-                                        name="zip_code"
-                                        class="w-full bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                                        v-model="customer.zip_code"
-                                        :disabled="paymentProcessing"
+                                    required
+                                    type="text"
+                                    id="zip_code"
+                                    name="zip_code"
+                                    class="w-full bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                    v-model="customer.zip_code"
+                                    :disabled="paymentProcessing"
                                 />
-                                <ErrorMessage name="zip_code"/>
+                                <ErrorMessage name="zip_code" />
                             </div>
                         </div>
                     </div>
@@ -248,9 +248,9 @@
                         <div class="p-2 w-full">
                             <div class="relative">
                                 <label
-                                        for="card-element"
-                                        class="leading-7 text-sm text-gray-600"
-                                >Credit Card Info</label
+                                    for="card-element"
+                                    class="leading-7 text-sm text-gray-600"
+                                    >Credit Card Info</label
                                 >
                                 <div id="card-element"></div>
                             </div>
@@ -258,9 +258,9 @@
                     </div>
                     <div class="p-2 w-full">
                         <button
-                                class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
-                                type="submit"
-                                v-text="
+                            class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+                            type="submit"
+                            v-text="
                                 paymentProcessing ? 'Processing...' : 'Pay Now'
                             "
                         ></button>
@@ -273,9 +273,9 @@
     </GuestLayout>
 </template>
 <script>
-import GuestLayout from "@/Layouts/Customer";
-import {loadStripe} from "@stripe/stripe-js";
-import {Field, Form, ErrorMessage} from "vee-validate";
+import GuestLayout from "@/Layouts/GuestLayout";
+import { loadStripe } from "@stripe/stripe-js";
+import { Field, Form, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
 
 export default {
@@ -354,9 +354,9 @@ export default {
                 {
                     billing_details: {
                         name:
-                        this.customer.first_name +
-                        " " +
-                        this.customer.last_name,
+                            this.customer.first_name +
+                            " " +
+                            this.customer.last_name,
                         email: this.customer.email,
                         address: {
                             line1: this.customer.address,

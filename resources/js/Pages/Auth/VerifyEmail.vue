@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from 'vue';
 import BreezeButton from '@/Components/Button.vue';
-import BreezeGuestLayout from '@/Layouts/Customer.vue';
+import BreezeGuestLayout from '@/Layouts/GuestLayout.vue';
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 
 const props = defineProps({

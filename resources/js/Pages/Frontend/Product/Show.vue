@@ -1,65 +1,172 @@
 <template>
     <GuestLayout>
-        <section class="text-gray-700 body-font overflow-hidden" v-if="product">
-            <div class="container px-12 py-24 mx-auto">
-                <div class="lg:w-3/5 mx-auto flex flex-wrap">
+        <ContentSpacerTop/>
+        <ContentWrapper>
+            <!-- product -->
+            <div
+                    class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-10 tracking-wide"
+                    v-if="product"
+            >
+                <!-- product image -->
+                <div class="flex items-center justify-center">
+                    <!-- add carousel here -->
                     <img
-                        alt="ecommerce"
-                        class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
-                        src="https://dummyimage.com/640x640"
+                            src="https://indigo.qodeinteractive.com/wp-content/uploads/2017/01/home-4-shop-img-10.jpg"
                     />
-                    <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-                        <h2
-                            class="text-sm title-font text-gray-500 tracking-widest uppercase inline-block mr-2"
-                            v-for="category in product.categories"
-                            v-text="category.name"
-                        ></h2>
-                        <h1
-                            class="text-gray-900 text-3xl title-font font-medium mb-2"
-                            v-text="product.name"
-                        ></h1>
-                        <p
-                            class="leading-relaxed"
-                            v-text="product.description"
-                        ></p>
-                        <span
-                            class="my-5 leading-relaxed"
-                            v-text="`SKU: ` + product.sku"
-                        ></span>
-                        <div class="flex mt-6 pt-4 border-t-2 border-gray-200">
+                </div>
+                <!-- product summary -->
+                <div class="flex flex-col items-start justify-start">
+                    <div class="my-auto">
+                        <div class="flex flex-col">
+                            <!-- name -->
+                            <h1
+                                    class="text-3xl font-bold tracking-wide leading-tight uppercase"
+                                    v-text="product.name"
+                            ></h1>
+                            <!-- price -->
                             <span
-                                v-if="product.available === 0"
-                                class="text-red-600 text-2xl"
-                                >Sold Out</span
-                            >
-                            <div v-else class="flex items-center space-x-8">
-                                <span
-                                    class="title-font font-medium text-2xl text-gray-900"
+                                    class="text-brand font-bold text-2xl"
                                     v-text="formatCurrency(product.price)"
-                                ></span>
+                            ></span>
+                        </div>
+                        <div class="flex flex-col mt-10">
+                            <!--reviews  ? -->
 
-                                <button
-                                    class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
-                                    @click="$store.commit('addToCart', product)"
+                            <!-- description -->
+                            <p
+                                    class="text-grey text-base tracking-wide"
+                                    v-text="product.description"
+                            ></p>
+                            <!-- buy / choose quantity -->
+                            <div class="flex items-center text-lg mt-10">
+                                <!-- quantity -->
+                                <div
+                                        class="inline-block border border-black px-5 h-14 text-center"
                                 >
-                                    Add To Cart
+                                    <div
+                                            class="flex items-center h-14 justify-around"
+                                    >
+                                        <span>Quantity</span>
+
+                                        <div
+                                                class="ml-5 flex items-center px-2"
+                                        >
+                                            <span>-</span>
+                                            <input
+                                                    class="border-0 w-10 text-center appearance-none text-sm"
+                                                    value="1"
+                                                    min="1"
+                                                    maxlength="2"
+                                                    inputmode="numeric"
+                                                    type="string"
+                                            />
+                                            <span>+</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- add to bag -->
+                                <button
+                                        @click="$store.commit('addToCart', product)"
+                                        type="button"
+                                        class="uppercase tracking-wider font-normal h-14 inline-block items-center px-10 lg:px-12 border border-brand hover:bg-brand-hover transition-all duration-300 bg-brand text-white text-center text-sm lg:text-base whitespace-nowrap"
+                                >
+                                    Add to bag
                                 </button>
                             </div>
+
+                            <!-- further details -->
+                            <div class="flex flex-col space-y-2 mt-10 text-sm">
+                                <!-- SKU -->
+                                <div class="flex items-center space-x-2">
+                                    <span class="font-medium">SKU:</span>
+                                    <span v-text="product.sku"></span>
+                                </div>
+                                <!-- Category -->
+                                <div class="flex items-center space-x-2">
+                                    <span class="font-medium">Category:</span>
+                                    <Link
+                                            :href="/products/ + category.name"
+                                            class="text-grey hover:text-brand transition-all"
+                                            v-for="(category,
+                                        index) in product.categories"
+                                            v-text="
+                                            category.name +
+                                            (index !==
+                                                product.categories.length - 1 &&
+                                                ',')
+                                        "
+                                    ></Link>
+                                </div>
+                            </div>
+
+                            <!-- share product -->
+                            <!-- TOD fix the url for share -->
+                            <ShareGroup
+                                    :shareInfo="{
+                                    url: '',
+                                    title: product.name,
+                                    description: product.description,
+                                }"
+                            />
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </ContentWrapper>
+
+        <!-- product more detail tabs -->
+
+        <div class="w-full mt-10">
+            <TabsWrapper>
+                <Tab title="Product Story">{{ product?.description }}</Tab>
+                <Tab title="More Info">
+                    <ul class="text-black-2">
+                        <li>
+                            Care:
+                            <p class="text-grey">{{ product?.care }}</p>
+                        </li>
+                        <li>
+                            Materials:
+                            <p class="text-grey">{{ product?.materials }}</p>
+                        </li>
+                    </ul>
+                </Tab>
+            </TabsWrapper>
+        </div>
+
+        <ContentWrapper>
+            <!-- related products -->
+            <ProductGrid
+                    :products="products"
+                    gridSize="grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+                    title="YOU MAY ALSO LIKE"
+            />
+        </ContentWrapper>
     </GuestLayout>
 </template>
 <script>
-import GuestLayout from "@/Layouts/Customer";
+import GuestLayout from "@/Layouts/GuestLayout";
+import ContentWrapper from "@/Layouts/ContentWrapper";
+import {Head, Link} from "@inertiajs/inertia-vue3";
+import TabsWrapper from "@/components/Tabs/TabsWrapper";
+import Tab from "@/components/Tabs/Tab";
+import ShareGroup from "@/components/SocialSharing/ShareGroup";
+import ProductGrid from "@/components/Products/Grid/Grid";
+import ContentSpacerTop from "@/Layouts/ContentSpacerTop";
 
 export default {
     components: {
+        ProductGrid,
+        Head,
+        Link,
         GuestLayout,
+        ContentSpacerTop,
+        ContentWrapper,
+        TabsWrapper,
+        Tab,
+        ShareGroup,
     },
-    props: ["productSlug"],
+    props: ["productSlug", "categories"],
     methods: {
         formatCurrency(amount) {
             amount = amount / 100;
@@ -70,15 +177,46 @@ export default {
         },
     },
     computed: {
-        products() {
-            return this.$store.state.products;
+        products(props) {
+            // removes the current page product from array
+            const productsRemoveCurrent = _.filter(
+                this.$store.state.products,
+                (product) => product.slug !== props.productSlug
+            );
+            // shuffles array to always show different products
+            const shuffledProducts = _.shuffle(productsRemoveCurrent);
+            // return only the first 3 products
+            return shuffledProducts.slice(0, 3);
         },
 
         product(props) {
-            return this.products.find(
+            // get the product matching the current slug
+            return this.$store.state.products.find(
                 (product) => product.slug === props.productSlug
+            );
+        },
+
+        moreProducts(props) {
+            console.table(
+                this.products.find(
+                    (product) => product.slug === props.productSlug
+                )
             );
         },
     },
 };
 </script>
+
+<style scoped>
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+</style>
