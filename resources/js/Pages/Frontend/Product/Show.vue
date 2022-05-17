@@ -112,7 +112,7 @@
                                 <div class="flex items-center space-x-2">
                                     <span class="font-medium">Category:</span>
                                     <Link
-                                            :href="/products/ + category.name"
+                                            :href="/category/ + category.id"
                                             class="text-grey hover:text-brand transition-all"
                                             v-for="(category,
                                         index) in product.categories"
@@ -143,25 +143,24 @@
 
         <!-- product more detail tabs -->
 
-        <div class="w-full mt-10">
-            <TabsWrapper>
-                <Tab title="Product Story">{{ product?.description }}</Tab>
-                <Tab title="More Info">
-                    <ul class="text-black-2">
-                        <li>
-                            Care:
-                            <p class="text-grey">{{ product?.care }}</p>
-                        </li>
-                        <li>
-                            Materials:
-                            <p class="text-grey">{{ product?.materials }}</p>
-                        </li>
-                    </ul>
-                </Tab>
-            </TabsWrapper>
-        </div>
+        <!--tabs-->
+        <TabsWrapper>
+            <Tab title="Product Story">{{ product?.description }}</Tab>
+            <Tab title="More Info">
+                <ul class="text-black-2">
+                    <li>
+                        Care:
+                        <p class="text-grey">{{ product?.care }}</p>
+                    </li>
+                    <li>
+                        Materials:
+                        <p class="text-grey">{{ product?.materials }}</p>
+                    </li>
+                </ul>
+            </Tab>
+        </TabsWrapper>
 
-        <ContentWrapper>
+        <ContentWrapper class="my-16">
             <!-- related products -->
             <ProductGrid
                     :products="products"
@@ -249,6 +248,7 @@ export default {
         },
 
         product(props) {
+            console.log(props);
             // get the product matching the current slug
             return this.$store.state.products.find(
                 (product) => product.slug === props.productSlug
