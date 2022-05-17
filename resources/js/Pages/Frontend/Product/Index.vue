@@ -1,7 +1,7 @@
 <template>
     <GuestLayout>
         <ContentSpacerTop/>
-        <ContentWrapper>
+        <ContentWrapper class="mb-16">
             <ProductsFilter/>
             <ProductGrid
                     :products="products"
