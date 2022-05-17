@@ -1,32 +1,30 @@
 <template>
     <GuestLayout>
-        <ContentSpacerTop />
+        <ContentSpacerTop/>
         <ContentWrapper>
             <!-- product -->
             <div
-                class="grid grid-cols-1 lg:grid-cols-2 grid-rows-1 gap-10 tracking-wide"
-                v-if="product"
+                    class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-10 tracking-wide"
+                    v-if="product"
             >
-                <!-- product image -->
-                <div class="flex items-center justify-center">
-                    <!-- add carousel here -->
-                    <img
-                        src="https://indigo.qodeinteractive.com/wp-content/uploads/2017/01/home-4-shop-img-10.jpg"
-                    />
+                <!-- product images -->
+                <div class="flex flex-col items-center justify-center">
+                    <!-- large image -->
+                    <ProductSlider images="123"/>
                 </div>
                 <!-- product summary -->
                 <div class="flex flex-col items-start justify-start">
-                    <div class="my-auto">
+                    <div class="my-auto lg:my-0 lg:pt-24">
                         <div class="flex flex-col">
                             <!-- name -->
                             <h1
-                                class="text-3xl font-bold tracking-wide leading-tight uppercase"
-                                v-text="product.name"
+                                    class="text-3xl font-bold tracking-wide leading-tight uppercase"
+                                    v-text="product.name"
                             ></h1>
                             <!-- price -->
                             <span
-                                class="text-brand font-bold text-2xl"
-                                v-text="formatCurrency(product.price)"
+                                    class="text-brand font-bold text-2xl"
+                                    v-text="formatCurrency(product.price)"
                             ></span>
                         </div>
                         <div class="flex flex-col mt-10">
@@ -34,41 +32,70 @@
 
                             <!-- description -->
                             <p
-                                class="text-grey text-base tracking-wide"
-                                v-text="product.description"
+                                    class="text-grey text-base tracking-wide"
+                                    v-text="product.description"
                             ></p>
                             <!-- buy / choose quantity -->
-                            <div class="flex items-center text-lg mt-10">
+                            <div
+                                    class="flex flex-wrap items-center text-lg mt-10"
+                            >
                                 <!-- quantity -->
                                 <div
-                                    class="inline-block border border-black px-5 h-14 text-center"
+                                        class="inline-block w-full lg:w-auto border border-black px-5 h-14 text-center"
                                 >
                                     <div
-                                        class="flex items-center h-14 justify-around"
+                                            class="flex items-center h-14 justify-around"
                                     >
                                         <span>Quantity</span>
 
                                         <div
-                                            class="ml-5 flex items-center px-2"
+                                                class="ml-5 flex items-center px-2"
                                         >
-                                            <span>-</span>
+                                            <button
+                                                    :class="
+                                                    quantity === 1
+                                                        ? 'pointer-events-none opacity-50'
+                                                        : 'cursor-pointer p-3 -m-3'
+                                                "
+                                                    @click="changeQuantity('-')"
+                                            >
+                                                -
+                                            </button>
                                             <input
-                                                class="border-0 w-10 text-center appearance-none text-sm"
-                                                value="1"
-                                                min="1"
-                                                maxlength="2"
-                                                inputmode="numeric"
-                                                type="string"
+                                                    class="border-0 w-10 text-center appearance-none text-sm pointer-events-none"
+                                                    :value="quantity"
+                                                    min="1"
+                                                    maxlength="2"
+                                                    inputmode="numeric"
+                                                    type="string"
+                                                    @keydown="
+                                                    (e) => e.prevent.default()
+                                                "
                                             />
-                                            <span>+</span>
+                                            <button
+                                                    :class="
+                                                    product.available ===
+                                                    quantity
+                                                        ? 'pointer-events-none opacity-50'
+                                                        : 'cursor-pointer p-3 -m-3'
+                                                "
+                                                    @click="changeQuantity('+')"
+                                            >
+                                                +
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- add to bag -->
                                 <button
-                                    @click="$store.commit('addToCart', product)"
-                                    type="button"
-                                    class="uppercase tracking-wider font-normal h-14 inline-block items-center px-10 lg:px-12 border border-brand hover:bg-brand-hover transition-all duration-300 bg-brand text-white text-center text-sm lg:text-base whitespace-nowrap"
+                                        @click="
+                                        $store.commit('addToCart', {
+                                            product,
+                                            quantity,
+                                        })
+                                    "
+                                        type="button"
+                                        class="w-full lg:w-auto uppercase tracking-wider font-normal h-14 inline-block items-center px-10 lg:px-12 border border-brand hover:bg-brand-hover transition-all duration-300 bg-brand text-white text-center text-sm lg:text-base whitespace-nowrap"
                                 >
                                     Add to bag
                                 </button>
@@ -85,11 +112,11 @@
                                 <div class="flex items-center space-x-2">
                                     <span class="font-medium">Category:</span>
                                     <Link
-                                        :href="/products/ + category.name"
-                                        class="text-grey hover:text-brand transition-all"
-                                        v-for="(category,
+                                            :href="/products/ + category.name"
+                                            class="text-grey hover:text-brand transition-all"
+                                            v-for="(category,
                                         index) in product.categories"
-                                        v-text="
+                                            v-text="
                                             category.name +
                                             (index !==
                                                 product.categories.length - 1 &&
@@ -102,7 +129,7 @@
                             <!-- share product -->
                             <!-- TOD fix the url for share -->
                             <ShareGroup
-                                :shareInfo="{
+                                    :shareInfo="{
                                     url: '',
                                     title: product.name,
                                     description: product.description,
@@ -137,9 +164,9 @@
         <ContentWrapper>
             <!-- related products -->
             <ProductGrid
-                :products="products"
-                gridSize="grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
-                title="YOU MAY ALSO LIKE"
+                    :products="products"
+                    gridSize="grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+                    title="YOU MAY ALSO LIKE"
             />
         </ContentWrapper>
     </GuestLayout>
@@ -147,14 +174,21 @@
 <script>
 import GuestLayout from "@/Layouts/GuestLayout";
 import ContentWrapper from "@/Layouts/ContentWrapper";
-import { Head, Link } from "@inertiajs/inertia-vue3";
+import {Head, Link} from "@inertiajs/inertia-vue3";
 import TabsWrapper from "@/components/Tabs/TabsWrapper";
 import Tab from "@/components/Tabs/Tab";
 import ShareGroup from "@/components/SocialSharing/ShareGroup";
 import ProductGrid from "@/components/Products/Grid/Grid";
+import ProductSlider from "@/components/Sliders/ProductSlider";
 import ContentSpacerTop from "@/Layouts/ContentSpacerTop";
 
 export default {
+    data() {
+        return {
+            largeImgSrc: null,
+            quantity: 1,
+        };
+    },
     components: {
         ProductGrid,
         Head,
@@ -165,15 +199,40 @@ export default {
         TabsWrapper,
         Tab,
         ShareGroup,
+        ProductSlider,
     },
     props: ["productSlug", "categories"],
     methods: {
+        log(d) {
+            console.log(d);
+        },
         formatCurrency(amount) {
             amount = amount / 100;
             return amount.toLocaleString("en-US", {
                 style: "currency",
                 currency: "USD",
             });
+        },
+
+        // swaps the large image for the clicked thumbnail
+        changeLargeImageSrc: function (img) {
+            if (this.largeImgSrc === img) return;
+            console.log("changed");
+            this.largeImgSrc = img;
+        },
+
+        changeQuantity(action) {
+            //  + or - then choose action
+            switch (action) {
+                case "+":
+                    this.quantity++;
+                    break;
+                case "-":
+                    // stop minus at 1
+                    if (this.quantity === 1) return;
+                    this.quantity--;
+                    break;
+            }
         },
     },
     computed: {
