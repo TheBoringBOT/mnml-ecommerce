@@ -1,5 +1,7 @@
 <template>
-    <div class="bg-gradient w-full py-5 flex items-center space-y-5 text-black">
+    <section
+            class="bg-gradient w-full py-5 flex items-center space-y-5 text-black"
+    >
         <div
                 class="mx-auto max-w-7xl px-10 w-full flex flex-col lg:flex-row justify-center space-y-2 lg:space-y-0 lg:space-x-10 items-center"
         >
@@ -17,7 +19,7 @@
                 >
             </div>
         </div>
-    </div>
+    </section>
 </template>
 
 <style scoped>
