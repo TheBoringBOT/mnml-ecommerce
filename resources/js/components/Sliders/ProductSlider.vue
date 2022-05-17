@@ -6,33 +6,21 @@
     ></h3>
     <swiper
             :slidesPerView="1"
-            :spaceBetween="10"
+            :spaceBetween="30"
+            :loop="true"
             :pagination="{
             clickable: true,
         }"
-            :breakpoints="{
-            '@0.00': {
-                slidesPerView: 2,
-                spaceBetween: 10,
-            },
-
-            '@1.00': {
-                slidesPerView: 3,
-                spaceBetween: 40,
-            },
-            '@1.50': {
-                slidesPerView: 4,
-                spaceBetween: 50,
-            },
-        }"
+            :navigation="true"
             :modules="modules"
             class="mySwiper"
     >
-        <swiper-slide>Slide 1</swiper-slide><swiper-slide>Slide 2</swiper-slide
-    ><swiper-slide>Slide 3</swiper-slide><swiper-slide>Slide 4</swiper-slide
-    ><swiper-slide>Slide 5</swiper-slide><swiper-slide>Slide 6</swiper-slide
-    ><swiper-slide>Slide 7</swiper-slide><swiper-slide>Slide 8</swiper-slide
-    ><swiper-slide>Slide 9</swiper-slide>
+        <swiper-slide class="product-slider" v-for="slide in images">
+            <img
+                    src="https://images.unsplash.com/photo-1525943837837-af668e09139d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmFiZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                    alt=""
+            />
+        </swiper-slide>
     </swiper>
 </template>
 <script>
@@ -43,19 +31,20 @@ import {Swiper, SwiperSlide} from "swiper/vue";
 import "swiper/css";
 
 import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 // import required modules
-import {Pagination} from "swiper";
+import {Pagination, Navigation} from "swiper";
 
 export default {
-    props: ["title"],
+    props: ["title", "images"],
     components: {
         Swiper,
         SwiperSlide,
     },
     setup() {
         return {
-            modules: [Pagination],
+            modules: [Pagination, Navigation],
         };
     },
 };
@@ -64,13 +53,14 @@ export default {
 <style scoped>
 .swiper {
     width: 100%;
-    height: 300px;
+    height: 100%;
 }
 
 .swiper-slide {
     text-align: center;
     font-size: 18px;
     background: #ccc;
+    padding-top: 100%;
 
     /* Center slide text vertically */
     display: -webkit-box;
@@ -92,5 +82,8 @@ export default {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 </style>
