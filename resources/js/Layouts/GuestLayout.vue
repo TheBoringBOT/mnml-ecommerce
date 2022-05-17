@@ -1,11 +1,11 @@
 <template>
-    <div class="min-h-screen flex pt-6 sm:pt-0 w-full mx-auto text-black">
+    <div class="pt-6 sm:pt-0 w-full mx-auto text-black">
         <CustomerNav/>
 
-        <div class="w-full">
+        <div class="w-full min-h-[calc(100vh_-_4rem)]">
             <slot/>
-            <Footer/>
         </div>
+        <Footer/>
     </div>
 </template>
 
