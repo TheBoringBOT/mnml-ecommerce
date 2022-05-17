@@ -1,19 +1,35 @@
 <template>
     <div class="flex items-center space-x-5">
         <ul class="flex space-x-5">
-            <li @click="$store.commit('sortCategory', 'Port')">All</li>
-            <li
-                    v-for="category in categories"
-                    v-text="category.name"
-                    @click="$store.commit('sortCategory', { category: category })"
-            ></li>
+            <li>
+                <Link
+                        href="/products"
+                        :class="{ 'text-brand': $page.url === '/products' }"
+                >
+                    All</Link
+                    >
+            </li>
+            <li v-for="category in categories">
+                <Link
+                        :href="`/category/${category.id}`"
+                        :class="{
+                        'text-brand': $page.url === '/category/' + category.id,
+                    }"
+                        v-text="category.name"
+                ></Link>
+            </li>
         </ul>
     </div>
 </template>
 
 <script>
+import {Link} from "@inertiajs/inertia-vue3";
+
 export default {
     props: ["categories"],
+    components: {
+        Link,
+    },
 
     methods: {},
 };
