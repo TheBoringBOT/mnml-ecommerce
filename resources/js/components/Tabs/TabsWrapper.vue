@@ -1,5 +1,5 @@
 <template>
-    <section class="tabs w-full bg-gray-50 mx-auto">
+    <section class="tabs w-full bg-gray-50 mx-auto mt-10">
         <div class="bg-white w-full py-5">
             <ContentWrapper>
                 <ul
