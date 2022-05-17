@@ -1,24 +1,24 @@
 <template>
     <Link :href="/product/ + product.slug" class="flex flex-col space-y-5">
-        <div class="flex relative pt-[100%] overflow-hidden">
+        <figure class="flex relative pt-[100%] overflow-hidden">
             <img
-                    class="grow absolute top-0 left-0 h-full w-full"
-                    src="https://indigo.qodeinteractive.com/wp-content/uploads/2017/01/home-4-shop-img-6-768x768.jpg"
-                    alt=""
+                class="grow absolute top-0 left-0 h-full w-full"
+                src="https://indigo.qodeinteractive.com/wp-content/uploads/2017/01/home-4-shop-img-6-768x768.jpg"
+                alt=""
             />
-        </div>
+        </figure>
         <div class="flex justify-between items-center">
             <span class="font-semibold uppercase" v-text="product.name"></span>
             <span
-                    class="text-grey"
-                    v-text="formatCurrency(product.price)"
+                class="text-grey"
+                v-text="formatCurrency(product.price)"
             ></span>
         </div>
     </Link>
 </template>
 
 <script>
-import {Link} from "@inertiajs/inertia-vue3";
+import { Link } from "@inertiajs/inertia-vue3";
 
 export default {
     props: ["product"],
