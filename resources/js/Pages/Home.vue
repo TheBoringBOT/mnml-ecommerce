@@ -1,10 +1,8 @@
 <template>
     <HeroSlider/>
-
     <GuestLayout>
         <ContentWrapper class="my-16">
             <ProductGrid
-                    yMargin="true"
                     showButton="true"
                     title="Some of our Favorites"
                     :products="products"
