@@ -6,16 +6,26 @@ export default {
     state() {
         return {
             products: [],
+            categories: [],
             cart: [],
             order: {},
+            sort: {sort: "Default", order: null, category: "All"},
         };
     },
     mutations: {
+        updateCategories(state, categories) {
+            state.categories = categories;
+        },
         updateProducts(state, products) {
             state.products = products;
         },
-        addToCart(state, product) {
-            console.table(product);
+        sortProducts(state, sort) {
+            state.products = _.orderBy(state.products, sort[0], sort[1]);
+            state.sort = {sort: sort[0], order: sort[1], category: "All"};
+        },
+
+        addToCart(state, {product, quantity}) {
+            console.table(quantity);
             // get current id of item in cart
             const productAvailability = product.available;
 
@@ -33,11 +43,16 @@ export default {
                 ) {
                     return;
                 }
-                state.cart[productIdInCartIndex].quantity++;
+                // if customer is adding item with more then 1 quantity
+                // then add this to current number in cart
+                quantity !== 1
+                    ? (state.cart[productIdInCartIndex].quantity =
+                    state.cart[productIdInCartIndex].quantity + quantity)
+                    : state.cart[productIdInCartIndex].quantity++;
                 return;
             }
 
-            product.quantity = 1;
+            product.quantity = quantity;
             try {
                 state.cart.push(product);
             } catch (err) {
@@ -68,32 +83,28 @@ export default {
         },
     },
     actions: {
-        initialiseStore({ commit }) {
+        initialiseStore({commit}) {
             // check if any store data is stored in local storage
-            if (localStorage.getItem("store")) {
+            if (localStorage.getItem("inCart")) {
                 // Update cart if local storage has any cart data
-                commit("updateCart", JSON.parse(localStorage.getItem("store")));
+                commit(
+                    "updateCart",
+                    JSON.parse(localStorage.getItem("inCart"))
+                );
             }
+
             // get the products
             return axios
                 .get("/api/products")
                 .then((response) => {
-                    commit("updateProducts", response.data);
+                    console.table(response.data);
+                    commit("updateProducts", response.data[0].products);
+                    commit("updateCategories", response.data[0].categories);
                 })
                 .catch((error) => console.log(error));
         },
-        // getProducts({commit}) {
-        //     //fetch the product from the api api/products
-        //     //TODO: update catch error with something better for customer
-        //     axios
-        //         .get("/api/products")
-        //         .then((response) => {
-        //             commit("updateProducts", response.data);
-        //         })
-        //         .catch((error) => console.log(error));
-        // },
-        // clear/empty out the cart
-        clearCart({ commit }) {
+
+        clearCart({commit}) {
             commit("updateCart", []);
         },
     },
