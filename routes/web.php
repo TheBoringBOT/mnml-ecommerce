@@ -39,7 +39,13 @@ Route::get( '/product/{slug}', [
 	'show'
 ] )->name( 'products.item' );
 
-//TODO change the orders routes to controllers once setup
+// get all products by category id
+Route::get( '/category/{id}', [
+	\App\Http\Controllers\Api\ProductController::class,
+	'apiAllProductsByCategory'
+] )->name( 'products.category' );
+
+
 //order  checkout
 Route::inertia( '/checkout', 'Frontend/Order/Checkout' )->name( 'order.checkout' );
 
