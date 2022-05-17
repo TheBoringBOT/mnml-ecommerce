@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col my-16">
+    <div class="flex flex-col">
         <div class="flex justify-between items-center pb-5">
             <span
                     v-if="title"
