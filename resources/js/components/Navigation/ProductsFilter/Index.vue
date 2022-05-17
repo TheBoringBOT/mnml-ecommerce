@@ -1,8 +1,7 @@
 <template>
     <div class="flex justify-between items-center pt-10">
-        <!--<CategoriesFilter :categories="categories"/>-->
+        <CategoriesFilter :categories="categories"/>
 
-        <span></span>
         <SortFilter/>
     </div>
 </template>
