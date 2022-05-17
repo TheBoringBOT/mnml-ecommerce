@@ -27,8 +27,19 @@ class ProductController extends Controller {
 	public function apiSingleProduct( $productId ) {
 		$product = Product::find( $productId );
 
+
 		return $product;
 	}
+
+	public function apiProductByCategory( $id ) {
+		return $id;
+	}
+
+	//	 return _.filter(x, {
+	//                categories: [{name: "Port"}],
+	//            });
+
+	// get product category by slug
 
 
 	// all products page
@@ -46,6 +57,14 @@ class ProductController extends Controller {
 	public function show( $slug ) {
 		return Inertia::render( 'Frontend/Product/Show', [
 			'productSlug' => $slug
+
+
+		] );
+	}
+
+	public function apiAllProductsByCategory( $id ) {
+		return Inertia::render( 'Frontend/Product/Index', [
+			'categoryId' => $id
 
 
 		] );
