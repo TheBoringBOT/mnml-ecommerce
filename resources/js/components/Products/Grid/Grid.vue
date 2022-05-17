@@ -1,15 +1,15 @@
 <template>
     <div class="flex flex-col my-16">
-        <div class="flex justify-between items-center">
+        <div class="flex justify-between items-center pb-5">
             <span
                     v-if="title"
                     v-text="title"
-                    class="w-full text-left text-lg pb-5 tracking-wide font-semibold uppercase"
+                    class="w-full text-left text-lg tracking-wide font-semibold uppercase"
             ></span>
             <Link
                     :href="route('products')"
                     v-if="showButton"
-                    class="text-brand font-semibold whitespace-nowrap block"
+                    class="text-brand hover:text-brand-hover font-semibold whitespace-nowrap block uppercase"
             >View All</Link
                 >
         </div>

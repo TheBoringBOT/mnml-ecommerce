@@ -1,5 +1,5 @@
 <template>
-    <Link class="flex flex-col space-y-5">
+    <Link :href="/product/ + product.slug" class="flex flex-col space-y-5">
         <div class="flex relative pt-[100%] overflow-hidden">
             <img
                     class="grow absolute top-0 left-0 h-full w-full"
@@ -8,8 +8,11 @@
             />
         </div>
         <div class="flex justify-between items-center">
-            <span class="font-semibold uppercase">Sweater</span>
-            <span class="text-grey">$200.00</span>
+            <span class="font-semibold uppercase" v-text="product.name"></span>
+            <span
+                    class="text-grey"
+                    v-text="formatCurrency(product.price)"
+            ></span>
         </div>
     </Link>
 </template>
@@ -18,8 +21,18 @@
 import {Link} from "@inertiajs/inertia-vue3";
 
 export default {
+    props: ["product"],
     components: {
         Link,
+    },
+    methods: {
+        formatCurrency(amount) {
+            amount = amount / 100;
+            return amount.toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+            });
+        },
     },
 };
 </script>
