@@ -11,6 +11,8 @@ Route::get( '/products', [ ProductController::class, 'apiAllProducts' ] );
 Route::get( '/products/{slug}', [ ProductController::class, 'apiSingleProducts' ] );
 // post purchase
 Route::post( '/purchase', [ OrderController::class, 'purchase' ] );
+//update order status
+Route::post( '/order/update/{id}', [ OrderController::class, 'updateOrderStatus' ] );
 
 
 // user auth (used only for admin)
