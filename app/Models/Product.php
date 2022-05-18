@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use BinaryCats\Sku\HasSku;
+
 use Cviebrock\EloquentSluggable\Sluggable;
 
 class Product extends Model {
@@ -18,6 +19,10 @@ class Product extends Model {
 
 	public function orders() {
 		return $this->belongsToMany( Order::class );
+	}
+
+	public function images() {
+		return $this->hasMany( ProductImage::class );
 	}
 
 	/**
