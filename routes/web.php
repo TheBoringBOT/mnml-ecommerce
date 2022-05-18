@@ -71,31 +71,31 @@ Route::get( '/dashboard/products', [ \App\Http\Controllers\ProductController::cl
 Route::get( '/dashboard/product/create', [
 	\App\Http\Controllers\ProductController::class,
 	'create'
-] )->middleware( [ 'auth', 'verified' ] )->name( 'dashboard.products.create' );
+] )->middleware( [ 'auth', 'verified' ] )->name( 'dashboard.product.create' );
 
 // save product
 Route::post( '/dashboard/product/create', [
 	\App\Http\Controllers\ProductController::class,
 	'store'
-] )->middleware( [ 'auth', 'verified' ] )->name( 'dashboard.products.create' );
+] )->middleware( [ 'auth', 'verified' ] )->name( 'dashboard.product.store' );
 
 //edit product
 Route::get( '/dashboard/product/edit/{id}', [
 	\App\Http\Controllers\ProductController::class,
 	'edit'
-] )->middleware( [ 'auth', 'verified' ] )->name( 'dashboard.products.edit' );
+] )->middleware( [ 'auth', 'verified' ] )->name( 'dashboard.product.edit' );
 
 //update  product
 Route::post( '/dashboard/product/edit/{id}', [
 	\App\Http\Controllers\ProductController::class,
 	'update'
-] )->middleware( [ 'auth', 'verified' ] )->name( 'dashboard.products.edit' );
+] )->middleware( [ 'auth', 'verified' ] )->name( 'dashboard.product.update' );
 
 //delete product
 Route::get( '/dashboard/product/delete/{slug}', [
 	\App\Http\Controllers\ProductController::class,
 	'destroy'
-] )->middleware( [ 'auth', 'verified' ] )->name( 'dashboard.products.delete' );
+] )->middleware( [ 'auth', 'verified' ] )->name( 'dashboard.product.destroy' );
 
 // orders
 
@@ -120,7 +120,7 @@ Route::get( '/dashboard/order/update/{id}', [
 ] )->middleware( [
 	'auth',
 	'verified'
-] )->name( 'dashboard.order.update' );
+] )->name( 'order.update' );
 
 //== Customers Backend
 
@@ -135,7 +135,7 @@ require __DIR__ . '/auth.php';
 Route::get( '/dashboard/customer/{id}', [
 	\App\Http\Controllers\CustomerController::class,
 	'show'
-] )->middleware( [ 'auth', 'verified' ] )->name( 'dashboard.customer.show' );
+] )->middleware( [ 'auth', 'verified' ] )->name( 'customer.show' );
 require __DIR__ . '/auth.php';
 
 
