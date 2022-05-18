@@ -16,7 +16,7 @@ class ProductController extends Controller {
 	//=== API ROUTES FOR VUEX STORE ===//
 	// get all products
 	public function apiAllProducts() {
-		$products   = Product::with( 'categories:id,name' )->get();
+		$products   = Product::with( 'categories:id,name', 'images' )->get();
 		$categories = Category::all();
 
 
