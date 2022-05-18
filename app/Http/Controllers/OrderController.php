@@ -37,8 +37,6 @@ class OrderController extends Controller {
 		$ordersSent->all();
 
 
-
-
 		return Inertia::render( 'Backend/Orders/Index', [
 
 			'ordersNotSent' => $ordersNotSent,
@@ -67,25 +65,6 @@ class OrderController extends Controller {
 
 
 		] );
-	}
-
-	/**
-	 * change the order status of the specified resource -
-	 * it will change to opposite of whatever is the current .
-	 *
-	 * @param  int $id
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function updateOrderStatus( $id ) {
-
-		// find order
-		$order = Order::findOrFail( $id );
-		// update order status  opposite to current status
-		$response = $order->update( [ 'sent' => ! $order->sent ] );
-
-		// return success if updates
-		return response()->json( [ 'success' => $response ] );
 	}
 
 

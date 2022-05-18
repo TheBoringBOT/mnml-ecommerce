@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use App\Models\Order;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Models\Product;
@@ -98,6 +99,26 @@ class OrderController extends Controller {
 		Notification::send( $customer, new OrderNotification( $customer, $order ) );
 
 
+	}
+
+	/**
+	 * change the order status of the specified resource -
+	 * it will change to opposite of whatever is the current .
+	 *
+	 * @param  int $id
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function updateOrderStatus( $id ) {
+
+		// find order
+
+		$order = Order::findOrFail( $id );
+		// update order status  opposite to current status
+		$response = $order->update( [ 'sent' => ! $order->sent ] );
+
+		// return success if updates
+		return response()->json( [ 'success' => $response ] );
 	}
 
 }
