@@ -7,6 +7,9 @@ use App\Models\Product;
 use App\Models\Category;
 use Inertia\Inertia;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
+use Image;
+use File;
+use Illuminate\Support\Facades\Storage;
 
 //controller  used for backend only  -  controllers under Controllers/API for frontend
 
@@ -56,6 +59,7 @@ class ProductController extends Controller {
 	 */
 	public function store( Request $request ) {
 
+
 		$request->validate( [
 			'name'        => 'required | string|min:1|max:100',
 			'price'       => 'required|digits_between:0,5',
@@ -65,7 +69,7 @@ class ProductController extends Controller {
 			'categories'  => 'required',
 			'description' => 'required | string|min:1|max:200',
 			'story'       => 'required | string|min:1|max:200',
-			'image'       => 'mimes:jpeg,bmp,png,jpg',
+			//			'images'      => 'mimes:jpeg,bmp,png,jpg',
 
 
 		] );
@@ -73,40 +77,6 @@ class ProductController extends Controller {
 
 		// Create slug for assets & product
 		$slug = SlugService::createSlug( Product::class, 'slug', $request->name );
-
-		// Folder location for images
-		$image_location = 'uploads/images/product/' . $slug;
-		// Check if folder exists, make if not
-		if ( ! file_exists( $image_location ) ) {
-			Storage::makeDirectory( $image_location );
-
-		}
-
-		// Rename the Image file and save in the folder
-		$image      = $request->file( 'image' );
-		$image_name = $slug . '.jpg';
-		$imgFile    = Image::make( $image->getRealPath() );
-
-		// create xl image (default uploaded image)
-		$imgFile->save( $image_location . '/' . 'xl_' . $image_name );
-
-		// create large image
-		$imgFile->resize( 600, null, function ( $constraint ) {
-			$constraint->aspectRatio();
-		} )->save( $image_location . '/' . 'lg_' . $image_name );
-
-		// create medium
-		$imgFile->resize( 300, null, function ( $constraint ) {
-			$constraint->aspectRatio();
-		} )->save( $image_location . '/' . 'md_' . $image_name );
-
-		// create small
-		$imgFile->resize( 150, null, function ( $constraint ) {
-			$constraint->aspectRatio();
-		} )->save( $image_location . '/' . 'sm_' . $image_name );
-
-		// Image path for database - using large (600x600) as default
-		$image_path = '/' . $image_location . '/' . 'lg_' . $image_name;
 
 
 		// Create Product in DB
@@ -116,16 +86,54 @@ class ProductController extends Controller {
 			'name'        => $request->get( 'name' ),
 			'price'       => $request->get( 'price' ),
 			'available'   => $request->get( 'available' ),
-			'care'        => $request->get( 'brand' ),
+			'care'        => $request->get( 'care' ),
 			'materials'   => $request->get( 'materials' ),
 			'description' => $request->get( 'description' ),
 			'story'       => $request->get( 'story' ),
 			'slug'        => $slug,
-			'image'       => $image_path,
+
 
 		] );
 		// combine the category with the product in pivot table  category_product
 		$product->categories()->attach( $request->categories );
+		// Folder location for images
+		$image_location = 'uploads/images/product/' . $slug;
+		// Check if folder exists, make if not
+		if ( ! file_exists( $image_location ) ) {
+			File::makeDirectory( $image_location, $mode = 0777, true, true );
+
+
+		}
+		// Rename the Image file and save in the folder
+		$images = $request->file( 'images' );
+		// for each the images
+		foreach ( $images as $image ) {
+
+
+			$image_name = $slug . '_' . uniqid( '', true ) . '.jpg';
+			$imgFile    = Image::make( $image->getRealPath() );
+
+			// create xl image (default uploaded image)
+			$imgFile->save( $image_location . '/' . 'xl_' . $image_name );
+
+			// create large image
+			$imgFile->resize( 600, null, function ( $constraint ) {
+				$constraint->aspectRatio();
+			} )->save( $image_location . '/' . 'lg_' . $image_name );
+
+			// create medium
+			$imgFile->resize( 300, null, function ( $constraint ) {
+				$constraint->aspectRatio();
+			} )->save( $image_location . '/' . 'md_' . $image_name );
+
+			// Image path for database - using large (600x600) as default
+			$image_path = '/' . $image_location . '/' . 'lg_' . $image_name;
+
+			// this is the reason of saved product
+			$product->images()->create( [
+				'image_url' => $image_path,
+			] );
+		}
 
 
 		return Redirect::route( 'dashboard.product.create' );
