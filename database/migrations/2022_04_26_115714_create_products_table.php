@@ -27,13 +27,13 @@ class CreateProductsTable extends Migration {
 			$table->string( 'name' );
 			$table->string( 'slug' )->unique();
 			$table->string( 'sku' )->unique();
-			$table->text( 'description' )->default( $loremIpsum );
-			$table->text( 'story' )->default( $loremIpsum );
-			$table->string( 'care' )->default( $care );
-			$table->string( 'materials' )->default( 'Metal, Plastic' );
+			$table->text( 'description' );
+			$table->text( 'story' );
+			$table->string( 'care' )->nullable();
+			$table->string( 'materials' )->nullable();
 			$table->integer( 'available' )->default( 0 );
 			$table->integer( 'price' )->default( 0 );
-			$table->string( 'image_url' )->nullable();
+
 			$table->timestamps();
 		} );
 	}
