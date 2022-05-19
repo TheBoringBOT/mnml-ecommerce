@@ -131,21 +131,22 @@ class ProductController extends Controller {
 			$image_name = $slug . '_' . uniqid( '', true ) . '.jpg';
 			$imgFile    = Image::make( $image->getRealPath() );
 
-			// create xl image (default uploaded image)
-			$imgFile->save( $image_location . '/' . 'xl_' . $image_name );
+			// create xl image (default uploaded image 1200x1200)
+			$imgFile->save( $image_location . '/' . 'XL_' . $image_name );
 
-			// create large image
+			// create large image 600x600
 			$imgFile->resize( 600, null, function ( $constraint ) {
 				$constraint->aspectRatio();
-			} )->save( $image_location . '/' . 'lg_' . $image_name );
+			} )->save( $image_location . '/' . 'LG_' . $image_name );
 
-			// create medium
+			// create medium   300x300
 			$imgFile->resize( 300, null, function ( $constraint ) {
 				$constraint->aspectRatio();
-			} )->save( $image_location . '/' . 'md_' . $image_name );
+			} )->save( $image_location . '/' . 'MD_' . $image_name );
+
 
 			// Image path for database - using large (600x600) as default
-			$image_path = '/' . $image_location . '/' . 'lg_' . $image_name;
+			$image_path = '/' . $image_location . '/' . 'LG_' . $image_name;
 
 			// this is the reason of saved product
 			$product->images()->create( [
