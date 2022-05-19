@@ -10,7 +10,7 @@
                 <!-- product images -->
                 <div class="flex flex-col items-center justify-center">
                     <!-- large image -->
-                    <ProductSlider images="123"/>
+                    <ProductSlider :images="product.images"/>
                 </div>
                 <!-- product summary -->
                 <div class="flex flex-col items-start justify-start">
@@ -202,9 +202,6 @@ export default {
     },
     props: ["productSlug", "categories"],
     methods: {
-        log(d) {
-            console.log(d);
-        },
         formatCurrency(amount) {
             amount = amount / 100;
             return amount.toLocaleString("en-US", {
@@ -213,12 +210,12 @@ export default {
             });
         },
 
-        // swaps the large image for the clicked thumbnail
-        changeLargeImageSrc: function (img) {
-            if (this.largeImgSrc === img) return;
-            console.log("changed");
-            this.largeImgSrc = img;
-        },
+        // // swaps the large image for the clicked thumbnail
+        // changeLargeImageSrc: function (img) {
+        //     if (this.largeImgSrc === img) return;
+        //     console.log("changed");
+        //     this.largeImgSrc = img;
+        // },
 
         changeQuantity(action) {
             //  + or - then choose action
