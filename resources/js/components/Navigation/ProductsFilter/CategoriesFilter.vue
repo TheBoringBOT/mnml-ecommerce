@@ -1,21 +1,23 @@
 <template>
     <div class="flex items-center space-x-5">
-        <ul class="flex space-x-5">
+        <ul
+            class="flex space-x-5 flex-wrap justify-center text-center md:justify-start md:text-left"
+        >
             <li>
                 <Link
-                        href="/products"
-                        :class="{ 'text-brand': $page.url === '/products' }"
+                    href="/products"
+                    :class="{ 'text-brand': $page.url === '/products' }"
                 >
                     All</Link
-                    >
+                >
             </li>
             <li v-for="category in categories">
                 <Link
-                        :href="`/category/${category.id}`"
-                        :class="{
+                    :href="`/category/${category.id}`"
+                    :class="{
                         'text-brand': $page.url === '/category/' + category.id,
                     }"
-                        v-text="category.name"
+                    v-text="category.name"
                 ></Link>
             </li>
         </ul>
@@ -23,7 +25,7 @@
 </template>
 
 <script>
-import {Link} from "@inertiajs/inertia-vue3";
+import { Link } from "@inertiajs/inertia-vue3";
 
 export default {
     props: ["categories"],
