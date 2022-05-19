@@ -16,10 +16,7 @@
             class="mySwiper"
     >
         <swiper-slide class="product-slider" v-for="slide in images">
-            <img
-                    src="https://images.unsplash.com/photo-1525943837837-af668e09139d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmFiZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-                    alt=""
-            />
+            <img :src="slide.image_url" alt=""/>
         </swiper-slide>
     </swiper>
 </template>
