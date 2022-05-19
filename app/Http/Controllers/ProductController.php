@@ -15,14 +15,32 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller {
 	/**
-	 * Display a listing of the resource.
+	 * Display a listing of the resource. - used for backend/products table
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$products   = Product::all();
+		$products   = Product::with( 'images' )->get();
 		$categories = Category::all();
 
+		return Inertia::render( 'Backend/Product/Products', [
+			'products'   => $products,
+			'categories' => $categories,
+
+		] );
+
+
+	}
+
+	public function productsByCategory( $id ) {
+		// gets the product by relationship category {id}
+		$products = Product::with( 'images' )->whereHas( 'categories', function ( $q ) USE ( $id ) {
+			$q->where( 'id', $id );
+
+		} )->get();
+
+
+		$categories = Category::all();
 
 		return Inertia::render( 'Backend/Product/Products', [
 			'products'   => $products,
