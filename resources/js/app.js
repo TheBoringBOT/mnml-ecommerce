@@ -65,7 +65,29 @@ createInertiaApp({
             .use(store)
             .use(VueSocialSharing)
             .use(Toast, toastOptions)
-            .mixin({methods: {route}})
+            .mixin({
+                methods: {
+                    route,
+                    // global methods for getting different images sizes
+                    // must change image name to retrieve
+                    // Lg_ is the default image size which is 600x600
+                    // 3 sizes XL_ (1200x1200) - LG_ (600x600) - MD_ (300x300)
+                    getXLImage: function (string) {
+                        return string.replace("LG_", "XL_");
+                    },
+                    getMDImage: function (string) {
+                        return string.replace("LG_", "MD_");
+                    },
+                    // global method for formatcurrency
+                    formatCurrency: function (amount) {
+                        amount = amount / 100;
+                        return amount.toLocaleString("en-US", {
+                            style: "currency",
+                            currency: "USD",
+                        });
+                    },
+                },
+            })
             .mount(el);
     },
 }).then(cleanApp);
