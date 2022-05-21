@@ -11,11 +11,14 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                brand: "#0000f9",
-                "brand-hover": "#2e2eff",
-                black: "#161616",
+                // brand: "#0000f9",
+                // "brand-hover": "#2e2eff",
+
+                brand: "#141825",
+                "brand-hover": "#0e111d",
+                black: "#141825",
                 "black-2": "#282828",
-                grey: "#555",
+                grey: "#29292b",
                 "off-white": "#f5f5f7",
             },
         },
