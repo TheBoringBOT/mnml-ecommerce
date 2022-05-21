@@ -1,6 +1,8 @@
 <template>
-    <section class="tabs w-full bg-gray-50 mx-auto mt-10">
-        <div class="bg-white w-full py-5">
+    <section
+            class="tabs w-full bg-white mx-auto mt-10 border-b border-gray-100"
+    >
+        <div class="bg-off-white w-full py-5">
             <ContentWrapper>
                 <ul
                         class="flex flex-wrap items-start space-y-5 md:space-y-0 md:space-x-5 lg:items-center max-w-7xl"
