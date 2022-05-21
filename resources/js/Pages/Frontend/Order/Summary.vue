@@ -1,10 +1,17 @@
 <template>
+    <Head>
+        <title>Order Summary</title>
+        <meta
+            name="description"
+            content="This is your order summary from MNML."
+        />
+    </Head>
     <GuestLayout>
         <div class="w-full">
             <div class="lg:w-2/3 w-full mx-auto mt-8 overflow-auto">
                 <h2
-                        class="text-sm title-font text-gray-500 tracking-widest"
-                        v-text="'Transaction ID: ' + order.transaction_id"
+                    class="text-sm title-font text-gray-500 tracking-widest"
+                    v-text="'Transaction ID: ' + order.transaction_id"
                 ></h2>
                 <h1 class="text-gray-900 text-3xl title-font font-medium mb-4">
                     Thank you for your purchase
@@ -13,17 +20,17 @@
                     <thead>
                         <tr>
                             <th
-                                    class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200 rounded-tl rounded-bl"
+                                class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200 rounded-tl rounded-bl"
                             >
                                 Item
                             </th>
                             <th
-                                    class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200"
+                                class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200"
                             >
                                 Quantity
                             </th>
                             <th
-                                    class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200"
+                                class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200"
                             >
                                 Price
                             </th>
@@ -38,8 +45,8 @@
                         <tr>
                             <td class="p-4 font-bold">Total Amount</td>
                             <td
-                                    class="p-4 font-bold"
-                                    v-text="orderQuantity"
+                                class="p-4 font-bold"
+                                v-text="orderQuantity"
                             ></td>
                             <td class="p-4 font-bold" v-text="orderTotal"></td>
                         </tr>
@@ -52,10 +59,13 @@
 
 <script>
 import GuestLayout from "@/Layouts/GuestLayout";
+import { Head, Link } from "@inertiajs/inertia-vue3";
 
 export default {
     components: {
         GuestLayout,
+        Head,
+        Link,
     },
     methods: {
         cartLineTotal(item) {
