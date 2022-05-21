@@ -35,11 +35,8 @@
                 <div class="flex justify-center">
                     <div class="shrink-0 flex items-center col-end-auto">
                         <Link :href="route('home')">
-                        <!--<BreezeApplicationLogo class="block h-9 w-auto"/>-->
-                            <img
-                                    width="112"
-                                    src="https://savoy-webstack.netdna-ssl.com/wp-content/themes/savoy/assets/img/logo@2x.png"
-                                    alt=""
+                            <BreezeApplicationLogo
+                                    class="block h-9 w-auto text-brand hover:text-brand-hover cursor-pointer transition-all duration-300"
                             />
                         </Link>
                     </div>
@@ -133,7 +130,7 @@
                 block: showingNavigationDropdown,
                 hidden: !showingNavigationDropdown,
             }"
-                class="md:hidden pl-3 "
+                class="md:hidden pl-3"
         >
             <div class="pt-2 pb-3 space-y-1">
                 <BreezeResponsiveNavLink

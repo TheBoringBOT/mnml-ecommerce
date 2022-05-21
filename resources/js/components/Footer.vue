@@ -16,7 +16,7 @@
                             placeholder="Enter your email"
                         />
                         <button
-                            class="w-full px-5 py-3 text-sm bg-black border border-gray-800 text-white hover:bg-brand-hover transition-all duration-300 font-semibold uppercase lg:w-auto tracking-widest"
+                            class="w-full px-5 py-3 text-sm bg-black border border-white text-white hover:bg-brand-hover transition-all duration-300 font-semibold uppercase lg:w-auto tracking-widest"
                         >
                             subscribe
                         </button>
@@ -24,13 +24,13 @@
                 </div>
             </div>
 
-            <hr class="h-px mt-6 bg-gray-800 border-none" />
+            <hr class="h-px mt-6 bg-white/5 border-none" />
 
             <div
                 class="flex flex-col items-center justify-between mt-6 md:flex-row w-full py-1"
             >
                 <span class="text-sm text-white sm:text-center"
-                    >© {{ new Date().getFullYear() }} MNML™ - All Rights
+                    >© {{ new Date().getFullYear() }} Sirène - All Rights
                     Reserved.
                 </span>
                 <div class="flex mt-4 space-x-6 sm:justify-center sm:mt-0">

@@ -1,9 +1,9 @@
 require("./bootstrap");
 
-import {createApp, h} from "vue";
-import {createInertiaApp} from "@inertiajs/inertia-vue3";
-import {InertiaProgress} from "@inertiajs/progress";
-import {createStore} from "vuex";
+import { createApp, h } from "vue";
+import { createInertiaApp } from "@inertiajs/inertia-vue3";
+import { InertiaProgress } from "@inertiajs/progress";
+import { createStore } from "vuex";
 import storeData from "./Store/Store";
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
@@ -51,14 +51,13 @@ const appName =
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) => require(`./Pages/${name}.vue`),
-    setup({el, app, props, plugin}) {
-        return createApp({render: () => h(app, props)})
+    setup({ el, app, props, plugin }) {
+        return createApp({ render: () => h(app, props) })
             .use(plugin)
             .use(
                 store
                     .dispatch("initialiseStore")
-                    .then((_) => {
-                    })
+                    .then((_) => {})
                     .catch((error) => console.error(error))
             )
 
@@ -66,6 +65,12 @@ createInertiaApp({
             .use(VueSocialSharing)
             .use(Toast, toastOptions)
             .mixin({
+                data() {
+                    return {
+                        // global variable for app name
+                        appName: "Sirène",
+                    };
+                },
                 methods: {
                     route,
                     // global methods for getting different images sizes
@@ -92,4 +97,4 @@ createInertiaApp({
     },
 }).then(cleanApp);
 
-InertiaProgress.init({color: "#4B5563"});
+InertiaProgress.init({ color: "#4B5563" });

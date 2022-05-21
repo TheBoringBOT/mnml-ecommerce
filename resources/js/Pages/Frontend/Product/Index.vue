@@ -3,25 +3,25 @@
         <title>
             {{ seoTitle }}
         </title>
-        <meta name="description" :content="seoDescription" />
+        <meta name="description" :content="seoDescription"/>
     </Head>
     <GuestLayout>
-        <ContentSpacerTop />
+        <ContentSpacerTop/>
         <ContentWrapper class="mb-16">
             <template v-if="products.length">
-                <ProductsFilter />
+                <ProductsFilter/>
                 <ProductGrid
-                    :products="products"
-                    gridSize="grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+                        :products="products"
+                        gridSize="grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
                 />
             </template>
 
             <!-- skeleton loader -->
             <template v-else>
                 <ProductGridSkeleton
-                    products="12"
-                    showButton="true"
-                    gridSize="grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+                        products="12"
+                        showButton="true"
+                        gridSize="grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
                 />
             </template>
         </ContentWrapper>
@@ -35,8 +35,8 @@ import ContentWrapper from "@/Layouts/ContentWrapper";
 import ProductGrid from "@/components/Products/Grid/Grid";
 import ProductGridSkeleton from "@/components/Products/Grid/Skeleton/GridSkeleton";
 import ProductsFilter from "@/Components/Navigation/ProductsFilter/Index";
-import { Head, Link } from "@inertiajs/inertia-vue3";
-import { useStore } from "vuex";
+import {Head, Link} from "@inertiajs/inertia-vue3";
+import {useStore} from "vuex";
 
 export default {
     props: ["categoryId", "categoryName"],
@@ -53,10 +53,10 @@ export default {
     data(props) {
         return {
             seoTitle: props.categoryName
-                ? "Category - " + props.categoryName + "| MNML"
-                : "Discover Our Products | MNML",
+                ? "Category - " + props.categoryName + " | Sirène"
+                : "Discover Our Products | Sirène",
             seoDescription: props.categoryName
-                ? `Check out our ${props.categoryName} products. Created by our in-house team of designers at MNML`
+                ? `Check out our ${props.categoryName} products. Created by our in-house team of designers at Sirène`
                 : "Discover our products that are made by our in-house designers. Using only the finest materials practices to create magic.",
         };
     },
@@ -75,7 +75,7 @@ export default {
             // filter the products with the category
             // using lodash filter
             return _.filter(products, {
-                categories: [{ id: categoryId }],
+                categories: [{id: categoryId}],
             });
         },
     },
