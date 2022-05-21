@@ -4,12 +4,12 @@
             <span
                 v-if="title"
                 v-text="title"
-                class="w-full text-left text-lg tracking-wide font-semibold uppercase"
+                class="w-full text-left text-lg tracking-wide font-semibold capitalize"
             ></span>
             <Link
                 :href="route('products')"
                 v-if="showButton"
-                class="text-grey hover:text-brand whitespace-nowrap block uppercase"
+                class="text-grey hover:text-brand whitespace-nowrap block capitalize"
                 >View All</Link
             >
         </div>

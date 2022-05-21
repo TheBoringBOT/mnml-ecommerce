@@ -2,7 +2,7 @@
     <h3
         v-if="title"
         v-text="title"
-        class="font-semibold uppercase text-2xl"
+        class="font-semibold capitalize text-2xl"
     ></h3>
     <swiper
         :slidesPerView="1"

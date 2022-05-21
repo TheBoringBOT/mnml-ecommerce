@@ -8,7 +8,7 @@
                 <table class="min-w-max w-full table-auto bg-white">
                     <thead>
                         <tr
-                                class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal"
+                                class="bg-gray-200 text-gray-600 capitalize text-sm leading-normal"
                         >
                             <th class="py-3 px-6 text-left">Product</th>
                             <th

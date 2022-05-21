@@ -41,7 +41,7 @@
                         </div>
                         <Link
                                 :href="slider.url"
-                                class="bg-brand text-white px-8 py-2 text-lg uppercase tracking-wide"
+                                class="bg-brand text-white px-8 py-2 text-lg capitalize tracking-wide"
                         >View Now</Link
                             >
                     </div>

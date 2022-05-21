@@ -11,7 +11,7 @@
             />
         </figure>
         <div class="flex justify-between items-center">
-            <span class="font-semibold uppercase" v-text="product.name"></span>
+            <span class="font-semibold capitalize" v-text="product.name"></span>
             <span
                 class="text-grey"
                 v-text="formatCurrency(product.price)"

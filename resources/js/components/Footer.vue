@@ -16,7 +16,7 @@
                             placeholder="Enter your email"
                         />
                         <button
-                            class="w-full px-5 py-3 text-sm bg-black border border-white text-white hover:bg-brand-hover transition-all duration-300 font-semibold uppercase lg:w-auto tracking-widest"
+                            class="w-full px-5 py-3 text-sm bg-black border border-white text-white hover:bg-brand-hover transition-all duration-300 font-semibold capitalize lg:w-auto tracking-widest"
                         >
                             subscribe
                         </button>

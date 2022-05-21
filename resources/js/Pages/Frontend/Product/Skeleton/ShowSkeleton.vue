@@ -14,7 +14,7 @@
                     <div class="flex flex-col space-y-4">
                         <!-- name -->
                         <h1
-                                class="h-8 w-48 bg-skeleton text-3xl font-bold tracking-wide leading-tight uppercase"
+                                class="h-8 w-48 bg-skeleton text-3xl font-bold tracking-wide leading-tight capitalize"
                         ></h1>
                         <!-- price -->
                         <span
