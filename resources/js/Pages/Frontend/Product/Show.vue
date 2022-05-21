@@ -1,5 +1,9 @@
 <template>
     <GuestLayout>
+        <Head>
+            <title>{{ seo.title }}</title>
+            <meta name="description" :content="seo.description"/>
+        </Head>
         <ContentSpacerTop/>
         <ContentWrapper>
             <!-- product -->
@@ -109,8 +113,11 @@
                                     <span v-text="product.sku"></span>
                                 </div>
                                 <!-- Category -->
-                                <div class="flex items-center space-x-2">
+                                <div
+                                        class="flex items-center space-x-2 flex-wrap"
+                                >
                                     <span class="font-medium">Category:</span>
+
                                     <Link
                                             :href="/category/ + category.id"
                                             class="text-grey hover:text-brand transition-all"
@@ -182,12 +189,6 @@ import ProductSlider from "@/components/Sliders/ProductSlider";
 import ContentSpacerTop from "@/Layouts/ContentSpacerTop";
 
 export default {
-    data() {
-        return {
-            largeImgSrc: null,
-            quantity: 1,
-        };
-    },
     components: {
         ProductGrid,
         Head,
@@ -200,23 +201,16 @@ export default {
         ShareGroup,
         ProductSlider,
     },
-    props: ["productSlug", "categories"],
+
+    props: ["productSlug", "categories", "seo"],
+    data(props) {
+        return {
+            largeImgSrc: null,
+            quantity: 1,
+        };
+    },
+
     methods: {
-        formatCurrency(amount) {
-            amount = amount / 100;
-            return amount.toLocaleString("en-US", {
-                style: "currency",
-                currency: "USD",
-            });
-        },
-
-        // // swaps the large image for the clicked thumbnail
-        // changeLargeImageSrc: function (img) {
-        //     if (this.largeImgSrc === img) return;
-        //     console.log("changed");
-        //     this.largeImgSrc = img;
-        // },
-
         changeQuantity(action) {
             //  + or - then choose action
             switch (action) {
@@ -245,19 +239,12 @@ export default {
         },
 
         product(props) {
-            console.log(props);
             // get the product matching the current slug
-            return this.$store.state.products.find(
+            const product = this.$store.state.products.find(
                 (product) => product.slug === props.productSlug
             );
-        },
 
-        moreProducts(props) {
-            console.table(
-                this.products.find(
-                    (product) => product.slug === props.productSlug
-                )
-            );
+            return product;
         },
     },
 };

@@ -67,6 +67,15 @@ Route::get( '/dashboard/products', [ \App\Http\Controllers\ProductController::cl
 	'verified'
 ] )->name( 'dashboard.products' );
 
+// all products  via category
+Route::get( '/dashboard/products/category/{id}', [
+	\App\Http\Controllers\ProductController::class,
+	'productsByCategory'
+] )->middleware( [
+	'auth',
+	'verified'
+] )->name( 'dashboard.products.category' );
+
 // create product
 Route::get( '/dashboard/product/create', [
 	\App\Http\Controllers\ProductController::class,
@@ -99,12 +108,6 @@ Route::get( '/dashboard/product/delete/{slug}', [
 
 // orders
 
-// show all orders
-Route::get( '/dashboard/orders', [
-	\App\Http\Controllers\OrderController::class,
-	'index'
-] )->middleware( [ 'auth', 'verified' ] )->name( 'dashboard.orders' );
-require __DIR__ . '/auth.php';
 
 // show single order
 Route::get( '/dashboard/order/{id}', [

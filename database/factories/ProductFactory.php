@@ -23,6 +23,7 @@ class ProductFactory extends Factory {
 			'care'        => $this->faker->text,
 			'slug'        => Str::slug( $name ),
 			'description' => $this->faker->realText( 320 ),
+			'excerpt'     => $this->faker->realText( 150 ),
 			'price'       => $this->faker->numberBetween( 1000, 10000 ),
 
 			'available' => $this->faker->numberBetween( 5, 80 ),

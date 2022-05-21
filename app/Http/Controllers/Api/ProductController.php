@@ -32,14 +32,15 @@ class ProductController extends Controller {
 	}
 
 	public function apiProductByCategory( $id ) {
-		return $id;
+		//$categoryName = Category::findOrFail( $id );
+
+
+		return Inertia::render( 'Frontend/Product/Index', [
+			'categoryId' => $id,
+
+
+		] );
 	}
-
-	//	 return _.filter(x, {
-	//                categories: [{name: "Port"}],
-	//            });
-
-	// get product category by slug
 
 
 	// all products page
@@ -55,16 +56,31 @@ class ProductController extends Controller {
 
 	// get single product page
 	public function show( $slug ) {
+
+		// A fix for seo
+		//?vuex renders later then interjs head.
+		// TODO  Find a way to render seo from store instead of a call to db
+		$product = Product::where( 'slug', $slug )->first();
+		$seo     = (object) array(
+			'title'       => $product->name,
+			'description' => $product->excerpt,
+		);
+
+
 		return Inertia::render( 'Frontend/Product/Show', [
-			'productSlug' => $slug
+			'productSlug' => $slug,
+			'seo'         => $seo
 
 
 		] );
 	}
 
 	public function apiAllProductsByCategory( $id ) {
+		$categoryName = Category::findOrFail( $id );
+
 		return Inertia::render( 'Frontend/Product/Index', [
-			'categoryId' => $id
+			'categoryId'   => $id,
+			'categoryName' => $categoryName->name,
 
 
 		] );

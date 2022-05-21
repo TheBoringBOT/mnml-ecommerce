@@ -1,4 +1,11 @@
 <template>
+    <Head>
+        <title>High-quality designer products</title>
+        <meta
+                name="description"
+                content="At MNML we create beautiful functional products with out world-class design team. Established in 09'"
+        />
+    </Head>
     <HeroSlider/>
     <GuestLayout>
         <ContentWrapper class="my-16">
