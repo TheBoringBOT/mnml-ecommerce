@@ -69,7 +69,7 @@
                                                     -
                                                 </button>
                                                 <input
-                                                        class="border-0 w-10 text-center appearance-none text-sm pointer-events-none"
+                                                        class="border-0 w-10 text-center appearance-none text-sm pointer-events-none bg-off-white"
                                                         :value="quantity"
                                                         min="1"
                                                         maxlength="2"
@@ -175,14 +175,16 @@
                 </Tab>
             </TabsWrapper>
 
-            <ContentWrapper class="my-16">
-                <!-- related products -->
-                <ProductGrid
-                        :products="products"
-                        gridSize="grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
-                        title="YOU MAY ALSO LIKE"
-                />
-            </ContentWrapper>
+            <div class="bg-white">
+                <ContentWrapper class="py-16 bg-white">
+                    <!-- related products -->
+                    <ProductGrid
+                            :products="products"
+                            gridSize="grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+                            title="YOU MAY ALSO LIKE"
+                    />
+                </ContentWrapper>
+            </div>
         </template>
         <template v-else>
             <ProductSkeleton/>
