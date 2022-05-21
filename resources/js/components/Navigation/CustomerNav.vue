@@ -69,7 +69,7 @@
                     >
                         <span
                                 v-if="this.$store.state.cart.length !== 0"
-                                class="absolute -right-[5px] top-0 bg-brand text-white rounded-full h-[17px] w-[17px] font-bold text-monospace flex items-center justify-center text-[11px]"
+                                class="absolute -right-[5px] top-0 bg-blue-500 text-white rounded-full h-[17px] w-[17px] font-bold text-monospace flex items-center justify-center text-[11px]"
                                 v-text="this.$store.state.cart.length"
                         ></span>
                         <figure>

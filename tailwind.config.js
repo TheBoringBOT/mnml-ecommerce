@@ -13,10 +13,9 @@ module.exports = {
             colors: {
                 // brand: "#0000f9",
                 // "brand-hover": "#2e2eff",
-
-                brand: "#141825",
-                "brand-hover": "#0e111d",
-                black: "#141825",
+                brand: "#1c1c1e",
+                "brand-hover": "#222224",
+                black: "#1c1c1e",
                 "black-2": "#282828",
                 grey: "#29292b",
                 "off-white": "#f5f5f7",

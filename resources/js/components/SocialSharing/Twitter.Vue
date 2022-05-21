@@ -1,6 +1,6 @@
 <template>
     <ShareNetwork
-            class="hover:text-brand transition-all duration-300"
+            class="hover:text-brand-hover transition-all duration-300"
             network="twitter"
             :url="shareInfo.url"
             :title="shareInfo.title"
