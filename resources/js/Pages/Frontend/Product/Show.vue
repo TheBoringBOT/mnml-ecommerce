@@ -25,7 +25,7 @@
                             <div class="flex flex-col">
                                 <!-- name -->
                                 <h1
-                                        class="text-3xl font-bold tracking-wide leading-tight uppercase"
+                                        class="text-3xl font-bold tracking-wide leading-tight capitalize"
                                         v-text="product.name"
                                 ></h1>
                                 <!-- price -->
@@ -103,7 +103,7 @@
                                             })
                                         "
                                             type="button"
-                                            class="w-full lg:w-auto uppercase tracking-wider font-normal h-14 inline-block items-center px-10 lg:px-12 border border-brand hover:bg-brand-hover transition-all duration-300 bg-brand text-white text-center text-sm lg:text-base whitespace-nowrap"
+                                            class="w-full lg:w-auto capitalize tracking-wider font-normal h-14 inline-block items-center px-10 lg:px-12 border border-brand hover:bg-brand-hover transition-all duration-300 bg-brand text-white text-center text-sm lg:text-base whitespace-nowrap"
                                     >
                                         Add to bag
                                     </button>
@@ -181,7 +181,7 @@
                     <ProductGrid
                             :products="products"
                             gridSize="grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
-                            title="YOU MAY ALSO LIKE"
+                            title="You may also like"
                     />
                 </ContentWrapper>
             </div>
