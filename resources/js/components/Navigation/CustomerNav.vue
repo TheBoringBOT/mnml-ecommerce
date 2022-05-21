@@ -5,7 +5,7 @@
         <!-- Primary Navigation Menu -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div
-                    class="flex justify-between md:grid md:grid-cols-3 md:grid-rows-1 h-16"
+                    class="flex justify-between md:grid md:grid-cols-3 md:grid-rows-1 h-20"
             >
                 <!-- left -->
 
@@ -16,7 +16,7 @@
                             :href="route('products')"
                             :active="route().current('products')"
                     >
-                        Shop
+                        Items
                     </BreezeNavLink>
                     <BreezeNavLink
                             :href="route('about')"
@@ -35,7 +35,12 @@
                 <div class="flex justify-center">
                     <div class="shrink-0 flex items-center col-end-auto">
                         <Link :href="route('home')">
-                            <BreezeApplicationLogo class="block h-9 w-auto"/>
+                        <!--<BreezeApplicationLogo class="block h-9 w-auto"/>-->
+                            <img
+                                    width="112"
+                                    src="https://savoy-webstack.netdna-ssl.com/wp-content/themes/savoy/assets/img/logo@2x.png"
+                                    alt=""
+                            />
                         </Link>
                     </div>
                 </div>
@@ -69,7 +74,7 @@
                     >
                         <span
                                 v-if="this.$store.state.cart.length !== 0"
-                                class="absolute -right-[5px] top-0 bg-blue-500 text-white rounded-full h-[17px] w-[17px] font-bold text-monospace flex items-center justify-center text-[11px]"
+                                class="absolute -right-[5px] top-0 bg-black text-white rounded-full h-[17px] w-[17px] font-bold text-monospace flex items-center justify-center text-[11px]"
                                 v-text="this.$store.state.cart.length"
                         ></span>
                         <figure>
@@ -128,7 +133,7 @@
                 block: showingNavigationDropdown,
                 hidden: !showingNavigationDropdown,
             }"
-                class="md:hidden pl-3 border-t-2 border-secondary-bg"
+                class="md:hidden pl-3 "
         >
             <div class="pt-2 pb-3 space-y-1">
                 <BreezeResponsiveNavLink
