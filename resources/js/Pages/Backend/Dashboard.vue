@@ -8,29 +8,26 @@
             </h2>
         </template>
 
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 bg-white border-b border-gray-200">
-                        {{ ordersSent }}
-                        {{ ordersNotSent }}
-                        {{ customers }}
-                    </div>
-                </div>
-            </div>
-        </div>
+        <SummaryBoxes :summaryData="summaryData"/>
+        <OrdersTable :orders="orders"/>
     </BreezeAuthenticatedLayout>
 </template>
 
 <script>
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
+import SummaryBoxes from "@/components/Backend/Dashboard/SummaryBoxes";
+import OrdersTable from "@/components/Backend/OrdersTable";
 import {Head} from "@inertiajs/inertia-vue3";
+import Products from "@/Pages/Backend/Product/Products";
 
 export default {
-    props: ["ordersSent", "ordersNotSent", "customers"],
+    props: ["orders", "customers", "summaryData"],
     components: {
+        Products,
         BreezeAuthenticatedLayout,
         Head,
+        SummaryBoxes,
+        OrdersTable,
     },
 };
 </script>

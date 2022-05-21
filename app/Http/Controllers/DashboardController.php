@@ -9,34 +9,41 @@ Use App\Models\Product;
 use Inertia\Inertia;
 
 class DashboardController extends Controller {
+
+
 	public function index() {
 		// Get All customers
 		$customers = Customer::all();
 
 		// get each order with the product
 		$orders = Order::with( 'products' )->get();
+
 		// map through orders and attach customer details
 		$orders->map( function ( $i ) {
 			// Add customer details to each order
 			$i['customer'] = Customer::findorFail( $i->customer_id );
+
 		} );
+		// get the total amount of sales
+		$salesTotal     = $orders->sum( 'total' );
+		$ordersTotal    = count( $orders );
+		$customersTotal = count( $customers );
 
-		// Partition the orders if order is sent or not
-		list( $ordersNotSent, $ordersSent ) = $orders->partition( function ( $i ) {
-			return $i['sent'] === 0;
-		} );
+		$ordersToSend = count( $orders->where( 'sent', 0 ) );
 
-		// orders not sent
-		$ordersNotSent->all();
-		// orders sent
-		$ordersSent->all();
+		$summaryData = (object) array(
+			'salesTotal'     => $salesTotal,
+			'ordersTotal'    => $ordersTotal,
+			'customersTotal' => $customersTotal,
+			'ordersToSend'   => $ordersToSend
+		);
 
 
-		return Inertia::render( 'Backend/Customers/Show', [
+		return Inertia::render( 'Backend/Dashboard', [
 
-			'customers'     => $customers,
-			'ordersNotSent' => $ordersNotSent,
-			'ordersSent'    => $ordersSent,
+			'customers'   => $customers,
+			'orders'      => $orders,
+			'summaryData' => $summaryData,
 
 
 		] );
