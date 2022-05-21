@@ -1,15 +1,17 @@
 <template>
-    <div class="flex justify-between items-center pt-10">
-        <CategoriesFilter :categories="categories"/>
+    <div
+        class="flex flex-col md:flex-row text-center justify-center md:text-left md:justify-between items-center pt-10 space-y-5 md:space-y-0"
+    >
+        <CategoriesFilter :categories="categories" />
 
-        <SortFilter/>
+        <SortFilter />
     </div>
 </template>
 
 <script>
 import CategoriesFilter from "./CategoriesFilter";
 import SortFilter from "./SortFilter";
-import {useStore} from "vuex";
+import { useStore } from "vuex";
 
 export default {
     components: {
