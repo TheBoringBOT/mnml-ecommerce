@@ -187,7 +187,7 @@ export default {
             axios
                 .post("/api/order/update/" + orderId)
                 .then((response) => {
-                    Inertia.reload({only: ["orders"]});
+                    Inertia.reload({only: ["orders", "summaryData"]});
                     this.toast.info("Order Status Updated");
                 })
                 .catch((error) => {
