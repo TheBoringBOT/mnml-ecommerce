@@ -1,5 +1,5 @@
 <template>
-    <PromoCode />
+    <!--<PromoCode />-->
     <footer class="flex justify-center px-4 text-white bg-black">
         <div class="w-full mx-auto max-w-7xl pt-10 pb-3">
             <h1 class="text-center font-semibold text-3xl lg:text-4xl pt-3">
@@ -8,15 +8,15 @@
             </h1>
 
             <div class="flex justify-center mt-5 mb-12">
-                <div class="bg-white relative">
+                <div class="border border-white/5 relative">
                     <div class="flex justify-between md:flex-row">
                         <input
                             type="email"
-                            class="px-10 py-2 border-0 appearance-none text-gray-800 text-sm focus:outline-none focus:ring-0 outline-0 w-full"
+                            class="px-10 py-1 border-0 appearance-none bg-transparent text-white text-sm focus:outline-none focus:ring-0 outline-0 w-full"
                             placeholder="Enter your email"
                         />
                         <button
-                            class="w-full px-5 py-3 text-sm bg-black border border-white text-white hover:bg-brand-hover transition-all duration-300 font-semibold capitalize lg:w-auto tracking-widest"
+                            class="w-full px-5 py-3 text-sm text-white/70 bg-brand-hover hover:text-white transition-all duration-300 capitalize lg:w-auto tracking-widest"
                         >
                             subscribe
                         </button>
