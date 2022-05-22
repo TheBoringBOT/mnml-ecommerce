@@ -19,7 +19,7 @@
                     </div>
                     <!-- product summary -->
                     <div
-                            class="flex flex-col items-start justify-start text-brand"
+                            class="flex flex-col items-start justify-start text-brand lg:px-16 xl:px-20"
                     >
                         <div class="my-auto lg:my-0 lg:pt-24">
                             <div class="flex flex-col">
@@ -30,7 +30,7 @@
                                 ></h1>
                                 <!-- price -->
                                 <span
-                                        class="font-bold text-2xl"
+                                        class="font-semibold mt-3 text-2xl"
                                         v-text="formatCurrency(product.price)"
                                 ></span>
                             </div>
@@ -48,16 +48,14 @@
                                 >
                                     <!-- quantity -->
                                     <div
-                                            class="inline-block w-full lg:w-auto border border-black px-5 h-14 text-center"
+                                            class="inline-block w-full lg:w-1/3 border border-gray-300 px-5 h-12 text-center"
                                     >
                                         <div
-                                                class="flex items-center h-14 justify-around"
+                                                class="flex items-center h-12 justify-around"
                                         >
-                                            <span>Quantity</span>
+                                            <!--<span>Quantity</span>-->
 
-                                            <div
-                                                    class="ml-5 flex items-center px-2"
-                                            >
+                                            <div class="flex items-center px-2">
                                                 <button
                                                         :class="
                                                         quantity === 1
@@ -66,10 +64,20 @@
                                                     "
                                                         @click="changeQuantity('-')"
                                                 >
-                                                    -
+                                                    <svg
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            width="16"
+                                                            height="16"
+                                                            fill="currentColor"
+                                                            viewBox="0 0 16 16"
+                                                    >
+                                                        <path
+                                                                d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"
+                                                        />
+                                                    </svg>
                                                 </button>
                                                 <input
-                                                        class="border-0 w-10 text-center appearance-none text-sm pointer-events-none bg-off-white"
+                                                        class="border-0 w-10 text-center appearance-none text-sm font-semibold pointer-events-none bg-off-white"
                                                         :value="quantity"
                                                         min="1"
                                                         maxlength="2"
@@ -89,7 +97,17 @@
                                                     "
                                                         @click="changeQuantity('+')"
                                                 >
-                                                    +
+                                                    <svg
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            width="16"
+                                                            height="16"
+                                                            fill="currentColor"
+                                                            viewBox="0 0 16 16"
+                                                    >
+                                                        <path
+                                                                d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"
+                                                        />
+                                                    </svg>
                                                 </button>
                                             </div>
                                         </div>
@@ -103,7 +121,7 @@
                                             })
                                         "
                                             type="button"
-                                            class="w-full lg:w-auto capitalize tracking-wider font-normal h-14 inline-block items-center px-10 lg:px-12 border border-brand hover:bg-brand-hover transition-all duration-300 bg-brand text-white text-center text-sm lg:text-base whitespace-nowrap"
+                                            class="w-full lg:w-2/3 capitalize tracking-wider font-normal h-12 inline-block items-center px-10 lg:px-12 border border-brand hover:bg-brand-hover transition-all duration-300 bg-brand text-white text-center text-sm lg:text-base whitespace-nowrap"
                                     >
                                         Add to bag
                                     </button>
@@ -145,7 +163,7 @@
                                 <!-- TOD fix the url for share -->
                                 <ShareGroup
                                         :shareInfo="{
-                                        url: '',
+                                        url: productUrl,
                                         title: product.name,
                                         description: product.description,
                                     }"
@@ -223,6 +241,7 @@ export default {
         return {
             largeImgSrc: null,
             quantity: 1,
+            productUrl: window.location,
         };
     },
 

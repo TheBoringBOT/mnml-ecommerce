@@ -9,7 +9,9 @@
                     class="flex flex-col items-center justify-center bg-skeleton w-full pt-[100%]"
             ></div>
             <!-- product summary -->
-            <div class="flex flex-col items-start justify-start">
+            <div
+                    class="flex flex-col items-start justify-start lg:px-16 xl:px-20"
+            >
                 <div class="my-auto lg:my-0 lg:pt-24 w-full">
                     <div class="flex flex-col space-y-4">
                         <!-- name -->
