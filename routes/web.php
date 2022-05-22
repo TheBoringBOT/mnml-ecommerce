@@ -15,11 +15,11 @@ Route::get( '/', function () {
 //placeholders
 // about page
 Route::get( '/about', function () {
-	return Inertia::render( 'Home' );
+	return Inertia::render( 'About' );
 } )->name( 'about' );
 // contact page
 Route::get( '/contact', function () {
-	return Inertia::render( 'home' );
+	return Inertia::render( 'Contact' );
 } )->name( 'contact' );
 // search page
 Route::get( '/search', function () {
