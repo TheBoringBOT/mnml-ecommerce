@@ -18,13 +18,14 @@ Route::get( '/about', function () {
 	return Inertia::render( 'About' );
 } )->name( 'about' );
 // contact page
-Route::get( '/contact', function () {
-	return Inertia::render( 'Contact' );
-} )->name( 'contact' );
+Route::get( '/info', function () {
+	return Inertia::render( 'Info' );
+} )->name( 'info' );
 // search page
-Route::get( '/search', function () {
-	return Inertia::render( 'home' );
-} )->name( 'search' );
+Route::get( '/search', [
+	\App\Http\Controllers\ProductController::class,
+	'search'
+] )->name( 'search' );
 
 
 // get all products
