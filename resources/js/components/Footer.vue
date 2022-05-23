@@ -1,6 +1,5 @@
 <template>
-    <!--<PromoCode />-->
-    <footer class="flex justify-center px-4 text-white bg-black">
+    <footer class="flex justify-center px-4 text-white bg-black mt-auto">
         <div class="w-full mx-auto max-w-7xl pt-10 pb-3">
             <h1 class="text-center font-semibold text-3xl lg:text-4xl pt-3">
                 Join our Newsletter to get<br/>
