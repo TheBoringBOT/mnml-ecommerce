@@ -12,7 +12,7 @@
             <div
                     class="flex flex-col items-start justify-start lg:px-16 xl:px-20"
             >
-                <div class="my-auto lg:my-0 lg:pt-24 w-full">
+                <div class="my-auto lg:my-0 lg:py-16 w-full">
                     <div class="flex flex-col space-y-4">
                         <!-- name -->
                         <h1
