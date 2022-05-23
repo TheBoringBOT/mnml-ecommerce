@@ -10,10 +10,17 @@
         <ContentWrapper class="mb-16">
             <template v-if="products?.length">
                 <!--<ProductsFilter/>-->
-                <ProductGrid
-                    :products="products"
-                    gridSize="grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
-                />
+                <div class="flex flex-col items-center justify-center h-full">
+                    <h1 class="text-2xl font-semibold">
+                        Search Results for: {{ keyword }}
+                    </h1>
+                    <div class="pt-16 pb-10">
+                        <ProductGrid
+                            :products="products"
+                            gridSize="grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+                        />
+                    </div>
+                </div>
             </template>
 
             <template v-else>
@@ -22,13 +29,13 @@
                     <div
                         class="flex flex-col items-center justify-center h-full"
                     >
-                        <h1 class="text-3xl font-semibold">
-                            No results for: {{ keyword }}
+                        <h1 class="text-2xl font-semibold">
+                            No search results for: {{ keyword }}
                         </h1>
                         <div class="pt-16 pb-10">
                             <ProductGrid
                                 :products="productsAlt"
-                                gridSize="grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+                                gridSize="grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
                                 title="How about these?"
                             />
                         </div>
@@ -39,7 +46,7 @@
                     v-else
                     products="12"
                     showButton="true"
-                    gridSize="grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+                    gridSize="grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
                 />
             </template>
         </ContentWrapper>
