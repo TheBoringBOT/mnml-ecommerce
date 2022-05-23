@@ -1,3 +1,3 @@
 <template>
-    <aside class="pt-32"></aside>
+    <aside class="pt-28"></aside>
 </template>
