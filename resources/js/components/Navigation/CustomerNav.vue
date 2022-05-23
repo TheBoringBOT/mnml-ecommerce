@@ -58,7 +58,7 @@
                     <span
                         v-click-outside="closeSearch"
                         :class="showSearch && 'border-b border-black'"
-                        class="fill-black-2 hover:fill-black transition-width flex items-center"
+                        class="pt-1 fill-black-2 hover:fill-black transition-width flex items-center"
                     >
                         <svg
                             @click="toggleSearch"
@@ -255,6 +255,7 @@ export default {
         },
         runSearch(e) {
             e.preventDefault();
+            if (this.searchKeyword.length < 3) return;
             this.$inertia.get("/search", { keyword: this.searchKeyword });
         },
     },
