@@ -42,6 +42,7 @@
         "@vue-stripe/vue-stripe": "^4.4.2",
         "@vueform/multiselect": "^2.3.3",
         "browser-sync": "^2.27.9",
+        "click-outside-vue3": "^4.0.1",
         "laravel-vue-pagination": "^3.0.0",
         "swiper": "^8.1.4",
         "vee-validate": "^4.5.11",
