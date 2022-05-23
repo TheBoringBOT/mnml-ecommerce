@@ -1,4 +1,3 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
     <Menu as="div" class="relative inline-block text-left z-10">
         <div>
