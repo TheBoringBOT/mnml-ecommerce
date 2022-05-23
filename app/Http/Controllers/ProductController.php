@@ -305,4 +305,15 @@ class ProductController extends Controller {
 
 		//TODO - The issues with deleting is that if there is a stored order then the product details will not be           //available and cause conflicts on orders history - Perhaps hide product?
 	}
+
+	// search function
+	public function search( Request $request ) {
+
+		$cleanKeyword = strip_tags( $request->keyword );
+
+		return Inertia::render( 'Frontend/Search/Search', [
+			'keyword' => strtolower( $cleanKeyword ),
+
+		] );
+	}
 }
