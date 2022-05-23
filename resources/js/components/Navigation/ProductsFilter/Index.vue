@@ -1,6 +1,6 @@
 <template>
     <div
-        class="flex flex-col md:flex-row text-center justify-center md:text-left md:justify-between items-center pt-10 space-y-5 md:space-y-0"
+        class="flex flex-col md:flex-row text-center justify-center md:text-left md:justify-between items-center pt-10 space-y-5 md:space-y-0 mb-10"
     >
         <CategoriesFilter :categories="categories" />
 
