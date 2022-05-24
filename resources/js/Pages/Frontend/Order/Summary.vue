@@ -2,70 +2,74 @@
     <Head>
         <title>Order Summary</title>
         <meta
-            name="description"
-            content="This is your order summary from MNML."
+                name="description"
+                content="This is your order summary from Sirène."
         />
     </Head>
-    <GuestLayout>
-        <div class="w-full">
-            <div class="lg:w-2/3 w-full mx-auto mt-8 overflow-auto">
-                <h2
-                    class="text-sm title-font text-gray-500 tracking-widest"
-                    v-text="'Transaction ID: ' + order.transaction_id"
-                ></h2>
-                <h1 class="text-gray-900 text-3xl title-font font-medium mb-4">
-                    Thank you for your purchase
-                </h1>
-                <table class="table-auto w-full text-left whitespace-no-wrap">
-                    <thead>
-                        <tr>
-                            <th
-                                class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200 rounded-tl rounded-bl"
-                            >
-                                Item
-                            </th>
-                            <th
-                                class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200"
-                            >
-                                Quantity
-                            </th>
-                            <th
-                                class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200"
-                            >
-                                Price
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="item in order.products" :key="item.id">
-                            <td class="p-4" v-text="item.name"></td>
-                            <td class="p-4" v-text="item.pivot.quantity"></td>
-                            <td class="p-4" v-text="cartLineTotal(item)"></td>
-                        </tr>
-                        <tr>
-                            <td class="p-4 font-bold">Total Amount</td>
-                            <td
-                                class="p-4 font-bold"
-                                v-text="orderQuantity"
-                            ></td>
-                            <td class="p-4 font-bold" v-text="orderTotal"></td>
-                        </tr>
-                    </tbody>
-                </table>
+
+    <div
+            class="min-h-screen bg-white text-gray-700 flex items-center justify-start flex-col"
+    >
+        <hr class="bg-gray-200 w-full"/>
+        <div class="flex flex-col justify-center items-center my-28">
+            <ApplicationLogo class="w-[150px]"/>
+            <h1 class="text-3xl mt-8 font-medium">
+                Thanks for your purchase <br/>
+            </h1>
+            <div class="bg-white max-w-[500px] px-5 lg:px-10 w-full my-8">
+                <div class="flex flex-col items-center">
+                    <span
+                            class="text-xl text-medium text-center"
+                            v-text="'Transaction ID:'"
+                    ></span>
+                    <span
+                            class="text-semibold text-xl"
+                            v-text="order.transaction_id"
+                    ></span>
+                    <hr class="bg-gray-200 w-1/3 my-3 text-medium"/>
+                </div>
+                <p class="text-center">
+                    Please check your email for your order details.
+                </p>
+            </div>
+
+            <div class="relative w-full flex items-center justify-center mt-8">
+                <Link
+                        class="flex items-center font-medium text-gray-500 hover:text-black transition-all space-x-2"
+                        :href="route('products')"
+                >
+                    <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="7"
+                            height="18"
+                            viewBox="0 0 13 24"
+                            fill="none"
+                    >
+                        <path
+                                d="M3.0033 11.9998L12.6351 2.16811C13.121 1.6721 13.121 0.868036 12.6351 0.372012C12.1495 -0.124004 11.3611 -0.124004 10.8755 0.372012L0.36445 11.102C-0.121483 11.598 -0.121483 12.402 0.36445 12.8981L10.8763 23.628C11.1189 23.876 11.4376 24 11.7559 24C12.0742 24 12.3929 23.876 12.6356 23.628C13.1215 23.132 13.1215 22.3279 12.6356 21.8319L3.0033 11.9998Z"
+                                fill="currentColor"
+                        />
+                    </svg>
+
+                    <span>Back To Store</span></Link
+                    >
             </div>
         </div>
-    </GuestLayout>
+        <hr class="bg-gray-200 w-full"/>
+    </div>
 </template>
 
 <script>
 import GuestLayout from "@/Layouts/GuestLayout";
-import { Head, Link } from "@inertiajs/inertia-vue3";
+import ApplicationLogo from "@/components/ApplicationLogo";
+import {Head, Link} from "@inertiajs/inertia-vue3";
 
 export default {
     components: {
         GuestLayout,
         Head,
         Link,
+        ApplicationLogo,
     },
     methods: {
         cartLineTotal(item) {
