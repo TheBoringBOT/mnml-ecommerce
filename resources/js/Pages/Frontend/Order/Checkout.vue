@@ -49,7 +49,6 @@
                             <BackButton/>
                         </div>
                         <div class="hidden lg:block pb-5">
-                            <!--<ApplicationLogo />-->
                             <h1 class="text-lg font-semibold">Checkout</h1>
                         </div>
                         <!--<h3 class="text-2xl font-semibold text-black">Payment Info</h3>-->
@@ -89,7 +88,6 @@
 import GuestLayout from "@/Layouts/GuestLayout";
 import ContentWrapper from "@/Layouts/ContentWrapper";
 import ContentSpacerTop from "@/Layouts/ContentSpacerTop";
-import ApplicationLogo from "@/components/ApplicationLogo";
 import BackButton from "@/components/Checkout/BackButton";
 import CheckoutForm from "@/components/Checkout/Form";
 import CheckoutItems from "@/components/Checkout/Items";
@@ -108,7 +106,6 @@ export default {
         ContentSpacerTop,
         CheckoutForm,
         CheckoutItems,
-        ApplicationLogo,
         CheckoutFooter,
         BackButton,
         EmptyCartNotification,
