@@ -9,7 +9,7 @@
             <figure class="rounded col-span-1">
                 <img
                         class="object-cover w-16 h-16 rounded shadow-sm border border-gray-200"
-                        src="https://i.pravatar.cc/100"
+                        :src="getMDImage(item.images[0]?.image_url)"
                         :alt="item.name"
                 />
             </figure>
