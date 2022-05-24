@@ -5,9 +5,9 @@
         </title>
         <meta name="description" :content="seoDescription"/>
     </Head>
-    <GuestLayout>
+    <GuestLayout backgroundWhite="true">
         <ContentSpacerTop/>
-        <ContentWrapper class="mb-16">
+        <ContentWrapper class="pb-16">
             <template v-if="products.length">
                 <ProductsFilter/>
                 <ProductGrid
