@@ -176,13 +176,16 @@
 <script>
 import {Field, Form, ErrorMessage} from "vee-validate";
 import * as yup from "yup";
+import {loadStripe} from "@stripe/stripe-js";
 
 export default {
+    props: ["cartTotal"],
     components: {
         yup,
         Field,
         Form,
         ErrorMessage,
+        loadStripe,
     },
     data() {
         //form validation using yup
@@ -197,9 +200,97 @@ export default {
         });
         return {
             validationSchema,
-            errors: [],
+            stripe: {},
+            cardElement: {},
+            customer: {
+                first_name: "",
+                last_name: "",
+                email: "",
+                address: "",
+                city: "",
+                state: "",
+                zip_code: "",
+            },
+            paymentProcessing: false,
         };
     },
-    props: ["customer", "paymentProcessing", "cartTotal"],
+    async mounted() {
+        //  if the cart has items then mount stripe
+        if (this.$store.state.cart.length !== 0) {
+            this.stripe = await loadStripe(process.env.MIX_STRIPE_KEY);
+
+            const elements = this.stripe.elements();
+            this.cardElement = elements.create("card", {
+                classes: {
+                    base:
+                        "bg-white rounded border border-gray-300 shadow-sm focus:border-indigo-500 text-base outline-none text-gray-700 p-3 leading-8 transition-colors duration-200 ease-in-out",
+                },
+            });
+
+            this.cardElement.mount("#card-element");
+        }
+    },
+
+    methods: {
+        // process the payment
+        async processPayment() {
+            this.paymentProcessing = true;
+
+            const {
+                paymentMethod,
+                error,
+            } = await this.stripe.createPaymentMethod(
+                "card",
+                this.cardElement,
+                {
+                    billing_details: {
+                        name:
+                        this.customer.first_name +
+                        " " +
+                        this.customer.last_name,
+                        email: this.customer.email,
+                        address: {
+                            line1: this.customer.address,
+                            city: this.customer.city,
+                            state: this.customer.state,
+                            postal_code: this.customer.zip_code,
+                        },
+                    },
+                }
+            );
+
+            //TODO change the error handling better for customer
+            //TODO validate inputs before sending to controller
+            if (error) {
+                this.paymentProcessing = false;
+                console.error(error);
+            } else {
+                console.log(paymentMethod);
+                this.customer.payment_method_id = paymentMethod.id;
+                this.customer.amount = this.$store.state.cart.reduce(
+                    (acc, item) => acc + item.price * item.quantity,
+                    0
+                );
+                this.customer.cart = JSON.stringify(this.$store.state.cart);
+
+                axios
+                    .post("/api/purchase", this.customer)
+                    .then((response) => {
+                        this.paymentProcessing = false;
+
+                        //update vuex store
+                        this.$store.commit("updateOrder", response.data);
+                        this.$store.dispatch("clearCart");
+
+                        // Redirect to order summary
+                        this.$inertia.get("/summary");
+                    })
+                    .catch((error) => {
+                        this.paymentProcessing = false;
+                        console.error(error);
+                    });
+            }
+        },
+    },
 };
 </script>
