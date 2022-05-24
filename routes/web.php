@@ -12,12 +12,11 @@ Route::get( '/', function () {
 	return Inertia::render( 'Home' );
 } )->name( 'home' );
 
-//placeholders
 // about page
 Route::get( '/about', function () {
 	return Inertia::render( 'About' );
 } )->name( 'about' );
-// contact page
+// Info page
 Route::get( '/info', function () {
 	return Inertia::render( 'Info' );
 } )->name( 'info' );
