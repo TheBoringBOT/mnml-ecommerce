@@ -7,17 +7,26 @@
             </h1>
 
             <div class="flex justify-center mt-5 mb-12">
-                <div class="border border-white/5 relative">
+                <div class="border-0 relative bg-[#343434]">
                     <div class="flex justify-between md:flex-row">
                         <input
                                 type="email"
-                                class="px-10 py-1 border-0 appearance-none bg-transparent text-white text-sm focus:outline-none focus:ring-0 outline-0 w-full"
+                                class="px-5 py-1 border-0 appearance-none bg-transparent text-white text-sm focus:outline-none focus:ring-0 outline-0 w-full"
                                 placeholder="Enter your email"
                         />
                         <button
-                                class="w-full px-5 py-3 text-sm text-white/70 bg-brand-hover hover:text-white transition-all duration-300 capitalize lg:w-auto tracking-widest"
+                                class="w-[60px] px-5 py-3 text-sm text-white/70 hover:text-white transition-all duration-300 capitalize lg:w-auto tracking-widest"
                         >
-                            subscribe
+                            <svg
+                                    fill="currentColor"
+                                    width="18"
+                                    height="16"
+                                    viewBox="0 0 35 35.11"
+                            >
+                                <polygon
+                                        points="35 17.56 22.6 5.15 20.19 7.56 28.49 15.86 0 15.86 0 19.26 28.49 19.26 20.19 27.55 22.6 29.96 35 17.56"
+                                ></polygon>
+                            </svg>
                         </button>
                     </div>
                 </div>
