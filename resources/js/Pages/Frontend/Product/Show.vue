@@ -25,12 +25,12 @@
                             <div class="flex flex-col">
                                 <!-- name -->
                                 <h1
-                                    class="text-3xl font-bold tracking-wide leading-tight capitalize"
+                                    class="text-3xl font-medium tracking-wide leading-tight capitalize"
                                     v-text="product.name"
                                 ></h1>
                                 <!-- price -->
                                 <span
-                                    class="font-semibold mt-3 text-2xl"
+                                    class="font-medium mt-3 text-2xl"
                                     v-text="formatCurrency(product.price)"
                                 ></span>
                             </div>
@@ -181,13 +181,17 @@
                 <Tab title="Product Story">{{ product?.description }}</Tab>
                 <Tab title="More Info">
                     <ul class="text-black-2">
-                        <li>
+                        <li class="flex items-center font-medium">
                             Care:
-                            <p class="text-grey">{{ product?.care }}</p>
+                            <p class="text-grey font-normal ml-5">
+                                {{ product?.care }}
+                            </p>
                         </li>
-                        <li>
+                        <li class="flex items-center font-medium">
                             Materials:
-                            <p class="text-grey">{{ product?.materials }}</p>
+                            <p class="text-grey font-normal ml-5">
+                                {{ product?.materials }}
+                            </p>
                         </li>
                     </ul>
                 </Tab>
