@@ -22,7 +22,7 @@ body {
 
 /* swiper slider override default colors */
 .swiper-pagination .swiper-pagination-bullet-active {
-    background: #0000f9;
+    background: #282828;
 }
 
 .mySwiper:hover .swiper-button-next,
