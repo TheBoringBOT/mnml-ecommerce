@@ -7,7 +7,7 @@
         />
     </Head>
     <HeroSlider/>
-    <GuestLayout>
+    <GuestLayout backgroundWhite="true">
         <ContentWrapper class="my-16">
             <template v-if="products.length">
                 <ProductGrid
@@ -15,15 +15,15 @@
                         title="Some of our Favorites"
                         :products="products"
                         gridSize="grid-cols-2 md:grid-cols-3
-            lg:grid-cols-4"
+            lg:grid-cols-3 gap-16"
                 />
             </template>
             <template v-else>
                 <!-- skeleton loader -->
                 <ProductGridSkeleton
-                        products="8"
+                        products="6"
                         showButton="true"
-                        gridSize="grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+                        gridSize="grid-cols-2 md:grid-cols-3 lg:grid-cols-3"
                 />
             </template>
         </ContentWrapper>
@@ -62,8 +62,10 @@ export default {
     },
     computed: {
         products() {
+            // shuffle products
             const shuffledProducts = _.shuffle(useStore().state.products);
-            return shuffledProducts.slice(0, 8);
+            //and return 6 items
+            return shuffledProducts.slice(0, 6);
         },
 
         product(props) {
