@@ -1,12 +1,15 @@
 <template>
-    <GuestLayout class="bg-white">
+    <GuestLayout backgroundWhite="true">
         <Head>
-            <!--<title>{{ seo.title }}</title>-->
-            <!--<meta name="description" :content="seo.description" />-->
+            <title>About Us</title>
+            <meta
+                name="description"
+                content="Learn about our brand vision and the team that designs our products"
+            />
         </Head>
         <ContentSpacerTop />
 
-        <ContentWrapper>
+        <ContentWrapper class="bg-white">
             <div class="flex flex-col lg:px-10">
                 <!-- page title -->
                 <h1 class="text-3xl">Learn about {{ appName }}</h1>
