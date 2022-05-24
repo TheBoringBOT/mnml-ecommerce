@@ -14,7 +14,7 @@
                         showButton="true"
                         title="Some of our Favorites"
                         :products="products"
-                        gridSize="grid-cols-1 md:grid-cols-2
+                        gridSize="grid-cols-2 md:grid-cols-3
             lg:grid-cols-4"
                 />
             </template>
