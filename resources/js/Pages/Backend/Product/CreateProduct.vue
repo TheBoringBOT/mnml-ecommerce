@@ -211,6 +211,37 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- excerpt (used in seo)-->
+                                    <div>
+                                        <div>
+                                            <label
+                                                for="description"
+                                                class="block text-gray-500"
+                                            >
+                                                Excerpt (Shorter product
+                                                description)
+                                            </label>
+                                            <div
+                                                class="mt-1 flex flex-col rounded-md shadow-sm"
+                                            >
+                                                <textarea
+                                                    id="excerpt"
+                                                    v-model="form.excerpt"
+                                                    name="description"
+                                                    rows="3"
+                                                    maxlength="150"
+                                                    class="resize-none shadow-sm focus:border-gray-300 text-xl mt-1 block w-full border border-gray-300 rounded-md border-gray-300 bg-white"
+                                                />
+
+                                                <div
+                                                    class="py-5 text-red-500"
+                                                    v-if="errors.excerpt"
+                                                >
+                                                    {{ errors.excerpt }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <!-- story -->
                                     <div>
                                         <div>
@@ -357,6 +388,7 @@ export default {
             materials: null,
             care: null,
             categories: [],
+            excerpt: null,
             description: null,
             story: null,
             available: null,
