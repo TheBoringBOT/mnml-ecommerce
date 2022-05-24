@@ -21,11 +21,7 @@
                         <h1 class="text-lg font-semibold">Checkout</h1>
                     </div>
                     <!--<h3 class="text-2xl font-semibold text-black">Payment Info</h3>-->
-                    <CheckoutForm
-                            :cartTotal="cartTotal"
-                            :customer="customer"
-                            :paymentProcessing="paymentProcessing"
-                    />
+                    <CheckoutForm :cartTotal="cartTotal"/>
                     <hr class="w-full bg-gray-200 mt-5 mb-3"/>
                     <CheckoutFooter/>
                 </div>
@@ -51,7 +47,7 @@
         </div>
 
         <!--TODO add cart is empty element-->
-        <div v-else>your cart is empty</div>
+        <EmptyCartNotification v-else/>
     </div>
 </template>
 <script>
@@ -64,8 +60,8 @@ import CheckoutForm from "@/components/Checkout/Form";
 import CheckoutItems from "@/components/Checkout/Items";
 import CheckoutFooter from "@/components/Checkout/Footer";
 import {Head, Link} from "@inertiajs/inertia-vue3";
-import {loadStripe} from "@stripe/stripe-js";
 import CheckoutTotal from "@/components/Checkout/CheckoutTotal";
+import EmptyCartNotification from "@/components/Checkout/EmptyCartNotification";
 
 export default {
     components: {
@@ -80,39 +76,9 @@ export default {
         ApplicationLogo,
         CheckoutFooter,
         BackButton,
+        EmptyCartNotification,
     },
-    data() {
-        return {
-            stripe: {},
-            cardElement: {},
-            customer: {
-                first_name: "",
-                last_name: "",
-                email: "",
-                address: "",
-                city: "",
-                state: "",
-                zip_code: "",
-            },
-            paymentProcessing: false,
-        };
-    },
-    async mounted() {
-        //  if the cart has items then mount stripe
-        if (this.$store.state.cart.length !== 0) {
-            this.stripe = await loadStripe(process.env.MIX_STRIPE_KEY);
 
-            const elements = this.stripe.elements();
-            this.cardElement = elements.create("card", {
-                classes: {
-                    base:
-                        "bg-white rounded border border-gray-300 shadow-sm focus:border-indigo-500 text-base outline-none text-gray-700 p-3 leading-8 transition-colors duration-200 ease-in-out",
-                },
-            });
-
-            this.cardElement.mount("#card-element");
-        }
-    },
     methods: {
         // return cart amount
         cartLineTotal(item) {
@@ -123,66 +89,6 @@ export default {
                 style: "currency",
                 currency: "USD",
             });
-        },
-
-        // process the payment
-        async processPayment() {
-            this.paymentProcessing = true;
-
-            const {
-                paymentMethod,
-                error,
-            } = await this.stripe.createPaymentMethod(
-                "card",
-                this.cardElement,
-                {
-                    billing_details: {
-                        name:
-                        this.customer.first_name +
-                        " " +
-                        this.customer.last_name,
-                        email: this.customer.email,
-                        address: {
-                            line1: this.customer.address,
-                            city: this.customer.city,
-                            state: this.customer.state,
-                            postal_code: this.customer.zip_code,
-                        },
-                    },
-                }
-            );
-
-            //TODO change the error handling better for customer
-            //TODO validate inputs before sending to controller
-            if (error) {
-                this.paymentProcessing = false;
-                console.error(error);
-            } else {
-                console.log(paymentMethod);
-                this.customer.payment_method_id = paymentMethod.id;
-                this.customer.amount = this.$store.state.cart.reduce(
-                    (acc, item) => acc + item.price * item.quantity,
-                    0
-                );
-                this.customer.cart = JSON.stringify(this.$store.state.cart);
-
-                axios
-                    .post("/api/purchase", this.customer)
-                    .then((response) => {
-                        this.paymentProcessing = false;
-
-                        //update vuex store
-                        this.$store.commit("updateOrder", response.data);
-                        this.$store.dispatch("clearCart");
-
-                        // Redirect to order summary
-                        this.$inertia.get("/summary");
-                    })
-                    .catch((error) => {
-                        this.paymentProcessing = false;
-                        console.error(error);
-                    });
-            }
         },
     },
     computed: {
@@ -210,21 +116,3 @@ export default {
     },
 };
 </script>
-
-<style scoped>
-@media screen and (min-width: 1024px) {
-    .bg-half:before {
-        content: "";
-        display: block;
-        width: 300%;
-        position: absolute;
-        top: 0;
-        left: -100%;
-        bottom: 0;
-        background: #fafafa;
-        z-index: -1;
-        -webkit-box-shadow: 0 -1px 0 #e1e1e1 inset;
-        box-shadow: 0 -1px 0 #e1e1e1 inset;
-    }
-}
-</style>
