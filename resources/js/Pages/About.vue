@@ -40,7 +40,7 @@
                             >The design team</span
                         >
                         <div class="lg:w-2/3">
-                            <div class="grid grid-cols-3 gap-3 lg:gap-10">
+                            <div class="grid grid-cols-3 gap-3 lg:gap-16">
                                 <div class="flex flex-col relative">
                                     <div class="pt-[100%] bg-off-white">
                                         <img
