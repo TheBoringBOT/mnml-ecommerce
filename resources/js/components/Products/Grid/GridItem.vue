@@ -2,26 +2,26 @@
     <Link :href="`/product/${product.slug}`" class="flex flex-col space-y-5">
         <figure class="flex relative pt-[100%] overflow-hidden">
             <img
-                class="grow absolute top-0 left-0 h-full w-full"
-                :src="`${
+                    class="grow absolute top-0 left-0 h-full w-full"
+                    :src="`${
                     product.images.length &&
                     getMDImage(product.images[0].image_url)
                 }`"
-                :alt="product.name"
+                    :alt="product.name"
             />
         </figure>
         <div class="flex justify-between items-center">
-            <span class="font-semibold capitalize" v-text="product.name"></span>
+            <span class="font-medium capitalize" v-text="product.name"></span>
             <span
-                class="text-grey"
-                v-text="formatCurrency(product.price)"
+                    class="text-grey"
+                    v-text="formatCurrency(product.price)"
             ></span>
         </div>
     </Link>
 </template>
 
 <script>
-import { Link } from "@inertiajs/inertia-vue3";
+import {Link} from "@inertiajs/inertia-vue3";
 
 export default {
     props: ["product"],
