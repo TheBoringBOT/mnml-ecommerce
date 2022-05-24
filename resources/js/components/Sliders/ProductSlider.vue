@@ -1,28 +1,28 @@
 <template>
     <h3
-        v-if="title"
-        v-text="title"
-        class="font-semibold capitalize text-2xl"
+            v-if="title"
+            v-text="title"
+            class="font-semibold capitalize text-2xl"
     ></h3>
     <swiper
-        :slidesPerView="1"
-        :spaceBetween="30"
-        :loop="true"
-        :pagination="{
+            :slidesPerView="1"
+            :spaceBetween="30"
+            :loop="true"
+            :pagination="{
             clickable: true,
         }"
-        :navigation="true"
-        :modules="modules"
-        class="mySwiper"
+            :navigation="true"
+            :modules="modules"
+            class="mySwiper"
     >
         <swiper-slide class="product-slider" v-for="slide in images">
-            <img :src="getXLImage(slide.image_url)" alt="" />
+            <img :src="getXLImage(slide.image_url)" alt="slide.name"/>
         </swiper-slide>
     </swiper>
 </template>
 <script>
 // Import Swiper Vue.js components
-import { Swiper, SwiperSlide } from "swiper/vue";
+import {Swiper, SwiperSlide} from "swiper/vue";
 
 // Import Swiper styles
 import "swiper/css";
@@ -31,7 +31,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 // import required modules
-import { Pagination, Navigation } from "swiper";
+import {Pagination, Navigation} from "swiper";
 
 export default {
     props: ["title", "images"],
@@ -56,7 +56,7 @@ export default {
 .swiper-slide {
     text-align: center;
     font-size: 18px;
-    background: #ccc;
+    background: #e8e9eb;
     padding-top: 100%;
 
     /* Center slide text vertically */
