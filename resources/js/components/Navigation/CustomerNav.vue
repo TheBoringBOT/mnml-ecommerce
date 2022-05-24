@@ -57,8 +57,10 @@
 
                     <span
                         v-click-outside="closeSearch"
-                        :class="showSearch && 'border-b border-black'"
-                        class="pt-1 fill-black-2 hover:fill-black transition-width flex items-center"
+                        :class="
+                            showSearch && 'border-b border-black fill-black '
+                        "
+                        class="pt-1 fill-grey hover:fill-black transition-width flex items-center"
                     >
                         <svg
                             @click="toggleSearch"
@@ -100,7 +102,12 @@
                     </span>
                     <!-- bag -->
                     <BreezeNavLink
-                        class="relative fill-black-2 hover:fill-black transition-all"
+                        class="relative fill-grey hover:fill-black transition-all"
+                        :class="
+                            this.$store.state.cart.length !== 0
+                                ? 'fill-black'
+                                : 'pointer-events-none'
+                        "
                         :href="route('order.checkout')"
                         :active="route().current('order.checkout')"
                     >
