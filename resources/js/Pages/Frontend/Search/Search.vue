@@ -3,10 +3,10 @@
         <title>
             {{ seoTitle }}
         </title>
-        <meta name="description" :content="seoDescription" />
+        <meta name="description" :content="seoDescription"/>
     </Head>
     <GuestLayout>
-        <ContentSpacerTop />
+        <ContentSpacerTop/>
         <ContentWrapper class="mb-16">
             <template v-if="products?.length">
                 <!--<ProductsFilter/>-->
@@ -14,10 +14,10 @@
                     <h1 class="text-2xl font-semibold">
                         Search Results for: {{ keyword }}
                     </h1>
-                    <div class="pt-16 pb-10">
+                    <div class="pt-16 pb-10 w-full">
                         <ProductGrid
-                            :products="products"
-                            gridSize="grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+                                :products="products"
+                                gridSize="grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
                         />
                     </div>
                 </div>
@@ -27,26 +27,26 @@
                 <!-- if no products and no skeleton show no results -->
                 <div v-if="!showSkeleton">
                     <div
-                        class="flex flex-col items-center justify-center h-full"
+                            class="flex flex-col items-center justify-center h-full w-full"
                     >
                         <h1 class="text-2xl font-semibold">
                             No search results for: {{ keyword }}
                         </h1>
-                        <div class="pt-16 pb-10">
+                        <div class="pt-16 pb-10 w-full">
                             <ProductGrid
-                                :products="productsAlt"
-                                gridSize="grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-                                title="How about these?"
+                                    :products="productsAlt"
+                                    gridSize="grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+                                    title="How about these?"
                             />
                         </div>
                     </div>
                 </div>
                 <!-- skeleton loader -->
                 <ProductGridSkeleton
-                    v-else
-                    products="12"
-                    showButton="true"
-                    gridSize="grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+                        v-else
+                        products="12"
+                        showButton="true"
+                        gridSize="grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
                 />
             </template>
         </ContentWrapper>
@@ -60,8 +60,8 @@ import ContentWrapper from "@/Layouts/ContentWrapper";
 import ProductGrid from "@/components/Products/Grid/Grid";
 import ProductGridSkeleton from "@/components/Products/Grid/Skeleton/GridSkeleton";
 import ProductsFilter from "@/Components/Navigation/ProductsFilter/Index";
-import { Head, Link } from "@inertiajs/inertia-vue3";
-import { useStore } from "vuex";
+import {Head, Link} from "@inertiajs/inertia-vue3";
+import {useStore} from "vuex";
 
 export default {
     props: ["keyword"],
