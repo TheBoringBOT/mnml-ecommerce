@@ -18,15 +18,21 @@ mix.js("resources/js/app.js", "public/js")
         require("tailwindcss"),
         require("autoprefixer"),
     ])
-    .alias({
-        "@": "resources/js",
-    })
     .webpackConfig(require("./webpack.config"))
     .browserSync({
         proxy: "http://localhost:8000/",
-        notify: false,
     });
 
 if (mix.inProduction()) {
+    mix.options({
+        terser: {
+            terserOptions: {
+                compress: {
+                    drop_console: true,
+                },
+            },
+        },
+    });
+
     mix.version();
 }
