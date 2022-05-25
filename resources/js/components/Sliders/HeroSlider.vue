@@ -1,7 +1,6 @@
 <template>
     <div class="w-full mx-auto mt-[4.5rem]">
         <swiper
-                :direction="'vertical'"
                 :autoplay="{
                 delay: 5000,
                 disableOnInteraction: false,
@@ -109,6 +108,7 @@ export default {
 
 <style scoped>
 /* swiper js custom styles */
+
 .swiper {
     width: 100%;
     height: 100%;
@@ -121,6 +121,7 @@ export default {
     font-size: 50px;
     background: #f5f5f7;
     color: #000;
+    height: 500px;
 
     /* Center slide text vertically */
     display: -webkit-box;
