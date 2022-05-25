@@ -79,7 +79,7 @@ export default {
         return {
             showSkeleton: true,
             seoTitle: props.keyword
-                ? `Search ${props.keyword}| Sirène`
+                ? `Search ${props.keyword} | Sirène`
                 : "Search | Sirène",
             seoDescription: "Search our product catalog",
         };

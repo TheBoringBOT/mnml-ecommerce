@@ -8,7 +8,7 @@
     </Head>
     <HeroSlider/>
     <GuestLayout>
-        <ContentWrapper class="my-16">
+        <ContentWrapper class="mt-4 mb-12 lg:mt-16 lg:mb-20">
             <template v-if="products.length">
                 <ProductGrid
                         showButton="true"
