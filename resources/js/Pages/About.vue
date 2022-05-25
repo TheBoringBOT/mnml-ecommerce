@@ -3,11 +3,11 @@
         <Head>
             <title>About Us</title>
             <meta
-                name="description"
-                content="Learn about our brand vision and the team that designs our products"
+                    name="description"
+                    content="Learn about our brand vision and the team that designs our products"
             />
         </Head>
-        <ContentSpacerTop />
+        <ContentSpacerTop/>
 
         <ContentWrapper class="bg-white">
             <div class="flex flex-col lg:px-10">
@@ -17,10 +17,10 @@
                 <div class="flex flex-col space-y-16 mt-16">
                     <!-- vision -->
                     <div
-                        class="flex flex-col lg:flex-row lg:justify-between lg:gap-10 space-y-5 lg:space-y-0 align-baseline"
+                            class="flex flex-col lg:flex-row lg:justify-between lg:gap-10 space-y-5 lg:space-y-0 align-baseline"
                     >
                         <span class="lg:w-1/3 text-2xl leading-none"
-                            >The brand</span
+                        >The brand</span
                         >
                         <p class="lg:w-2/3 text-grey">
                             Lorem ipsum dolor sit amet, consectetur adipiscing
@@ -37,25 +37,27 @@
                     </div>
                     <!-- Team -->
                     <div
-                        class="flex flex-col lg:flex-row lg:justify-between lg:gap-10 space-y-5 lg:space-y-0 align-baseline"
+                            class="flex flex-col lg:flex-row lg:justify-between lg:gap-10 space-y-5 lg:space-y-0 align-baseline"
                     >
                         <span class="lg:w-1/3 text-2xl leading-none"
-                            >The design team</span
+                        >The design team</span
                         >
                         <div class="lg:w-2/3">
-                            <div class="grid grid-cols-3 gap-3 lg:gap-16">
+                            <div
+                                    class="grid grid-cols-2 md:grid-cols-3 gap-3 lg:gap-16"
+                            >
                                 <div class="flex flex-col relative">
                                     <div class="pt-[100%] bg-off-white">
                                         <img
-                                            class="absolute top-0 left-0 object-contain w-full"
-                                            src="/images/1.png"
-                                            alt="Ann Young"
+                                                class="absolute top-0 left-0 object-contain w-full"
+                                                src="/images/1.png"
+                                                alt="Ann Young"
                                         />
                                     </div>
                                     <div class="flex flex-col mt-2">
                                         <span
-                                            class="text-grey text-sm leading-none"
-                                            >Head Designer</span
+                                                class="text-grey text-sm leading-none"
+                                        >Head Designer</span
                                         >
                                         <span>Ann Young</span>
                                     </div>
@@ -63,15 +65,15 @@
                                 <div class="flex flex-col relative">
                                     <div class="pt-[100%] bg-off-white">
                                         <img
-                                            class="absolute top-0 left-0 object-contain w-full"
-                                            src="/images/3.png"
-                                            alt="Marie Smith"
+                                                class="absolute top-0 left-0 object-contain w-full"
+                                                src="/images/3.png"
+                                                alt="Marie Smith"
                                         />
                                     </div>
                                     <div class="flex flex-col mt-2">
                                         <span
-                                            class="text-grey text-sm leading-none"
-                                            >Pattern Maker</span
+                                                class="text-grey text-sm leading-none"
+                                        >Pattern Maker</span
                                         >
                                         <span>Marie Smith</span>
                                     </div>
@@ -79,15 +81,15 @@
                                 <div class="flex flex-col relative">
                                     <div class="pt-[100%] bg-off-white">
                                         <img
-                                            class="absolute top-0 left-0 object-contain w-full"
-                                            src="/images/2.png"
-                                            alt="Tom Johns"
+                                                class="absolute top-0 left-0 object-contain w-full"
+                                                src="/images/2.png"
+                                                alt="Tom Johns"
                                         />
                                     </div>
                                     <div class="flex flex-col mt-2">
                                         <span
-                                            class="text-grey text-sm leading-none"
-                                            >Color Specialist</span
+                                                class="text-grey text-sm leading-none"
+                                        >Color Specialist</span
                                         >
                                         <span>Tom Johns</span>
                                     </div>
@@ -98,13 +100,13 @@
 
                     <!-- location / contact -->
                     <div
-                        class="flex flex-col lg:flex-row lg:justify-between lg:gap-10 space-y-5 lg:space-y-0 align-baseline"
+                            class="flex flex-col lg:flex-row lg:justify-between lg:gap-10 space-y-5 lg:space-y-0 align-baseline"
                     >
                         <span class="lg:w-1/3 text-2xl leading-none"
-                            >Our offices</span
+                        >Our offices</span
                         >
                         <div
-                            class="lg:w-2/3 text-grey flex flex-col lg:flex-row justify-between space-y-10 lg:space-y-0"
+                                class="lg:w-2/3 text-grey flex flex-col lg:flex-row justify-between space-y-10 lg:space-y-0"
                         >
                             <div class="flex flex-col space-y-2">
                                 <span class="font-semibold">Head Office</span>
@@ -126,7 +128,7 @@
                     </div>
                 </div>
             </div>
-            <ContentSpacerTop />
+            <ContentSpacerTop/>
         </ContentWrapper>
     </GuestLayout>
 </template>
@@ -134,6 +136,6 @@
 <script setup>
 import GuestLayout from "@/Layouts/GuestLayout";
 import ContentWrapper from "@/Layouts/ContentWrapper";
-import { Head, Link } from "@inertiajs/inertia-vue3";
+import {Head, Link} from "@inertiajs/inertia-vue3";
 import ContentSpacerTop from "@/Layouts/ContentSpacerTop";
 </script>
