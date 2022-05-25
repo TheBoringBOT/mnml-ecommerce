@@ -364,7 +364,7 @@ export default {
                 closeOnSelect: false,
                 options: props.categories ? props.categories : null,
                 searchable: true,
-                createOption: true,
+                createOption: false,
             },
         };
     },
