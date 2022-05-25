@@ -13,7 +13,7 @@
             >View All</Link
                 >
         </div>
-        <div class="grid auto-rows-auto gap-8" :class="gridSize">
+        <div class="grid auto-rows-auto gap-4 lg:gap-8" :class="gridSize">
             <ProductGridItem v-for="product in products" :product="product"/>
         </div>
     </div>

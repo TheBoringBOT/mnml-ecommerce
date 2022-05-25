@@ -8,7 +8,7 @@
                     class="h-4 w-8 bg-skeleton text-left text-lg tracking-wide font-semibold capitalize"
             ></span>
         </div>
-        <div class="grid auto-rows-auto gap-8" :class="gridSize">
+        <div class="grid auto-rows-auto gap-4 lg:gap-8" :class="gridSize">
             <GridItemSkeleton
                     v-for="product in parseInt(products)"
                     :product="product"

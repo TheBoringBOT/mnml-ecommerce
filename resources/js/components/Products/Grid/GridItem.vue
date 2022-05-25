@@ -1,5 +1,8 @@
 <template>
-    <Link :href="`/product/${product.slug}`" class="flex flex-col space-y-5">
+    <Link
+            :href="`/product/${product.slug}`"
+            class="flex flex-col space-y-3 md:space-y-5"
+    >
         <figure class="flex relative pt-[100%] overflow-hidden">
             <img
                     class="object-cover grow absolute top-0 left-0 h-full w-full"
@@ -7,10 +10,13 @@
                     :alt="product.name"
             />
         </figure>
-        <div class="flex justify-between items-center">
-            <span class="font-medium capitalize" v-text="product.name"></span>
+        <div class="flex flex-col md:flex-row justify-between items-center">
             <span
-                    class="text-grey"
+                    class="font-medium capitalize text-xs md:text-base truncate lg:max-w-[70%]"
+                    v-text="product.name"
+            ></span>
+            <span
+                    class="text-grey text-xs md:text-base truncate max-w-[99%]"
                     v-text="formatCurrency(product.price)"
             ></span>
         </div>
