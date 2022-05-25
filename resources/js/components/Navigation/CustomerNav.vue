@@ -104,7 +104,7 @@
                     </span>
                     <!-- bag -->
                     <BreezeNavLink
-                            class="relative fill-grey hover:fill-black transition-all"
+                            class="relative fill-grey hover:fill-black transition-all focus:outline-none outline-none"
                             :class="
                             this.$store.state.cart.length !== 0
                                 ? 'fill-black'
