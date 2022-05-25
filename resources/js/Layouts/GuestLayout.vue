@@ -2,7 +2,7 @@
     <CustomerNav/>
     <main
             :class="bgGrey && 'bg-off-white'"
-            class="pt-6 sm:pt-0 w-full mx-auto text-black"
+            class="pt-6 w-full mx-auto text-black"
     >
         <slot/>
     </main>
