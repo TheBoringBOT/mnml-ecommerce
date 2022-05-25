@@ -7,7 +7,7 @@
         />
     </Head>
     <HeroSlider/>
-    <GuestLayout backgroundWhite="true">
+    <GuestLayout>
         <ContentWrapper class="my-16">
             <template v-if="products.length">
                 <ProductGrid

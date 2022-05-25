@@ -5,7 +5,7 @@
         </title>
         <meta name="description" :content="seoDescription"/>
     </Head>
-    <GuestLayout backgroundWhite="true">
+    <GuestLayout>
         <ContentSpacerTop/>
         <ContentWrapper class="pb-16">
             <template v-if="products.length">

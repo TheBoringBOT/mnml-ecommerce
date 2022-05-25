@@ -1,7 +1,7 @@
 <template>
     <CustomerNav/>
     <main
-            :class="backgroundWhite && 'bg-white'"
+            :class="bgGrey && 'bg-off-white'"
             class="pt-6 sm:pt-0 w-full mx-auto text-black"
     >
         <slot/>
@@ -16,7 +16,7 @@ import Footer from "@/Components/Footer";
 import {Link} from "@inertiajs/inertia-vue3";
 
 export default {
-    props: ["backgroundWhite"],
+    props: ["bgGrey"],
     components: {
         Link,
         BreezeApplicationLogo,
