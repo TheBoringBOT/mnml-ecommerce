@@ -18,7 +18,7 @@ module.exports = {
                 "brand-hover": "#383838",
                 black: "#282828",
                 "black-2": "#282828",
-                grey: "#414147",
+                grey: "#777",
                 "off-white": "#eee",
                 skeleton: "#e8e9eb",
             },
