@@ -2,11 +2,8 @@
     <Link :href="`/product/${product.slug}`" class="flex flex-col space-y-5">
         <figure class="flex relative pt-[100%] overflow-hidden">
             <img
-                    class="grow absolute top-0 left-0 h-full w-full"
-                    :src="`${
-                    product.images.length &&
-                    getMDImage(product.images[0].image_url)
-                }`"
+                    class="object-cover grow absolute top-0 left-0 h-full w-full"
+                    :src="`${product.images.length && product.images[0].image_url}`"
                     :alt="product.name"
             />
         </figure>
