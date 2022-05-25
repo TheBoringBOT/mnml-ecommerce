@@ -1,12 +1,12 @@
 <template>
-    <div class="w-full mx-auto mt-16 lg:mt-16">
+    <div class="w-full mx-auto mt-[4.5rem]">
         <swiper
                 :direction="'vertical'"
-                :effect="'fade'"
                 :autoplay="{
-                delay: 4500,
+                delay: 5000,
                 disableOnInteraction: false,
             }"
+                :effect="'fade'"
                 :pagination="{
                 clickable: true,
             }"
@@ -17,7 +17,7 @@
                 <div class="relative w-full h-full">
                     <!-- overlay-->
                     <div
-                            class="bg-black/25 w-full h-full absolute left-0 top-0 z-10"
+                            class="bg-off-white/40 lg:hidden w-full h-full absolute left-0 top-0 z-10"
                     ></div>
                     <!--img-->
                     <img
@@ -25,25 +25,30 @@
                             alt=""
                             class="absolute left-0 top-0"
                     />
+
                     <!-- text content -->
                     <div
-                            class="max-w-7xl mx-auto relative flex flex-col items-center text-center md:text-left md:items-start space-y-10 z-20 w-full h-full justify-center text-white p-10"
+                            class="max-w-7xl mx-auto relative flex flex-col items-center text-center lg:text-left lg:items-start space-y-5 z-20 w-full h-full justify-center text-black p-10"
                     >
-                        <div class="flex flex-col">
-                            <h1
-                                    class="text-5xl md:text-7xl font-bold tracking-tight"
-                                    v-text="slider.title"
-                            ></h1>
+                        <h1
+                                class="text-5xl md:text-7xl font-medium tracking-tight"
+                                v-text="slider.title"
+                        ></h1>
+                        <div
+                                class="flex flex-col items-center lg:items-start space-y-5"
+                        >
                             <p
-                                    class="text-xl md:text-2xl md:w-2/3 mt-2 font-normal"
+                                    class="text-xl md:text-lg w-full md:max-w-[500px] font-normal lg:font-light"
                                     v-text="slider.subtitle"
                             ></p>
-                        </div>
-                        <Link
-                                :href="slider.url"
-                                class="bg-brand text-white px-8 py-2 text-lg capitalize tracking-wide"
-                        >View Now</Link
+
+                            <Link
+                                    :href="slider.url"
+                                    v-text="slider.button"
+                                    class="bg-brand hover:bg-brand-hover px-3 transition-all duration-300 text-white flex items-center py-2 text-sm lg:text-base capitalize tracking-wide"
                             >
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </swiper-slide>
@@ -75,30 +80,20 @@ export default {
         return {
             sliders: [
                 {
-                    title: " Womens Clothing",
+                    title: "Clean & Minimal",
                     subtitle:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam amet ut ornare quisque in risus nunc nunc. Euismod ullamcorper sed fermentum non.",
+                        "Siréne is a Danish brand offering the finest in minimalist nordic design.",
                     url: route("products"),
-                    img:
-                        "https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+                    img: "images/hero/hero1.png",
+                    button: "Start Shopping ",
                 },
                 {
-                    title: " Dudes Shoes",
+                    title: "Trendy Backpacks",
                     subtitle:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam amet ut ornare quisque in risus nunc nunc. Euismod ullamcorper sed fermentum non",
-                    url: route("products"),
-
-                    img:
-                        "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-                },
-                {
-                    title: " Womens Clothing",
-                    subtitle:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam amet ut ornare quisque in risus nunc nunc. Euismod ullamcorper sed fermentum non",
-                    url: route("products"),
-
-                    img:
-                        "https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+                        "We offer a great selection of high-quality backpacks and bags in a variety of styles and materials.",
+                    url: "/category/3",
+                    img: "images/hero/hero2.png",
+                    button: "View Bags",
                 },
             ],
         };
@@ -147,5 +142,12 @@ export default {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+@media (min-width: 1024px) {
+    .swiper-slide img {
+        object-fit: contain;
+        object-position: 80% center;
+    }
 }
 </style>
