@@ -81,7 +81,7 @@ export default {
                 {
                     title: "Clean & Minimal",
                     subtitle:
-                        "Siréne is a Danish brand offering the finest in minimalist nordic design.",
+                        "Sirène is a Danish brand offering the finest in minimalist nordic design.",
                     url: route("products"),
                     img: "images/hero/hero1.png",
                     button: "Start Shopping ",
