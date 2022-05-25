@@ -5,7 +5,7 @@
         <!-- Primary Navigation Menu -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div
-                    class="flex justify-between md:grid md:grid-cols-3 md:grid-rows-1 h-16"
+                    class="flex justify-between md:grid md:grid-cols-3 md:grid-rows-1 h-[4.5rem]"
             >
                 <!-- left -->
 
@@ -57,10 +57,12 @@
 
                     <span
                             v-click-outside="closeSearch"
+                            class="cursor-pointer pt-1 transition-width flex items-center"
                             :class="
-                            showSearch && 'border-b border-black fill-black '
+                            showSearch
+                                ? 'border-b border-black text-black fill-black'
+                                : 'fill-grey text-grey'
                         "
-                            class="pt-1 fill-grey hover:fill-black transition-width flex items-center"
                     >
                         <svg
                                 @click="toggleSearch"
