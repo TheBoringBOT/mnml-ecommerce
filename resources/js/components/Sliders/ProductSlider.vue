@@ -11,11 +11,15 @@
             :pagination="{
             clickable: true,
         }"
-            :navigation="true"
+            :navigation="images.length !== 1"
             :modules="modules"
             class="mySwiper"
     >
-        <swiper-slide class="product-slider" v-for="slide in images">
+        <swiper-slide
+                class="product-slider"
+                v-for="slide in images"
+                :class="images.length === 1 && 'pointer-events-none'"
+        >
             <img :src="getXLImage(slide.image_url)" alt="slide.name"/>
         </swiper-slide>
     </swiper>
