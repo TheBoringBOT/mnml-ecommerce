@@ -4,7 +4,7 @@
         <div class="flex flex-col justify-center items-center my-28">
             <ApplicationLogo class="w-[300px] text-gray-700" />
             <h1 class="text-3xl mt-8 font-medium text-gray-700">
-                Your cart is currently empty
+                Your bag is empty
             </h1>
             <div class="relative w-full flex items-center justify-center mt-8">
                 <Link
