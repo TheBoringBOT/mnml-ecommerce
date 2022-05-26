@@ -6,7 +6,7 @@
         <meta name="description" :content="seoDescription"/>
     </Head>
     <GuestLayout>
-        <ContentWrapper class="pb-16 pt-24 lg:pt-28">
+        <ContentWrapper class="pb-16 pt-24 lg:pt-24">
             <template v-if="products.length">
                 <ProductsFilter/>
                 <ProductGrid
