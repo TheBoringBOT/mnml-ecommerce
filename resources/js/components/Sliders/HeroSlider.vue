@@ -1,50 +1,50 @@
 <template>
     <div class="w-full mx-auto mt-[4.5rem]">
         <swiper
-                :autoplay="{
+            :autoplay="{
                 delay: 5000,
                 disableOnInteraction: false,
             }"
-                :effect="'fade'"
-                :pagination="{
+            :effect="'fade'"
+            :pagination="{
                 clickable: true,
             }"
-                :modules="modules"
-                class="mySwiper"
+            :modules="modules"
+            class="mySwiper"
         >
             <swiper-slide v-for="slider in sliders">
-                <div class="relative w-full h-full">
+                <div class="relative w-full h-full max-w-7xl overflow-visible">
                     <!-- overlay-->
                     <div
-                            class="bg-off-white/40 lg:hidden w-full h-full absolute left-0 top-0 z-10"
+                        class="bg-off-white/40 lg:hidden w-full h-full absolute left-0 top-0 z-10"
                     ></div>
                     <!--img-->
                     <img
-                            :src="slider.img"
-                            alt=""
-                            class="absolute left-0 top-0"
+                        :src="slider.img"
+                        alt=""
+                        class="absolute left-0 top-0"
                     />
 
                     <!-- text content -->
                     <div
-                            class="max-w-7xl mx-auto relative flex flex-col items-center text-center lg:text-left lg:items-start space-y-5 z-20 w-full h-full justify-center text-black p-10"
+                        class="max-w-7xl mx-auto relative flex flex-col items-center text-center lg:text-left lg:items-start space-y-5 z-20 w-full h-full justify-center text-black p-10"
                     >
                         <h1
-                                class="text-5xl md:text-7xl font-medium tracking-tight"
-                                v-text="slider.title"
+                            class="text-5xl md:text-7xl font-medium tracking-tight"
+                            v-text="slider.title"
                         ></h1>
                         <div
-                                class="flex flex-col items-center lg:items-start space-y-5"
+                            class="flex flex-col items-center lg:items-start space-y-5"
                         >
                             <p
-                                    class="text-xl md:text-lg w-full md:max-w-[500px] font-normal lg:font-light"
-                                    v-text="slider.subtitle"
+                                class="text-xl md:text-lg w-full md:max-w-[500px] font-normal lg:font-light"
+                                v-text="slider.subtitle"
                             ></p>
 
                             <Link
-                                    :href="slider.url"
-                                    v-text="slider.button"
-                                    class="bg-brand hover:bg-brand-hover px-3 transition-all duration-300 text-white flex items-center py-2 text-sm lg:text-base capitalize tracking-wide"
+                                :href="slider.url"
+                                v-text="slider.button"
+                                class="bg-brand hover:bg-brand-hover px-3 transition-all duration-300 text-white flex items-center py-2 text-sm lg:text-base capitalize tracking-wide"
                             >
                             </Link>
                         </div>
@@ -57,7 +57,7 @@
 
 <script>
 // Import Swiper Vue.js components
-import {Swiper, SwiperSlide} from "swiper/vue";
+import { Swiper, SwiperSlide } from "swiper/vue";
 
 // Import Swiper styles
 import "swiper/css";
@@ -66,8 +66,8 @@ import "swiper/css/effect-fade";
 import "swiper/css/pagination";
 
 // import required modules
-import {EffectFade, Pagination, Autoplay} from "swiper";
-import {Link} from "@inertiajs/inertia-vue3";
+import { EffectFade, Pagination, Autoplay } from "swiper";
+import { Link } from "@inertiajs/inertia-vue3";
 
 export default {
     components: {
@@ -148,7 +148,7 @@ export default {
 @media (min-width: 1024px) {
     .swiper-slide img {
         object-fit: contain;
-        object-position: 80% center;
+        object-position: 130% center;
     }
 }
 </style>
