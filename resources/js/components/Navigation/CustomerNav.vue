@@ -3,7 +3,9 @@
         class="fixed top-0 left-0 right-0 w-full z-[100] bg-white text-primary-clr border-b border-gray-100"
     >
         <!-- Primary Navigation Menu -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-14 2xl:px-10"
+        >
             <div
                 class="flex justify-between md:grid md:grid-cols-3 md:grid-rows-1 h-[4.5rem]"
             >

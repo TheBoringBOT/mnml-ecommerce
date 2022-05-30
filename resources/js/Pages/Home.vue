@@ -2,28 +2,28 @@
     <Head>
         <title>High-quality designer products</title>
         <meta
-                name="description"
-                content="At Sirène we create beautiful functional products with out world-class design team. Established in 09"
+            name="description"
+            content="At Sirène we create beautiful functional products with out world-class design team. Established in 09"
         />
     </Head>
-    <HeroSlider/>
+    <HeroSlider />
     <GuestLayout>
         <ContentWrapper class="mt-4 mb-12 md:mt-12 md:mb-20">
             <template v-if="products.length">
                 <ProductGrid
-                        showButton="true"
-                        title="Some of our Favorites"
-                        :products="products"
-                        gridSize="grid-cols-2 md:grid-cols-3
-            lg:grid-cols-3 gap-16"
+                    showButton="true"
+                    title="Some of our Favorites"
+                    :products="products"
+                    gridSize="grid-cols-2 md:grid-cols-4
+            lg:grid-cols-4 gap-16"
                 />
             </template>
             <template v-else>
                 <!-- skeleton loader -->
                 <ProductGridSkeleton
-                        products="6"
-                        showButton="true"
-                        gridSize="grid-cols-2 md:grid-cols-3 lg:grid-cols-3"
+                    products="6"
+                    showButton="true"
+                    gridSize="grid-cols-2 md:grid-cols-3 lg:grid-cols-3"
                 />
             </template>
         </ContentWrapper>
@@ -32,11 +32,11 @@
 <script>
 import GuestLayout from "@/Layouts/GuestLayout";
 import ContentWrapper from "@/Layouts/ContentWrapper";
-import {Head, Link} from "@inertiajs/inertia-vue3";
+import { Head, Link } from "@inertiajs/inertia-vue3";
 import HeroSlider from "@/components/Sliders/HeroSlider";
 import ProductGrid from "@/components/Products/Grid/Grid";
 import ProductGridSkeleton from "@/components/Products/Grid/Skeleton/GridSkeleton";
-import {useStore} from "vuex";
+import { useStore } from "vuex";
 import ProductSlider from "@/components/Sliders/ProductSlider";
 
 export default {
@@ -65,7 +65,7 @@ export default {
             // shuffle products
             const shuffledProducts = _.shuffle(useStore().state.products);
             //and return 6 items
-            return shuffledProducts.slice(0, 6);
+            return shuffledProducts.slice(0, 8);
         },
 
         product(props) {
